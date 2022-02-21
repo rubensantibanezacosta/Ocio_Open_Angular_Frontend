@@ -1,19 +1,29 @@
-$dark-theme: false !default;
 
-$color-text-darkmode: white;
-$color-background-menu: rgba(184, 184, 184, 0.99);
-$color-text-menu: rgb(77, 75, 75);
+
+$color-text-darkmode: var(--color-text-darkmode);
+$color-background-menu: var(--color-background-menu);
+$color-text-menu: var(--color-text-menu);
 $image-background: linear-gradient(#565656 0%, #747373 53.13%, #565656 100%);
-$header-footer: rgb(219, 119, 4);
-$text-grey: rgb(121, 118, 118);
+$header-footer:var(--header-footer);
+$text-grey: var(text-grey);
 
-@if $dark-theme {
-  $color-text-darkmode: darken(60%);
-  $color-background-menu: darken(60%);
-  $color-text-menu:lighten(60%);
-  $image-background: darken(60%);
-  $header-footer: darken(60%);
-  $text-grey:darken(60%);
+
+:root {
+--color-background-menu:white;
+--color-text-darkmode: white;
+--color-background-menu: rgba(184, 184, 184, 0.99);
+--color-text-menu:rgb(77, 75, 75);
+--header-footer:rgb(219, 119, 4);
+--text-grey:rgb(121, 118, 118);
+}
+
+.dark{
+  --color-background-menu:black;
+  --color-text-darkmode: white;
+--color-background-menu: rgba(80, 80, 80, 0.99);
+--color-text-menu:rgb(200, 200, 200);
+--header-footer:rgb(0, 0, 0);
+--text-grey:rgb(180, 180, 180);
 }
 
 @mixin white-button {
@@ -24,7 +34,7 @@ $text-grey: rgb(121, 118, 118);
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: white;
+  color: var(--color-text-darkmode);
   box-shadow: 5px 5px 5px rgba($color: black, $alpha: 0.3);
   font-weight: bold;
   font-size: 1rem;

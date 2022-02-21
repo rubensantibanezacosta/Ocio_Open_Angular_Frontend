@@ -97,9 +97,9 @@
         </div>
         <div class="menuContainer__items__borderless">
             <div class="item-to-animate" tabindex="0">
-                <div class="dark-switch-container">
-                    <div class="dark-switch">
-                        <div class="dark-switch-button"></div>
+                <div class="dark-switch-container"  (click)="darkmodeToogleButton()"  >
+                    <div class="dark-switch" [@darkActivateButtonContainer]="darkActivateButtonContainerState" >
+                        <div class="dark-switch-button" [@darkActivateSlider]="darkActivateSliderState" ></div>
                         <p>Dark</p>
                     </div>
                     
