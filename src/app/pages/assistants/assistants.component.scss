@@ -1,0 +1,63 @@
+@import "./../../../assets/variablesSass/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+.main{
+    margin-top: 65px;
+    max-height: calc( 100vh - 160px);
+    box-sizing: border-box;
+    padding: 0 20px;
+    color: $color-text-darkmode;
+    overflow-y: auto;
+    margin-bottom: 14px;
+}
+
+.tittle-container{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid ;
+    margin-bottom: 10px;
+}
+
+.tittle{
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.quantity{
+    font-weight: lighter;
+}
+
+.assistant{
+display: flex;
+flex-direction: column;
+margin-bottom: 15px;  
+
+}
+.assistant-container{
+    display: flex;
+    height: 50px;
+}
+
+.assistant-data{
+    height: 100%;
+    width: calc(100% - 35px);
+}
+
+.star-container{
+    padding-left: 5px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 35px;
+  }
+  
+  @media (min-width: 1024px) {
+    .main{
+        margin-left:30%;
+        margin-right:30%;
+        box-sizing: border-box;
+    }
+}

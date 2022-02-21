@@ -1,0 +1,95 @@
+@import "./../../../assets/variablesSass/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+
+.modal-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    
+}
+.modal{
+    width: 380px;
+    height: 300px;
+    position: relative;
+    background-image: $image-background;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: center;
+    border-radius: 18px;
+    border: 2px white solid;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+.modal-tittle{
+    font-size: 1.4rem;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin: 0;
+    align-items: center;
+    transform: translateY(20px);
+}
+.close-icon-container{
+    position: absolute;
+    right: 9px;
+    top: 7px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.close-icon{
+    height: 30px;
+    width: 30px;
+
+}
+.error-icon-container{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+}
+.error-icon-container img{
+    height: 80px;
+    width: 80px;
+}
+.message-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-message{
+    color:$color-text-darkmode;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 20px;
+}
+.button-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.close-button{
+    width: 111.8px;
+    height: 46.43px;
+    background-color: transparent;
+    border: 3px white solid;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    margin-left: 5px;
+    color: $color-text-darkmode;
+    font-size: 1rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    margin: 0 10px;
+    cursor: pointer;
+}

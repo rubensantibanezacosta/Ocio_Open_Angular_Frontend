@@ -1,0 +1,116 @@
+@import "./../../../assets/variablesSass/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+.main-container{
+  overflow-y: scroll;
+  max-height: calc(100vh);
+}
+.profile {
+    color: $color-text-darkmode;
+    margin-top: 60px;
+    display: flex;
+    min-height: 25vh;
+    align-items: center;
+  }
+  .profile__image--container{
+      display: flex;
+      width: 45%;
+      justify-content: center;
+      align-items: center;
+      
+  }
+  .profile__image {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border: solid 2px $color-text-darkmode;
+    border-radius: 100%;
+    
+  }
+  .profile__image img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    height: 100%;
+    object-position: center;
+  }
+  
+  .profile__data {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+    padding: 10px 0px;
+    width: 50%;
+  }
+  
+  .rank-number{
+    font-size: 1.6rem;
+    text-shadow: 1px 1px 5px black;
+    margin-left: 10px;
+  }
+  
+  .profile__name {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+  
+  .profile__valoration {
+    font-size: 0.9rem;
+    font-weight: lighter;
+  }
+  
+  .star-container img{
+    margin: 0 7px;
+  }
+  
+
+.events-table-container {
+  max-height: calc(100vh - 260px);
+  overflow-y: scroll;
+  margin-bottom: 50px;
+}
+
+.timestamp{
+  color: $color-text-darkmode;
+  padding: 0 15%;
+}
+
+.timestamp span{
+  font-weight: lighter;
+  margin-left: 25px;
+  font-style: italic;
+}
+
+.main-events {
+  color: $color-text-darkmode;
+  margin: 0 10px;
+  max-width: 100vw;
+  overflow: auto;
+  max-height: calc(100% - 220px);
+  padding-bottom: 50px;
+  box-sizing: border-box;
+}
+
+table {
+font-size: 0.7rem;
+width: 100%;
+text-align: center;
+}
+
+td {
+padding: 10px 5px;
+min-width: 70px;
+}
+
+th {
+border-bottom: 1px solid $color-text-darkmode;
+padding: 10px 0;
+}
+th img {
+height: 100%;
+transform: translateY(4px);
+}
+
+tr:nth-child(even) {
+background-color: rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import "./../src/assets/variablesSass/variables.scss";
+
+html{
+    background-image: $image-background;
+    height: 100%;
+    width: 100vw;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+}

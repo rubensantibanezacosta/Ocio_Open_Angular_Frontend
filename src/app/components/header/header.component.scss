@@ -1,0 +1,29 @@
+@import "./../../../assets/variablesSass/variables.scss";
+
+.header{
+    display:flex;
+    position: absolute;
+    height: 58px;
+    width: 100%;
+    background-color: $header-footer;
+    box-shadow: 1px 1px 5px black;
+    justify-content: center;
+    align-items: center;
+    color:$color-text-darkmode;
+    font-size: 1.1rem;
+}
+
+.header_text{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header_icon{
+    height: 100%;
+    margin: 0px 5px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,293 @@
+@import "./../../../assets/variablesSass/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+
+.main{
+    font-family: 'Ubuntu', sans-serif;
+    color: $color-text-darkmode;
+    padding-top: 70px;
+    max-height: calc(100vh - 110px);
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+form{
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: space-between;
+    max-width: 1000px;
+}
+
+.tittle-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tittle-div input{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    padding: 0 10px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+    box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: .4);
+    font-size: 0.9rem;
+}
+.datetime-div{
+     display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.datetime-div input{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    padding: 0 10px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+    box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: .4);
+    font-size: 0.9rem;
+    background-color: white;
+}
+.zone-div{
+     display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.select-zone{
+    display: flex;
+    cursor: pointer;
+    
+}
+.select-zone select{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    padding: 0 10px;
+    min-height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+    box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: .4);
+    font-size: 0.9rem;
+    margin-right: 15px;
+    background-color: white;
+    cursor: pointer;
+}
+.place-div{
+     display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.place-div input{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    padding: 0 10px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+    box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: .4);
+    font-size: 0.9rem;
+}
+.image-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.image-mini{
+    max-width: 20%;
+    object-fit: contain;
+    margin-right: 20px;
+}
+.buttons{
+    padding: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items:center;
+    box-sizing: border-box;
+}
+.buttons input{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    padding: 0 10px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    border: 2px solid white;
+    outline: none;
+    font-size: 0.9rem;
+    width: calc(100% - 130px);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: .4);
+}
+.buttons button{
+  background-color: transparent;
+  box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: .4);
+  border: 2px solid white;
+  border-radius: 8px;
+  height: 40px;
+  width: 60px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+}
+
+.description-div{
+     display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.description-div textarea{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    padding: 10px 10px;
+    height: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+    box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: .4);
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    white-space: normal;
+}
+.submit-buttons-div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    padding-bottom: 40px;
+    padding-top: 15px;
+}
+
+.save-button {
+    width: 111.8px;
+    height: 46.43px;
+    background-color: transparent;
+    border: 3px rgb(0, 255, 0) solid;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    margin-right: 5px;
+    color: $color-text-darkmode;
+    font-size: 1rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  .reset-button {
+    width: 111.8px;
+    height: 46.43px;
+    background-color: transparent;
+    border: 3px red solid;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    margin-left: 5px;
+    color: $color-text-darkmode;
+    font-size: 1rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    margin: 0 10px;
+    cursor: pointer;
+  }
+
+  .upload-image__container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.upload-image__background{
+    min-width: 100%;
+    min-height: 100%;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+.preview-image-div{
+    overflow: hidden;
+    max-width: 100%;
+    max-height: 60vh;
+    position: relative;
+    background-color: transparent;
+    box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.7);
+    border: 2px white solid;
+    border-radius: 9px;
+    box-sizing: border-box;
+}
+.preview-image-div img{
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+}
+.preview-image-div p{
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    width: 100%;
+    bottom: 0;
+    justify-content: center;
+    text-align: center;
+    color: grey;
+}
+.gallery-container{
+    min-height: 100vh;
+    min-width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(5px);
+    background-color: rgba($color: #000000, $alpha: .3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.gallery-container button{
+    width: 111.8px;
+    height: 46.43px;
+    background-color: transparent;
+    border: 3px red solid;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    margin-left: 5px;
+    color: $color-text-darkmode;
+    font-size: 1rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    margin: 0 10px;
+    cursor: pointer;
+}

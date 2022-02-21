@@ -1,0 +1,216 @@
+@import "./../../../assets/variablesSass/variables.scss";
+
+.notevents{
+  margin-top: 50%;
+  color: $color-text-darkmode;
+  width: 100%;
+  text-align: center;
+  
+}
+cdk-virtual-scroll-viewport{
+  display: flex;
+  flex-direction: row;
+}
+.slider {
+  text-shadow: 1px 1px 5px black;
+  color:$color-text-darkmode;
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  height: calc(100vh - 100px);
+  white-space: nowrap;
+  margin-top: 70px;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+}
+.card-container {
+  width: calc(100vw - 20px);
+  height: 78vh;
+  min-height: 368px;
+  max-width: 368px;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+
+.card {
+  white-space: normal;
+  border: solid 2px white;
+  border-radius: 12px;
+  max-width: 86%;
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-top: 7px;
+  height: 90vh;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 1px 1px 5px black;
+  scroll-snap-align: center;
+  height: 100%;
+  min-width: 280px;
+  
+  
+}
+.card-bakground-darkfilter{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.card-bakground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+.card-bakground img {
+  object-fit: cover;
+  max-width: 120%;
+  max-height: 120%;
+  min-width: 100%;
+  min-height: 100%;
+  object-position: center;
+  position: absolute;
+}
+
+.card-date {
+  color: white;
+  position: relative;
+  left: 3%;
+  top: -1.5%;
+  font-weight: lighter;
+}
+
+.car-tittle{
+  width: 100%;
+  padding: 2% 5%;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+
+.card-data-container{
+  width:100%;
+  padding: 0% 5%;
+  height: 55%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  font-size: 0.8rem;
+  font-weight: lighter;
+}
+
+.card-data-container__row{
+display: flex;
+flex-direction: column;
+box-sizing: border-box;
+max-height: 12%;
+}
+
+.card-data-container__row-last{
+  height: 25%;
+}
+
+.row__div{
+  width: 100%;
+  display:flex;
+  align-items: center;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+  }
+
+.star-container{
+  padding-left: 5px;
+  min-width: 50px;
+}
+
+.row__a{
+width: 100%;
+display:flex;
+align-items: center;
+color: $color-text-darkmode;
+cursor: pointer;
+}
+
+
+.row__div:first-child p{
+ font-weight: bold;
+  }
+
+.row__a--icon{
+  width: 20px;
+  margin-right: 5px;
+}
+
+.row__a p{
+margin-left: 5px;
+color:$color-text-darkmode;
+
+}
+.row__div p{
+  margin-left: 5px;
+  }
+
+.transition {
+  animation-duration: 0.8s;
+  animation-name: jackInTheBox;
+}
+
+
+
+
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes jackInTheBox {
+  0% {
+    -webkit-transform: scale(0.1);
+    -webkit-transform-origin: center bottom;
+    opacity: 0;
+    transform-origin: center bottom;
+  }
+
+  to {
+    -webkit-transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
+  }
+}

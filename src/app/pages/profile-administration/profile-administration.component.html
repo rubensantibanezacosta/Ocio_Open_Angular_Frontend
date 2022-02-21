@@ -1,0 +1,59 @@
+<app-header [tittle]="tittle" [image]="image"></app-header>
+
+<div class="main-container">
+    <div class="profile">
+        <div class="profile__image--container">
+            <div class="profile__image">
+                <img *ngIf="user.image_url===undefined" src="{{profileAvatar}}" alt="" />
+                <img *ngIf="user.image_url" src="{{user.image_url}}" alt="" />
+            </div>
+
+        </div>
+        <div class="profile__data">
+            <p class="profile__name"><b>{{user.name}} </b>{{user.surname}}</p>
+            <p class="profile__valoration">Su valoración <b class="rank-number">{{userPosition}}º</b></p>
+            <div class="star-container">
+                <img *ngIf="user.punctuation_avg>=1" src="{{star}}" alt="star">
+                <img *ngIf="user.punctuation_avg>=2" src="{{star}}" alt="star">
+                <img *ngIf="user.punctuation_avg>=3" src="{{star}}" alt="star">
+                <img *ngIf="user.punctuation_avg>=4" src="{{star}}" alt="star">
+                <img *ngIf="user.punctuation_avg>=5" src="{{star}}" alt="star">
+            </div>
+        </div>
+    </div>
+    <div class="timestamp">
+        <p>Alta <span>{{formatDateString(user.createdAt)}}</span></p>
+        <p>Ultima conexión <span>{{formatDateTime(user.lastconnection)}}</span></p>
+        <p>Eventos Asistidos <span>{{attendanceCounter}}</span></p>
+        <p>Eventos Organizados <span>{{events.length}}</span></p>
+    </div>
+
+
+    <div class="main-events">
+        <div class="users-table-container">
+            <table>
+
+                <tr>
+                    <th>Nombre </th>
+                    <th>Fecha </th>
+                    <th>Zona </th>
+                    <th>Ubicación</th>
+                </tr>
+
+                <tr *ngFor="let event of events" routerLink="/eventsAdministration/{{event.event_id}}">
+                    <td>{{event.tittle}}</td>
+                    <td>{{formatDate(event.date)}}</td>
+                    <td>{{event.zone}}</td>
+                    <td>{{event.place}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-menu></app-menu>
+<app-footer></app-footer>
+<app-back-icon></app-back-icon>
+
+
+<div #modal></div>

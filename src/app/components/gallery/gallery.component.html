@@ -1,0 +1,14 @@
+<div class="main" (click)="filterStateToogle()">
+    <p>Selecciona...</p>
+    <div class="slider">
+        <div class="images-div" *ngFor="let image of images">
+            <app-image-viewer [imageId]="image.id"></app-image-viewer>
+            <div class="select-div" (click)="selectImage(image.id)" [@filter]="filterState">
+                <p class="select-text">Seleccionar</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div #modal></div> 

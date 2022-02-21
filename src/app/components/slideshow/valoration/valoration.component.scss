@@ -1,0 +1,33 @@
+@import "./../../../../assets/variablesSass/variables.scss";
+
+.card-button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-button-container p {
+  margin: 2px;
+  
+}
+.card-button-subcontainer {
+  width: 60%;
+  border-top: solid white 1px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding-top: 10px;
+}
+
+.full-star img{
+width: 30px;
+cursor: pointer;
+
+}
+
+.empty-star img{
+  width: 30px;
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+img {
+  overflow: hidden;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-sizing: border-box;
+  max-height: 80vh;
+  margin: 0;
+  padding: 0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 1);
+}

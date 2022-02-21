@@ -1,0 +1,19 @@
+<div class="modal-container" (click)="closeMe()">
+    <div class=" modal">
+        <h3 class="modal-tittle">{{title}}</h3>
+        <div class="close-icon-container" (click)="closeMe()">
+            <img src="{{closeIcon}}" alt="" class="close-icon">
+        </div>
+        <div class="message-container">
+            <div class="error-icon-container">
+                <img src="{{errorIcon}}" alt="">
+            </div>
+            
+            <p class="modal-message">{{body}}</p>
+        </div>
+        <div class="button-container">
+            <button class="close-button" (click)="closeMe()">Aceptar</button>
+        </div>
+        
+    </div>
+</div>

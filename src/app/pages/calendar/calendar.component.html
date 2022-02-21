@@ -1,0 +1,22 @@
+<app-header [tittle]="tittle" [image]="image"></app-header>
+
+<div class="main" *ngIf="events">
+    <p class="previous" (click)="changueMonth(-1)"><img src="{{previousIcon}}" alt=""></p>
+    <p class="next" (click)="changueMonth(1)"><img src="{{nextIcon}}" alt=""></p>
+    <h3>{{dateSelectedFormatLocale()}}</h3>
+    <ul class="month-list">
+        <li *ngFor="let day of week" class="day-name">{{day}}</li>
+
+        <li class="day-number" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+            *ngFor="let day of monthSelected; let first = first" (click)="selectDay(day)">
+            <app-day-events [events]="events" [date]="formatDate(day)" [dayValue]="day.value"></app-day-events>
+        </li>
+    </ul>
+</div>
+
+
+<app-menu></app-menu>
+<app-footer></app-footer>
+
+
+<div #modal></div>

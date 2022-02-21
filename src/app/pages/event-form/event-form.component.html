@@ -1,0 +1,117 @@
+<app-header [tittle]="tittle" [image]="image"></app-header>
+
+<div class="main">
+    <form (ngSubmit)="submit()" #eventForm="ngForm">
+        <div class="tittle-div">
+            <label for="tittle">Titulo</label>
+            <input type="text" [(ngModel)]="myEvent.tittle" name="eventTittle" #eventTittle="ngModel" required
+                minlength="3" maxlength="25" placeholder="Introduce un título..." />
+            <div *ngIf="eventTittle.invalid && eventTittle.dirty">
+                <div *ngIf="eventTittle.errors?.required">Campo requerido</div>
+                <div *ngIf="eventTittle.errors?.minlength">Mínimo 3 caracteres</div>
+                <div *ngIf="eventTittle.errors?.maxlength">Máximo 25 caracteres</div>
+            </div>
+        </div>
+        <div class="datetime-div" *ngIf="dateinputVisible==true">
+            <label for="date">Fecha y hora</label>
+            <input  type="datetime-local" [(ngModel)]="myEvent.date" name="date" #date="ngModel" required
+                min="{{minDate}}"/>
+            <div *ngIf="date.invalid && date.dirty">
+                <div *ngIf="date.errors?.required">Campo requerido</div>
+                <div *ngIf="date.errors?.min">Fecha invalida</div>
+            </div>
+        </div>
+        <div class="datetime-div" *ngIf="dateinputVisible==false" (click)="setVisibleDate()">
+            <label for="date">Fecha y hora</label>
+            <input  type="string" value="{{formatDate(myEvent.date)}}" readonly/>
+        </div>
+
+        <div class="zone-div">
+            <label for="zone">Zona</label>
+            <div class="select-zone">
+                <select  [(ngModel)]="myEvent.zone" name="zone" #zone="ngModel">
+                    <option value="GC">GC</option>
+                    <option value="TNF">TNF</option>
+                    <option value="VIRTUAL">VIRTUAL</option>
+                    <option value="Others">Otros</option>
+                </select>
+                <p>{{zoneSelected()}}</p>
+            </div>
+
+        </div>
+
+        <div class="place-div">
+            <label for="place" placeholder="Introduce la dirección">Ubicación o URL</label>
+            <input type="text" [(ngModel)]="myEvent.place" name="place" #place="ngModel" required minlength="4"
+                maxlength="200" placeholder="Dirección..." />
+            <div *ngIf="place.invalid && place.dirty">
+                <div *ngIf="place.errors?.required">Campo requerido</div>
+                <div *ngIf="place.errors?.minlength">Mínimo 4 caracteres</div>
+            </div>
+        </div>
+
+        <div class="image-div">
+            <label for="image">Imagen</label>
+            <div class="buttons">
+                <div class="image-mini" *ngIf="myEvent.image_id>0">
+                    <app-image-viewer  [imageId]="myEvent.image_id"></app-image-viewer>
+                </div>
+                <input type="number" required style="display: none;" [(ngModel)]="myEvent.image_id" name=image #image_id="ngModel"
+                    placeholder="Imagen...">
+                <button class="image" (click)="$event.preventDefault()" (click)="showGallery()"   (click)="myEvent.image_id=0"><img src="{{galeryIcon}}" alt=""></button>
+                <button (click)="$event.preventDefault()" (click)="showImageForm()" class="image"><img src="{{fileIcon}}" alt=""></button>
+        </div>
+
+        </div>
+
+        <div class="description-div">
+            <label for="description">Descripción (Opcional)</label>
+            <textarea type="text" [(ngModel)]="myEvent.description" name="description" #description="ngModel"
+                maxlength="160" placeholder="Detalles del evento..."></textarea>
+            <div *ngIf="place.invalid && place.dirty">
+                <div *ngIf="place.errors?.maxlength">Máximo 160 caracteres</div>
+            </div>
+        </div>
+        <div class="submit-buttons-div">
+            <button class="reset-button" type="reset">Borrar</button>
+            <button class="save-button" type="submit" [disabled]="!eventForm.form.valid">
+                Guardar
+            </button>
+        </div>
+
+    </form>
+</div>
+
+
+<div class="upload-image">
+    <input type="file" accept="image/*" style="visibility:hidden;" />
+</div>
+
+<app-footer></app-footer>
+<app-back-icon></app-back-icon>
+
+
+
+<div *ngIf="imageFormVisible" class="upload-image__container" #fileForm (submit)="uploadImage()">
+    <form class="upload-image__background"  enctype="multipart/form-data">
+        <div class="preview-image-div" (click)="photoInput.click()" (click)="file=undefined">
+            <img [src]="imageSrc|| '../../../assets/images/no-image.png'" alt="your image" />
+            <p *ngIf="!file" (click)="photoInput.click()">Haz click en la imagen</p>
+        </div>
+            <input type="file" style="visibility: hidden;" #photoInput (change)="onPhotoSelected($event)"/>
+            
+            <div class="fileForm--buttons">
+                <button class="reset-button" (click)="hideImageForm()">Cancelar</button>
+                <button class="save-button" type="submit">Guardar</button>
+            </div>
+    </form>
+</div>
+
+<div *ngIf="galleryVisible" class="gallery-container">
+    <app-gallery (imageSelected)="getId($event)">
+    </app-gallery>
+    <button (click)="hideGallery()">Cancelar</button>
+</div>
+
+
+<div #modal></div> 

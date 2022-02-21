@@ -1,0 +1,28 @@
+@import "./../../../assets/variablesSass/variables.scss";
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    color: $color-text-darkmode;
+    font-style: italic;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    width: 100%;
+    background-color: $header-footer;
+    box-shadow: 1px 1px 5px black;
+}
+.help{
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    outline: none;
+    color: white;
+    text-decoration: underline;
+    background-color: transparent;
+    border: none;
+}

@@ -1,0 +1,153 @@
+@import "./../../../assets/variablesSass/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+.main{
+    margin-top: 65px;
+    max-height: calc( 100vh - 160px);
+    box-sizing: border-box;
+    padding: 0 20px;
+    color: $color-text-darkmode;
+    overflow-y: auto;
+    margin-bottom: 14px;
+}
+
+.tittle-container{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid ;
+    margin-bottom: 10px;
+}
+
+.tittle{
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.quantity{
+    font-weight: lighter;
+}
+
+.comment{
+display: flex;
+flex-direction: column;
+margin-bottom: 15px;
+
+    
+}
+.comment-data-container{
+    margin-top: 10px;
+    display: flex;
+    padding: 0;
+    font-style: italic;
+    font-weight: lighter;
+    margin-bottom: 5px;
+}
+
+.comment-data{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.comment-author{
+    padding: 0;
+    margin: 0;
+    margin-right: 5px;
+    font-size: 0.9rem;
+    max-width: 55%;
+    white-space: nowrap;
+    overflow: auto;
+    flex-wrap: nowrap;
+}
+
+.comment-date{
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    display: flex;
+    align-content: flex-end;
+    height: 100%;
+    text-align: end;
+    justify-content: flex-end;
+    width: 42%;
+    
+}
+
+.delete-icon-container{
+display: flex;
+justify-content: flex-end;
+max-width: 24px;
+cursor: pointer;
+}
+
+
+
+.message-container{
+    background-color: $color-text-darkmode;
+    color: $text-grey;
+    font-style: italic;
+    padding: 10px;
+    border-radius: 8px;
+    word-wrap: break-word;
+    
+}
+
+
+.comment-editor-container{
+    position: absolute;
+    width: calc(100% - 75px);
+    height: 40px;
+    box-sizing: border-box;
+    background-color: $color-text-darkmode;
+    display: flex;
+    border-radius: 8px;
+    align-items: center;
+    bottom: 40px;
+    
+}
+.text-area-container{
+    margin: 0;
+    padding: 0;
+    width: calc(100% - 40px);
+    height: 40px;
+}
+.comment-editor-textarea{
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 90%;
+    max-height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: $text-grey;
+    font-style: italic;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+}
+
+.check-container{
+    background-color: green;
+    height: 36px;
+    width: 36px;
+    border-radius: 8px;
+    border: solid 1px $text-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+@media (min-width: 1024px) {
+    .main{
+        margin-left:30%;
+        margin-right:30%;
+        box-sizing: border-box;
+    }
+    .comment-editor-container{
+        width: calc(30vw);
+    }
+}

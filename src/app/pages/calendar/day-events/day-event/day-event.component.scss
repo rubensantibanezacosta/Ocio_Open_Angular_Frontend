@@ -1,0 +1,17 @@
+.day-event {
+  font-size: 0.6rem;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 5px;
+  max-height: 20px;
+  margin-top: 2px;
+  padding: 2px 2px;
+  background-color: #808080;
+  box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.6);
+}
+@media (min-width: 1024px) {
+  .day-event {
+    font-size: 1rem;
+  }
+}

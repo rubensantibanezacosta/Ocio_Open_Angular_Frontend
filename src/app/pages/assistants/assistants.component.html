@@ -1,0 +1,28 @@
+<app-header [tittle]="tittle" [image]="image"></app-header>
+<div class="main">
+    <div class="tittle-container">
+        <p class="tittle">Asistentes</p>
+        <p class="quantity">{{assistants.length}}</p>
+    </div>
+
+    <div class="assistant" *ngFor="let assistant of assistants">
+        <div class="assistant-container">
+            <div class="assistant-data">
+                <p>{{assistant.user.name}} {{assistant.user.surname}}</p>
+            </div>
+            <div class="star-container">
+                <img *ngIf="assistant.user.punctuation_avg>=1" src="{{miniStar}}" alt="miniStar">
+                <img *ngIf="assistant.user.punctuation_avg>=2" src="{{miniStar}}" alt="miniStar">
+                <img *ngIf="assistant.user.punctuation_avg>=3" src="{{miniStar}}" alt="miniStar">
+                <img *ngIf="assistant.user.punctuation_avg>=4" src="{{miniStar}}" alt="miniStar">
+                <img *ngIf="assistant.user.punctuation_avg>=5" src="{{miniStar}}" alt="miniStar">
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-back-icon></app-back-icon>
+<app-footer></app-footer>
+
+
+<div #modal></div> 

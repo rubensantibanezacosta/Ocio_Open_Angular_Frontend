@@ -1,0 +1,106 @@
+@import "./../../../assets/variablesSass/variables.scss";
+
+.container{
+    color: $color-text-darkmode;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-header-__logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.login-header-text__logo{
+    object-fit: fill;
+    width: 100px;
+    justify-self: center;
+    display: flex;
+}
+
+.login-header-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 35%;
+    width: 80%;
+    
+}
+.login-h3{
+    text-align: center;
+    font-weight: 300;
+    margin: 0;
+}
+.login-p-bolder{
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center
+    ;    
+}
+.login-button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+}
+.login-p-light{
+    text-align: center;
+}
+.login-p-light-underline{
+    text-align: center;
+    text-decoration: underline;
+}
+.login-button{
+    @include white-button;
+    cursor: pointer;
+    
+}
+.login-button:focus{
+        @include white-button-hover;
+}
+.login-button-icon{
+    padding-right: 5px;
+}
+.login-rememberme-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    font-weight: lighter;
+}
+.login-rememberme-container input{
+height: 15px;
+width: 15px;
+margin-right: 5px;
+background-color: transparent;
+border-color: $color-text-darkmode;
+}
+
+.login-admin-form{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.login-admin-form input{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    padding: 0 10px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    border: 2px solid white;
+    outline: none;
+    font-size: 0.9rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: .4);
+}

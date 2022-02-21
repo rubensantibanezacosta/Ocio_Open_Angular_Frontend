@@ -1,0 +1,69 @@
+@import "./../../../assets/variablesSass/variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+.main{
+    margin-top: 65px;
+    max-height: calc( 100vh - 100px);
+    box-sizing: border-box;
+    padding: 0 20px;
+    color: $color-text-darkmode;
+    overflow-y: auto;
+    margin-bottom: 14px;
+    text-align: center;
+    position: relative;
+    overflow: auto;
+}
+h3{
+    text-shadow: 5px 5px 5px rgba($color: #000000, $alpha: .6);
+}
+
+.month-list{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 0;
+}
+
+
+.day-name{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+}
+
+
+.day-number{
+    height:6rem;
+    overflow: hidden;
+    border:solid 1px rgba($color: #000000, $alpha: .6);
+    background-color: #c9c9c9;
+    box-sizing: border-box;
+    padding: 5px 0;
+    border-radius: 3px;
+    margin: 1px;
+    box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: .6);
+    cursor: pointer;
+}
+
+.previous{
+position: absolute;
+top: 5px;
+left: 15px;
+cursor: pointer;
+}
+.next{
+position: absolute;
+top: 5px;
+right: 15px;
+cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .main{
+        margin-left:20%;
+        margin-right:20%;
+        box-sizing: border-box;
+    }
+}

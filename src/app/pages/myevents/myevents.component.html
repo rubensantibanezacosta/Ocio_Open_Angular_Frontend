@@ -1,0 +1,51 @@
+<app-header [tittle]="tittle" [image]="image"></app-header>
+
+<app-profile></app-profile>
+
+<div class="contain-main__container">
+    <div class="available-events__container">
+        <div class="tittle__container">
+            <p class="available-events__tittle">Mis eventos disponibles</p>
+            <button class="add-button">
+                <img src="{{plus}}" alt="" routerLink="/eventform/{{0}}/new">
+            </button>
+        </div>
+        <div class="available-events__item--container">
+            <div class="available-events__item" *ngFor="let futureEvent of futureEvents">
+                <p class="available-events__item--text">{{futureEvent.tittle}} <i>{{formatDate(futureEvent.date)}}</i></p>
+                <button class="trash-button">
+                    <img src="{{trash}}" alt="" (click)="deleteEventById(futureEvent.event_id)">
+                </button>
+                <button class="edit-button">
+                    <img src="{{editIcon}}" alt="" routerLink="/eventform/{{futureEvent.event_id}}/edit">
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="finalized-events__container">
+        <div class="tittle__container">
+            <p class="finalized-events__tittle">Mis eventos terminados</p>
+        </div>
+        <div class="finalized-events__item--container">
+            <div class="finalized-events__item" *ngFor="let pastEvent of pastEvents">
+                <p class="finalized-events__item--text">{{pastEvent.tittle}} <i>{{formatDate(pastEvent.date)}}</i></p>
+                <div class="item__ministar--container" >
+                    <img *ngIf="pastEvent.punctuation_avg" src="{{miniStar}}" alt="star">
+                    <img *ngIf="pastEvent.punctuation_avg>=2" src="{{miniStar}}" alt="star">
+                    <img *ngIf="pastEvent.punctuation_avg>=3" src="{{miniStar}}" alt="star">
+                    <img *ngIf="pastEvent.punctuation_avg>=4" src="{{miniStar}}" alt="star">
+                    <img *ngIf="pastEvent.punctuation_avg>=5" src="{{miniStar}}" alt="star">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-menu></app-menu>
+<app-footer></app-footer>
+
+
+<div #modal></div> 
