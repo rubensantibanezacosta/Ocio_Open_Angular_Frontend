@@ -84,7 +84,7 @@ export class RankingComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -96,7 +96,7 @@ export class RankingComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -108,7 +108,7 @@ export class RankingComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -120,7 +120,7 @@ export class RankingComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })

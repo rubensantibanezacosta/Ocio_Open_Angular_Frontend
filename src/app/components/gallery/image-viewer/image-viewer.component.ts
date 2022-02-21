@@ -31,7 +31,7 @@ export class ImageViewerComponent implements OnInit {
       return this.createImageFromBlob(this.downloaded);
     },
     (error) => {
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })

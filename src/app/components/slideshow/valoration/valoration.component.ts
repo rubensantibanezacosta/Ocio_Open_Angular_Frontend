@@ -44,7 +44,7 @@ export class ValorationComponent implements OnInit {
       },
         (error) => {
 
-          this.ErrorMessage = error.error;
+          this.ErrorMessage=error.error.message;
           this.createModal();
 
         })
@@ -58,7 +58,7 @@ export class ValorationComponent implements OnInit {
         }
       },
         (error) => {
-          this.ErrorMessage = error.error;
+          this.ErrorMessage=error.error.message;
           this.createModal();
 
         })
@@ -74,7 +74,7 @@ export class ValorationComponent implements OnInit {
       this.loadPunctuationByPk();
     },
       (error) => {
-        this.ErrorMessage = error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
 
       })

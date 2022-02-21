@@ -65,7 +65,7 @@ export class AttendanceComponent implements OnInit {
       }
     },
     (error) => {
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -81,7 +81,7 @@ export class AttendanceComponent implements OnInit {
         this.refreshAssistantState();
       },
       (error) => {
-        this.ErrorMessage=error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
   
       });
@@ -98,7 +98,7 @@ export class AttendanceComponent implements OnInit {
         this.refreshAssistantState();
       },
       (error) => {
-        this.ErrorMessage=error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
   
       });

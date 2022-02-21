@@ -105,7 +105,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
       /* this.connectSocket(this.event_id);   */
     },
       (error) => {
-        this.ErrorMessage = error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
 
       })

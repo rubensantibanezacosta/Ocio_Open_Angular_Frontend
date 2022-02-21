@@ -58,8 +58,8 @@ export class EventFormComponent implements OnInit {
     this.eventsService.createEvent(this.myEvent).subscribe(
       (res) => {window.history.back()},
     (error) => {
-      
-      this.ErrorMessage=error.error;
+
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -69,8 +69,8 @@ export class EventFormComponent implements OnInit {
         window.history.back()
       },
       (error) => {
-        
-        this.ErrorMessage=error.error;
+       
+        this.ErrorMessage=error.error.message;
         this.createModal();
   
       });
@@ -84,7 +84,7 @@ export class EventFormComponent implements OnInit {
       },
       (error) => {
         
-        this.ErrorMessage=error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
   
       })
@@ -106,7 +106,7 @@ export class EventFormComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })

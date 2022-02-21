@@ -49,7 +49,7 @@ export class MyeventsComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -61,7 +61,7 @@ export class MyeventsComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -76,7 +76,7 @@ export class MyeventsComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     });
@@ -90,7 +90,7 @@ export class MyeventsComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     });
@@ -101,7 +101,7 @@ export class MyeventsComponent implements OnInit {
       res=>{return this.getFutureEventsByUser(); },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     });

@@ -83,7 +83,7 @@ export class AdministrationComponent implements OnInit {
       return (this.events = res);
     },
       (error) => {
-        this.ErrorMessage = error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
 
       })
@@ -94,7 +94,7 @@ export class AdministrationComponent implements OnInit {
       return (this.users = res);
     },
       (error) => {
-        this.ErrorMessage = error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
 
       })
@@ -172,7 +172,7 @@ export class AdministrationComponent implements OnInit {
       this.fileSaverService.save(<any>file, "document.pdf");
     },
       (error) => {
-        this.ErrorMessage = error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
 
       })
@@ -183,7 +183,7 @@ export class AdministrationComponent implements OnInit {
       this.sendEmail = "";
     },
       (error) => {
-        this.ErrorMessage = error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
 
       }

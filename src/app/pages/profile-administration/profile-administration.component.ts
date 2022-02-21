@@ -41,7 +41,7 @@ export class ProfileAdministrationComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -53,7 +53,7 @@ export class ProfileAdministrationComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -65,7 +65,7 @@ export class ProfileAdministrationComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })
@@ -78,7 +78,7 @@ export class ProfileAdministrationComponent implements OnInit {
     },
     (error) => {
       
-      this.ErrorMessage=error.error;
+      this.ErrorMessage=error.error.message;
       this.createModal();
 
     })

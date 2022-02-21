@@ -31,7 +31,7 @@ export class AssistantsComponent implements OnInit {
       this.assistants = assistants;
     },
       (error) => {
-        this.ErrorMessage = error.error;
+        this.ErrorMessage=error.error.message;
         this.createModal();
 
       })
