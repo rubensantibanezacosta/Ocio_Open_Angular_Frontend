@@ -95,6 +95,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.webSocketService.client.unsubscribe(`/comments-chat/delete_${this.event_id}`);
+    this.webSocketService.client.unsubscribe(`/comments-chat/${this.event_id}`);
   }
 
   async getCommentsByEvent() {
