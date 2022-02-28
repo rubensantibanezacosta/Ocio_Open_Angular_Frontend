@@ -22,6 +22,7 @@
         </div>
     </div>
     <div class="timestamp">
+        <button (click)="permissionsModal=true">Modificar Permisos</button>
         <p>Alta <span>{{formatDateString(user.createdAt)}}</span></p>
         <p>Ultima conexión <span>{{formatDateTime(user.lastconnection)}}</span></p>
         <p>Eventos Asistidos <span>{{attendanceCounter}}</span></p>
@@ -45,6 +46,7 @@
                     <td>{{formatDate(event.date)}}</td>
                     <td>{{event.zone}}</td>
                     <td>{{event.place}}</td>
+                    
                 </tr>
             </table>
         </div>
@@ -54,6 +56,11 @@
 <app-menu></app-menu>
 <app-footer></app-footer>
 <app-back-icon></app-back-icon>
+<app-permissions *ngIf="permissionsModal==true" 
+[userPosition]="userPosition"
+[user]="user"
+[attendanceCounter]="attendanceCounter"
+(closePermissions)="closePermissionsModal($event)"></app-permissions>
 
+<!-- <div #modal></div> -->
 
-<div #modal></div>

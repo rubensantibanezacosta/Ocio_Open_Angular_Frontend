@@ -51,4 +51,8 @@ export class UsersService {
     return this.httpClient.post(this.endpoint+"/admin/report", {email:email}, this.httpOptions);
   }
 
+  updateUsersPermissions(permissions:string, email:string):Observable<any>{
+    return this.httpClient.put<any>(this.endpoint+"/"+email, permissions, this.httpOptions);
+  }
+
 }

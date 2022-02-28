@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   apiKeyToken: string = "";
   adminFormVisibility: boolean = false;
 
-  ErrorMessage:string;
+  ErrorMessage: string;
 
 
   googleIcon = ("../../../assets/icons/google-icon-white.png");
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     private authService: SocialAuthService,
     private loginService: LoginService,
     private router: Router,
-    private errorHandlerService:ErrorHandlerService) { }
+    private errorHandlerService: ErrorHandlerService) { }
 
   ngOnInit(): void {
     this.tokenExists();
@@ -54,10 +54,10 @@ export class LoginComponent implements OnInit {
     this.rememberMe = this.isChecked$.value;
   }
 
-  tokenExists(){
-    if(localStorage.getItem("ocioToken")){
-      const expireDate=getDataFromToken().tokenExpireDate;
-      if (moment().isBefore(moment(expireDate))){
+  tokenExists() {
+    if (localStorage.getItem("ocioToken")) {
+      const expireDate = getDataFromToken().tokenExpireDate;
+      if (moment().isBefore(moment(expireDate))) {
         this.router.navigateByUrl("/home");
       }
     }
@@ -66,20 +66,19 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       (data) => {
-     
-         if (data.email) {
-          console.log(data)
+
+        if (data.email) {
           const user: User = new User();
           user.email = data.email;
           user.image_url = data.photoUrl;
           user.name = data.firstName;
           user.surname = data.lastName;
 
-         /*  const loginData: any = {
-            user: user,
-            rememberMe: this.rememberMe,
-            apiKeyToken: this.apiKeyToken,
-          }  */
+          /*  const loginData: any = {
+             user: user,
+             rememberMe: this.rememberMe,
+             apiKeyToken: this.apiKeyToken,
+           }  */
 
           this.loginService.login(user, data.idToken).subscribe((data) => {
             if (data.token) {
@@ -90,8 +89,8 @@ export class LoginComponent implements OnInit {
             }
           },
             (error) => {
-              
-              this.ErrorMessage=error.error.message;
+
+              this.ErrorMessage = error.error.message;
               this.createModal();
 
             })
@@ -108,12 +107,12 @@ export class LoginComponent implements OnInit {
   photoUrl: "https://lh3.googleusercontent.com/a/AATXAJwcvFaX_gz372p_URZppF-xJyJ2-AeOcW7t_poz=s96-c" */
 
   adminFormVisibilityToggle() {
-    if(this.adminFormVisibility){
+    if (this.adminFormVisibility) {
       this.adminFormVisibility = false;
-      this.apiKeyToken=""; 
-    } else{
+      this.apiKeyToken = "";
+    } else {
       this.adminFormVisibility = true;
-    } 
+    }
   }
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
@@ -135,11 +134,11 @@ export class LoginComponent implements OnInit {
   sub!: Subscription;
 
 
-  createModal(){
-      this.sub = this.errorHandlerService
-        .openModal(this.entry, 'ERROR', this.ErrorMessage)
-        .subscribe((v) => {
-          //your logic
-        });
+  createModal() {
+    this.sub = this.errorHandlerService
+      .openModal(this.entry, 'ERROR', this.ErrorMessage)
+      .subscribe((v) => {
+        //your logic
+      });
   }
 }

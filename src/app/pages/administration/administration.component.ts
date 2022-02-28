@@ -165,13 +165,14 @@ export class AdministrationComponent implements OnInit {
     }
   }
 
-  getUsersPDF() {
-    console.log("reveiving pdf")
+  getUsersPDF(event) {
+    event.preventDefault();
     this.usersService.getAllUsersReport().subscribe(async (data) => {
-      const file = new Blob([data], { type: 'x-google-chrome-pdf' });
-      this.fileSaverService.save(<any>file, "document.pdf");
+      const file = new File([data], "document.pdf", { type: 'application/pdf' });
+      window.open(URL.createObjectURL(file),"blank");
     },
       (error) => {
+        console.log(error);
         this.ErrorMessage=error.error.message;
         this.createModal();
 

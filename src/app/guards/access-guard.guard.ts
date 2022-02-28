@@ -14,7 +14,7 @@ export class AccessGuardGuard implements CanActivate {
 
     const scopes = getDataFromToken().scopes;
     const expireDate =  getDataFromToken().tokenExpiresIn;
-    
+
     if(moment().isAfter(moment(expireDate))){
       console.error('Token Expired');
       this.router.navigate(['/']);
@@ -22,8 +22,10 @@ export class AccessGuardGuard implements CanActivate {
     }
 
     if (scopes.includes(activatedRoute.url[0].path)) {
+      
       return true;
     } else {
+      
       console.error('Unauthorized');
       this.router.navigate(['/']);
       return false;

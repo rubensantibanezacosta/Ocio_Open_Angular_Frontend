@@ -19,11 +19,11 @@
             <input type="checkbox" [checked]="isChecked$" (change)="toggleChecked()">
             <label for="rememberMe">Recuérdame</label>
         </div>
-        <a class="login-p-light-underline" (click)="adminFormVisibilityToggle()"><p>¿Eres administrador?</p></a>
+      <!--   <a class="login-p-light-underline" (click)="adminFormVisibilityToggle()" ><p>¿Eres administrador?</p></a>
         <form  class="login-admin-form" *ngIf="adminFormVisibility">
             <label for="apiKeyToken" >Introduce tu clave de administrador</label>
             <input type="password" id="apiKeyToken" placeholder="Clave..." name="apiKeyToken" #apiKeyToken (keyup)="setApiKeyValue(apiKeyToken.value)" (mouseleave)="setApiKeyValue(apiKeyToken.value)" />
-        </form>
+        </form> -->
     </div>
 </div>
 

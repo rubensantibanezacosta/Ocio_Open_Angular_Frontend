@@ -1,0 +1,56 @@
+<div class="container">
+    <app-header [tittle]="tittle"></app-header>
+
+    <div class="main-container">
+        <div class="main-container">
+            <div class="profile">
+                <div class="profile__image--container">
+                    <div class="profile__image">
+                        <img *ngIf="user.image_url===undefined" src="{{profileAvatar}}" alt="" />
+                        <img *ngIf="user.image_url" src="{{user.image_url}}" alt="" />
+                    </div>
+
+                </div>
+                <div class="profile__data">
+                    <p class="profile__name"><b>{{user.name}} </b>{{user.surname}}</p>
+                    <p class="profile__valoration">Su valoración <b class="rank-number">{{userPosition}}º</b></p>
+                    <div class="star-container">
+                        <img *ngIf="user.punctuation_avg>=1" src="{{star}}" alt="star">
+                        <img *ngIf="user.punctuation_avg>=2" src="{{star}}" alt="star">
+                        <img *ngIf="user.punctuation_avg>=3" src="{{star}}" alt="star">
+                        <img *ngIf="user.punctuation_avg>=4" src="{{star}}" alt="star">
+                        <img *ngIf="user.punctuation_avg>=5" src="{{star}}" alt="star">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="timestamp">
+            <p>Permisos </p>
+        </div>
+        <div class="main-permissions">
+            <div class="users-table-container">
+                <table>
+
+                    <tr>
+                        <th>Nombre </th>
+                        <th>Si/No </th>
+
+                    </tr>
+
+                    <tr *ngFor="let permission of permissions, let i=index">
+                        <td>{{permission}}</td>
+                        <td><input type="checkbox" id="{{permission}}" checked="{{checkPermission(permission)}}" 
+                            (change)="tooglePermission(permission, $event.target)"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <app-footer></app-footer>
+
+    <div id="collapse-icon" class="collapse-icon" (click)="closeModal()">
+        <img src="{{collapseIcon}}" alt="{{collapseIcon}}" />
+    </div>
+
+</div>

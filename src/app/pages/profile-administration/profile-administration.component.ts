@@ -23,7 +23,7 @@ export class ProfileAdministrationComponent implements OnInit {
   user: User = new User();
   events: Event[] = [];
   attendanceCounter:number=0;
-
+  permissionsModal:boolean=false;
   ErrorMessage:string;
   constructor(private userService: UsersService, private activatedRoute: ActivatedRoute, private eventsService: EventsService, private assistantsService:AssistantsService,  private errorHandlerService:ErrorHandlerService) { }
 
@@ -31,7 +31,7 @@ export class ProfileAdministrationComponent implements OnInit {
     this.getUser();
     this.getUserPosition();
     this.getEventsByUser();
-    this.countAttendance();
+    this.countAttendance(); 
   }
 
   getUser() {
@@ -96,6 +96,9 @@ export class ProfileAdministrationComponent implements OnInit {
     return moment(dateTime).format("DD-MM-YY HH:mm");
   }
 
+  closePermissionsModal(event){
+    this.permissionsModal=event;
+  }
     //Error handler modals
     @ViewChild('modal', { read: ViewContainerRef })
     entry!: ViewContainerRef;

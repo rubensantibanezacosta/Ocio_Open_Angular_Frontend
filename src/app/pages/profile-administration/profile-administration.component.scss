@@ -114,3 +114,8 @@ transform: translateY(4px);
 tr:nth-child(even) {
 background-color: rgba(255, 255, 255, 0.2);
 }
+button{
+  @include white-button;
+  cursor: pointer;
+}
+
