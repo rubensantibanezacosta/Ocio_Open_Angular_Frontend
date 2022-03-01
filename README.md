@@ -303,5 +303,6 @@ Ciertamente, se me hace corto el periodo de aprendizaje que te ofrece un Grado s
 * [Tutorial de La Tecnologia avanza en Youtube](https://www.youtube.com/watch?v=1uvSOObbJ3k&t=4012s&ab_channel=LaTecnolog%C3%ADaAvanza)
 * [Documentación de SockJs](https://openbase.com/js/sockjs/documentation)
 * [Documentacion de Spring](https://www.baeldung.com/)
+* [Fork del frontend del proyecto anterior](https://github.com/rubensantibanezacosta/Ocio_Open)
 
 
