@@ -13,6 +13,25 @@ El proyecto es una red social básica, que permite, potencia y premia la organiz
 
 [Open Canarias SL](https://www.opencanarias.com/)
 
+
+## Technologias utilizadas
+
+- [Angular para el frontend](https://angular.io/)
+- [Spring boot para el backend](https://spring.io/projects/spring-boot)
+- [Maven como getor de paquetes de Java](https://maven.apache.org/)
+- [MySQL para la Base de datos](https://www.mysql.com/)
+- [Java Persistence Api como ORM](https://www.java.com/es/)
+- [FIGMA para el diseño del prototipo](https://www.figma.com/)
+- [HelpNDoc para el sistema de ayuda](https://www.helpndoc.com/es/)
+- [IntelliJ Ultimate como IDE para Java](https://www.jetbrains.com/es-es/idea/)
+- [Visual Studio Code como IDE para Angular](https://code.visualstudio.com/)
+- [PhpMyAdmin como gestor de bases de datos](https://www.phpmyadmin.net/)
+- [Git and Github como gestor de versiones](https://github.com/)
+- [Ubuntu 20.04 como SO](https://ubuntu.com/download)
+- [Linux Mint 20.03 como SO](https://linuxmint.com)
+- [Wine como emulador de windows](https://www.winehq.org/)
+- [Postman desktop para testear la API](https://www.postman.com/)
+
 ## Documentación del Proyecto
 
 - [Informe de requisitos de la aplicación](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/requisitos.md)
