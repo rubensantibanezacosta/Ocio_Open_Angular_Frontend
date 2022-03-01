@@ -24,23 +24,27 @@ El proyecto es una red social básica, que permite, potencia y premia la organiz
 
 ## Comenzando
 
-Link de descarga:
+Links de descarga:
 
-Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open
+* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend Frontend
+* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend Backend
 
 ## Prerequisitos
 
 Necesitas un entorno de desarrollo con:
 * [Git](https://git-scm.com) -  https://git-scm.com/downloads.
 * [MySQL](https://www.mysql.com) -  https://www.mysql.com/downloads/.
-* [Node.js](https://nodejs.org) -  https://nodejs.org/es/download/. 
+* [Node.js](https://nodejs.org) -  https://nodejs.org/es/download/. Version LTS recomendada
+* [JDK17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) -  https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html. 
+* [Maven](https://maven.apache.org/download.cgi) -  https://maven.apache.org/download.cgi. 
 
 ## Instrucciones de instalación
 
-Clone el repositorio:
+Clone los repositorios:
 
 ```
-git clone https://github.com/rubensantibanezacosta/Ocio_Open
+git clone https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend
+git clone https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend
 ```
 
 El proyecto consta de 3 partes diferenciadas:
@@ -48,17 +52,16 @@ El proyecto consta de 3 partes diferenciadas:
 * Backend
 * Base de datos
 
-Necesita tener instalado node.js en tu entorno de desarrollo. Version LTS recomendada: https://nodejs.org/es/
 
-Una vez clonado, debe actualizar las dependencias.
+Una vez clonados, debe actualizar las dependencias.
 
 ```
-cd frontend/
+cd Ocio_Open_Angular_Frontend/
 npm install
 ```
 ```
-cd backend/
-npm install
+cd Ocio_Open_Java_Backend/
+mvn install
 ```
 
 
@@ -74,7 +77,7 @@ En esta pagina deberá configurar un nuevo proyecto haciendo click en crear cren
 
 
 
-Deberá crear el archivo frontend/src/app/config/config.ts y rellenarlo con sus credenciales utilizando el esquema del archivo frontend/src/app//config.ts.example
+Deberá crear el archivo frontend/src/app/config/config.ts y rellenarlo con sus credenciales utilizando el esquema del archivo frontend/src/app/config.ts.example
 
 ```
 import { Injectable } from '@angular/core';
@@ -102,8 +105,6 @@ export class VariablesService {
 ```
 
 
-
-
 * Para su backend:
 
 
@@ -113,58 +114,103 @@ export class VariablesService {
 
 3. Importe el archivo a su base de datos:  [Archivo SQL](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/ocioopenBBDD.sql)
 
-4. Debera crear el archivo backend/.env y rellenarlo con sus credenciales utilizando es esquema del archivo backend/.env.example
+4. Debera crear el archivo backend/application.properties y rellenarlo con sus credenciales utilizando eL esquema del archivo backend/application.properties.example. Recuerde introducir los valores en texto plano, sin comillas.
 
-MySQL
-```
-MYSQL_DATABASE=nombre de la base de datos
-MYSQL_USER=nombre de usuario
-MYSQL_PASSWORD=clave de acceso de MySQL
-MYSQL_ROOT_PASSWORD=clave de acceso de MySQL
-``` 
-Mode
-```
-NODE_ENV=development
-```
- JWT
-```
-JWT_SECRET=El secret utilizado para el protocolo Jwt
-TOKEN_EXPIRE_TIME=Tiempo de expiración del token en minutos
-TOKEN_EXPIRE_TIME_REMEMBER_ME=Tiempo de expiración del token en minutos con la casilla remember me marcada
-```
-Api key tokens
 
-Éstas claves se generan automaticamente en la base de datos ejecutando el script:
-```
-npm run roleKeysCreate 
-``` 
-para crearlas, o 
-```
-npm run roleKeysUpdate 
-```
-para actualizarlas.
 
-Una vez creadas, copielas y péguelas aqui:
 
+##### DRIVER MYSQL, EN NUESTRO CASO EL DEL EJEMPLO
 ```
-PUBLIC_API_KEY_TOKEN=
-ADMIN_API_KEY_TOKEN=
-```
-Domains
-
-```
-ACCEPTED_DOMAINS="dominios aceptados para el registro separados por comas. Ejemplo: gmail.com,hotmail.com"
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 ```
 
-Mail credentials
+##### UBICACION Y NOMBRE DE SU BASE DE DATOS, EN NUESTRO CASO EL DEL EJEMPLO
 ```
-EMAIL_API_NAME=direccion de email para enviar notificaciones
-EMAIL_PASSWORD=contraseña de Api para el email
+spring.datasource.url=jdbc:mysql://localhost:3306/ocio_open?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 ```
-Frontend End point
+
+##### DIALECTO PARA EL ORM, EN NUESTRO CASO EL DEL EJEMPLO
 ```
-FRONTEND_ENDPOINT=http://{dirección donde este alojado el frontend}/eventsbydate/
+spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
 ```
+
+##### USUARIO Y CONTRASEÑA DE ACCESO A SU SERVIDOR MYSQL
+```
+spring.datasource.username=
+spring.datasource.password=
+```
+
+##### [opcional] IMPRIME EN SU CONSOLA LAS INSTRUCCIONES HECHAS EN LA BASE DE DATOS
+```
+#spring.jpa.show-sql = true
+```
+
+##### PUERTO DONDE SE LEVANTARÁ EL BACKEND, EN NUESTRO CASO EL 4000
+```
+server.port=4000
+```
+
+##### [opcional] CONTEXT PATH, SI LO DESEA
+```
+#server.servlet.context-path=......./app
+```
+
+##### VALORES
+
+
+###### API KEYS DE ACCESO A LOS PERMISOS, RECOGIDAS EN LA BASE DE DATOS. (Instalación descrita debajo)
+```
+value.adminrolekey=
+value.userrolekey=
+```
+
+##### SECRET PARA FIRMAR SU JSON WEB TOKEN
+```
+value.jwtsecret=
+```
+
+##### TIEMPO DE EXPIRACION DEL TOKEN EN MINUTOS
+```
+value.expirationTime=
+```
+
+##### DOMINIOS ACEPTADOS SEPARADOS POR COMAS, SIN ESPACIOS. EJEMPLO: gmail.com,hotmail.com 
+```
+value.accepted.domains=
+```
+
+##### URL PARA VALIDAR TOKENS DE GOOGLE (Dejarla por defecto)
+```
+value.google.url.tokenvalidation=https://oauth2.googleapis.com/tokeninfo?id_token=
+```
+
+##### CUENTA DE GMAIL PARA EL MAILING (Instalación descrita debajo).
+```
+value.google.mail=
+value.google.mail.password=
+```
+
+##### FRONTEND HOST (En nuestro caso, la actual)
+```
+value.frontend.host=http://localhost:4200
+```
+
+
+### API KEYS Y SECRET
+
+Para generar codigos seguros tanto para sus apikeys, como para su secret, le recomendamos que utilice generadores ramdom de contraseñas. Puede utilizar [esta](https://keygen.io/) web.
+
+Para sus api keys, utilice los roles creados en la base de datos:
+* Uno contendrá todos los permisos existentes en la aplicación
+* El otro contendra los permisos iniciales que se le concederán a los nuevos usuarios (Serán modificables a traves del area de administración) 
+
+Genere nuevas `api_key` para cada uno de ellos, y copie y pegue las contraseñas en los campos `value.adminrolekey` para todos los permisos, y `value.userrolekey` para los permisos de los nuevos usuarios.
+
+![Captura de pantalla de 2022-03-01 10-05-21](https://user-images.githubusercontent.com/44450566/156148966-e3a31a90-f501-43f2-99ed-9b08b2b95001.png)
+
+Para el secret utilizar como mínimo una clave WEP 256-bit Key. Generela, copiela y péguela en su campo `value.jwtsecret`.
+
+
 
 ### Mailing
 
@@ -175,7 +221,7 @@ El siguiente paso es acceder al apartado de *CONTRASEÑAS DE APLICACIONES*, y ge
 
 ![Captura de pantalla de 2021-12-09 18-22-45](https://user-images.githubusercontent.com/44450566/145453889-9eb9953b-cd20-4aaa-8683-3c4ffea87214.png)
 
-Copie y pegue su dirección de correo electrónico y su clave generada en en archivo .env
+Copie y pegue su dirección de correo electrónico y su clave generada en en archivo application.properties en los campos correspondientes.
 
 
 Finalmente disfrute del proyecto:
@@ -183,22 +229,13 @@ Finalmente disfrute del proyecto:
 Modo Desarrollador:
 ```
 backend/
-npm run dev
+mvn springboot:run
 ```
 ```
 frontend/
-ng serve -o
-```
-
-Modo Producción:
-```
-backend/
 npm run start
 ```
-```
-frontend/
-ng serve -o
-```
+
 
 Si sigue las instrucciones debera tener arrancados tres servidores:
 * Frontend (http://localhost:4200)
