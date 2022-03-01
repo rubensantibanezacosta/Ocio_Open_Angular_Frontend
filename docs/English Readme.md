@@ -119,7 +119,7 @@ export class VariablesService {
 
 2. Create the database, in your case it should be called ``` ocio_open ```
 
-3. Import the file to your database:  [Archivo SQL](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/ocio_open.sql)
+3. Import the file to your database:  [SQL file](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/ocio_open.sql)
 
 4. You will need to create the backend/application.properties file and fill it with your credentials using the schema from the backend/application.properties.example file. Remember to enter the values in plain text, without quotes.
 
