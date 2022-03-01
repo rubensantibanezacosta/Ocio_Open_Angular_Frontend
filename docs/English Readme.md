@@ -1,10 +1,11 @@
-[Ver en castellano](https://github.com/rubensantibanezacosta/Ocio_Open)
+[Ver en castellano](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend)
 
 # Ocio Open  *(Training project)*
 
 Repository of the App and the Ocio Open server.
 
-The project is a basic social network that allows, empowers and rewards the organization of social events for the employees of a company.
+The project is a basic social network that allows, enhances and rewards the organization of social events for company employees.
+
 
 
 ## Client
@@ -12,34 +13,38 @@ The project is a basic social network that allows, empowers and rewards the orga
 
 [Open Canarias SL](https://www.opencanarias.com/)
 
-## Project Documentation
+## Project documentation
 
-- [Application requirements report](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/requisites.md)
-- [Use case diagram](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/Casos%20de%20Uso.png)
-- [Data model](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/Captura%20de%20pantalla%20de%202021-12-03%2011-33-16.png)
-- [API Rest Calls Report in Postman](https://documenter.getpostman.com/view/17032586/UVC8E77j)
-- [FIGMA designed prototype](https://www.figma.com/proto/avUqIHB3yfnUUCIBHcHBDu/Open-Ocio?node-id=182%3A98&starting-point-node-id=182%3A98)
-- [Usability Ascpects](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/Usability.md)
+- [Application Requirements Report](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/requisites.md)
+- [Use case diagram](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/Casos%20de%20Uso.png)
+- [Entity Relationship Diagram](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/Captura%20de%20pantalla%20de%202021-12-03%2011-33-16.png)
+- [Rest API request report in Postman](https://documenter.getpostman.com/view/17032586/UVC8E77j)
+- [Prototype designed with FIGMA](https://www.figma.com/proto/avUqIHB3yfnUUCIBHcHBDu/Open-Ocio?node-id=182%3A98&starting-point-node-id=182%3A98)
+- [Usability Aspects](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/Usability.md)
 
-## Starting
+## Get started
 
-Download Links:
+Download links:
 
-From Github: https://github.com/rubensantibanezacosta/Ocio_Open
+* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend Frontend
+* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend Backend
 
 ## Prerequisites
 
-You need a development environment with:
+Necesitas un entorno de desarrollo con:
 * [Git](https://git-scm.com) -  https://git-scm.com/downloads.
 * [MySQL](https://www.mysql.com) -  https://www.mysql.com/downloads/.
-* [Node.js](https://nodejs.org) -  https://nodejs.org/es/download/. 
+* [Node.js](https://nodejs.org) -  https://nodejs.org/es/download/. Version LTS recomended
+* [JDK17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) -  https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html. 
+* [Maven](https://maven.apache.org/download.cgi) -  https://maven.apache.org/download.cgi. 
 
-## Installation instructions
+## Setup
 
-Clone the repository:
+Clone  repositories:
 
 ```
-git clone https://github.com/rubensantibanezacosta/Ocio_Open
+git clone https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend
+git clone https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend
 ```
 
 The project consists of 3 different parts:
@@ -47,33 +52,32 @@ The project consists of 3 different parts:
 * Backend
 * Database
 
-You need to have node.js installed in your development environment. LTS version recommended : https://nodejs.org/es/
 
-Once cloned, you must update the dependencies.
+Once cloned, you need to install dependencies.
 
 ```
-cd frontend/
+cd Ocio_Open_Angular_Frontend/
 npm install
 ```
 ```
-cd backend/
-npm install
+cd Ocio_Open_Java_Backend/
+mvn install
 ```
 
 
-* For the frontend, the Google login function is used, you need to create a client ID by creating a new project on the Google developers website: https://console.cloud.google.com/apis
+* For the frontend, the Google login feature is used, you need to create a client ID by creating a new project on the Google developer website: https://console.cloud.google.com/apis
 
-On this page you must configure a new project by clicking on create crendential and Obtain your Google ClientId.
+On this page you will need to configure a new project by clicking on create credentials and Get your Google ClientId.
 
 ![Captura de pantalla de 2021-11-22 15-04-08](https://user-images.githubusercontent.com/44450566/142885020-f59c7e6d-2fb1-467b-9fa4-b66f516ff12d.png)
 
-In the Credentials section you must fill in the "URI*" field with your frontend host address. In our case:
+ In the Credentials section you must fill in the "URI *" field with your frontend host address. In our case:
  
 ![Captura de pantalla de 2021-12-06 11-54-29](https://user-images.githubusercontent.com/44450566/144841712-ed985048-a395-4059-b449-84026d664d14.png)
 
 
 
-You will need to create the frontend/src/app/config/config.ts file and fill it with your credentials using the schema from the frontend/src/app/config.ts.example file
+You will need to create the file frontend/src/app/config/config.ts and populate it with your credentials using the schema in the file frontend/src/app/config.ts.example
 
 ```
 import { Injectable } from '@angular/core';
@@ -85,9 +89,9 @@ import { Injectable } from '@angular/core';
 export class VariablesService {
 
   variables = {
-    googleClientId: google Client Id,
-    googleClientSecret: Google Client Secret,
-    host: Backend host (En nuestro caso 'http://localhost:4000')
+    googleClientId: "google Client Id",
+    googleClientSecret: "Google Client Secret",
+    host: "Backend host ", (En nuestro caso 'http://localhost:4000')
 
   }
 
@@ -101,110 +105,143 @@ export class VariablesService {
 ```
 
 
+* For the backend:
 
 
-* For your backend:
-
-
-1. You need a MySQL server running.
+1. You need a working MySQL server.
 
 2. Create the database, in your case it should be called ``` ocio_open ```
 
-3. Import the file to your database:  [SQL file](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/ocioopenBBDD.sql)
+3. Import the file to your database:  [Archivo SQL](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/ocio_open.sql)
 
-4. You should create the backend/.env file and fill it with your credentials using the backend/.env.example file schema
+4. You will need to create the backend/application.properties file and fill it with your credentials using the schema from the backend/application.properties.example file. Remember to enter the values in plain text, without quotes.
 
-MySQL
-```
-MYSQL_DATABASE=ocio_open
-MYSQL_USER=username
-MYSQL_PASSWORD="MySQL access key
-MYSQL_ROOT_PASSWORD=MySQL access key
-DB_HOST=MySQL host
-``` 
-Mode
-```
-NODE_ENV=development
-```
- JWT
-```
-JWT_SECRET=The secret used for the Jwt protocol
-TOKEN_EXPIRE_TIME=Token expiration time in minutes
-TOKEN_EXPIRE_TIME_REMEMBER_ME=Token expiration time in minutes with the remember me box checked
-```
-Api key tokens
 
-These keys are automatically generated in the database by executing the script:
-```
-npm run roleKeysCreate 
-``` 
-to create them, or 
-```
-npm run roleKeysUpdate 
-```
-to update them.
 
-Once created, copy and paste them here:
 
+##### DRIVER MYSQL, IN OUR CASE THE EXAMPLE
 ```
-PUBLIC_API_KEY_TOKEN=
-ADMIN_API_KEY_TOKEN=
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 ```
-Domains
 
+##### LOCATION AND NAME OF YOUR DATABASE, IN OUR CASE THE EXAMPLE
 ```
-ACCEPTED_DOMAINS=domains accepted for registration separated by commas. Example: gmail.com,hotmail.com
+spring.datasource.url=jdbc:mysql://localhost:3306/ocio_open?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 ```
-Mail credentials
+
+##### DIALECT FOR THE ORM, IN OUR CASE THE EXAMPLE
 ```
-EMAIL_API_NAME=email address to send notifications
-EMAIL_PASSWORD=Api password for email
+spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
 ```
-Frontend End point
+
+##### USER AND PASSWORD TO ACCESS YOUR MYSQL SERVER
 ```
-FRONTEND_ENDPOINT=http://{address where the frontend is hosted}/eventsbydate/
+spring.datasource.username=
+spring.datasource.password=
 ```
+
+##### [optional] PRINTS IN YOUR CONSOLE THE INSTRUCTIONS MADE IN THE DATABASE
+```
+#spring.jpa.show-sql = true
+```
+
+##### PORT WHERE THE BACKEND WILL BE RAISED, IN OUR CASE THE 4000
+```
+server.port=4000
+```
+
+##### [optional] CONTEXT PATH, IF YOU WISH
+```
+#server.servlet.context-path=......./app
+```
+
+##### VALORES
+
+
+##### API KEYS FOR ACCESS TO PERMISSIONS, COLLECTED IN THE DATABASE. (Installation described below)
+```
+value.adminrolekey=
+value.userrolekey=
+```
+
+##### SECRET TO SIGN YOUR JSON WEB TOKEN
+```
+value.jwtsecret=
+```
+
+##### TOKEN EXPIRATION TIME IN MINUTES
+```
+value.expirationTime=
+```
+
+##### ACCEPTED DOMAINS SEPARATED BY COMMAS, WITHOUT SPACES. EXAMPLE: gmail.com,hotmail.com
+```
+value.accepted.domains=
+```
+
+##### URL TO VALIDATE GOOGLE TOKENS (Leave it by default)
+```
+value.google.url.tokenvalidation=https://oauth2.googleapis.com/tokeninfo?id_token=
+```
+
+##### GMAIL ACCOUNT FOR MAILING (Installation described below).
+```
+value.google.mail=
+value.google.mail.password=
+```
+
+##### FRONTEND HOST (In our case, the current one)
+```
+value.frontend.host=http://localhost:4200
+```
+
+
+### API KEYS AND SECRET
+
+To generate secure codes for both your apikeys and your secret, we recommend that you use ramdom password generators. You can use [THIS](https://keygen.io/) web.
+
+For your api keys, use the roles created in the database:
+* One will contain all existing permissions in the app
+* The other will contain the initial permissions that will be granted to new users (They will be modifiable through the administration area)
+
+Generate new `api_key` for each of them, and copy and paste the passwords into the fields `value.adminrolekey` for all permissions, and `value.userrolekey` for new user permissions.
+
+![Captura de pantalla de 2022-03-01 10-05-21](https://user-images.githubusercontent.com/44450566/156148966-e3a31a90-f501-43f2-99ed-9b08b2b95001.png)
+
+For the secret use at least one WEP 256-bit Key. Generate it, copy it, and paste it into your `value.jwtsecret` field.
+
+
+
 ### Mailing
 
-For the mailing, a private Google account has been used. In your configuration panel of your google account, access the *SECURITY* section and enable two-step verification.
+For mailing, a private Google account has been used. In your google account settings panel, go to the *SECURITY* section and enable two-step verification.
+
 ![Captura de pantalla de 2021-12-09 18-20-44](https://user-images.githubusercontent.com/44450566/145453642-36cc4206-d6ae-4d00-a8af-144b5f55227b.png)
 
 The next step is to access the *APPLICATION PASSWORDS* section, and generate a new password.
 
 ![Captura de pantalla de 2021-12-09 18-22-45](https://user-images.githubusercontent.com/44450566/145453889-9eb9953b-cd20-4aaa-8683-3c4ffea87214.png)
 
-
-Copy and paste your email address and your generated key into the .env file
-
+Copy and paste your email address and your generated key in the application.properties file into the corresponding fields.
 
 
-Finally enjoy the project:
+Finally RUN the project:
 
-Developer mode:
+Development mode:
 ```
 backend/
-npm run dev
+mvn springboot:run
 ```
 ```
 frontend/
-ng serve -o
-```
-
-Production Mode:
-```
-backend/
 npm run start
 ```
-```
-frontend/
-ng serve -o
-```
 
-If you follow the instructions, you should have three servers started:
+
+If you follow the instructions you should have three servers booted:
 * Frontend (http://localhost:4200)
 * Backend (http://localhost:4000)
-* Mysql (Address selected by yourself in `DB_HOST`)
+* Mysql (Address selected by you in `DB_HOST`)
 
 Enjoy!!!
-
 

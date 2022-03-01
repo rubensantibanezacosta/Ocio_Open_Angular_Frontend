@@ -1,4 +1,4 @@
-[View in English](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/English%20Readme.md)
+[View in English](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/English%20Readme.md)
 
 # Ocio Open  *(Proyecto formativo)*
 
@@ -112,7 +112,7 @@ export class VariablesService {
 
 2. Cree la base de datos, en su caso debe llamarse ``` ocio_open ```
 
-3. Importe el archivo a su base de datos:  [Archivo SQL](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/ocioopenBBDD.sql)
+3. Importe el archivo a su base de datos:  [Archivo SQL](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/ocio_open.sql)
 
 4. Debera crear el archivo backend/application.properties y rellenarlo con sus credenciales utilizando eL esquema del archivo backend/application.properties.example. Recuerde introducir los valores en texto plano, sin comillas.
 
