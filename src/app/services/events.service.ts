@@ -2,14 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Event } from '../models/event';
-import { VariablesService } from 'src/config/config';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
-  variables= this.variablesService.getVariables();
-  endpoint = this.variablesService.variables.host + '/api/events';
+  endpoint = environment.host + '/api/events';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({ 
@@ -17,7 +16,7 @@ export class EventsService {
     'Authorization': `Bearer ${this.bearerToken}` }
     )
   };
-  constructor(private httpClient:HttpClient, private variablesService:VariablesService) { }
+  constructor(private httpClient:HttpClient) { }
 
   createEvent(event:Event):Observable<Event>{
     return this.httpClient.post<Event>(this.endpoint, JSON.stringify(event), this.httpOptions)

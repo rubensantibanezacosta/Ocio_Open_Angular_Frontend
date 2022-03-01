@@ -40,6 +40,8 @@ import { DayEventComponent } from './pages/calendar/day-events/day-event/day-eve
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FileSaverModule } from 'ngx-filesaver';
 import { PermissionsComponent } from './pages/profile-administration/permissions/permissions.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -83,6 +85,12 @@ import { PermissionsComponent } from './pages/profile-administration/permissions
     FormsModule,
     ScrollingModule,
     FileSaverModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     {
@@ -93,7 +101,7 @@ import { PermissionsComponent } from './pages/profile-administration/permissions
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '481491250235-j401vq8g5o73j1hmm75b67j7104u2t70.apps.googleusercontent.com'
+              environment.googleClientId
             )
           },
           {

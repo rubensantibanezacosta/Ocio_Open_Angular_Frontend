@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { VariablesService } from 'src/config/config';
+import { environment } from '../../environments/environment';
 import { Image } from '../models/image';
 
 
@@ -10,8 +10,8 @@ import { Image } from '../models/image';
   providedIn: 'root'
 })
 export class ImagesService {
-  variables = this.variablesService.getVariables();
-  endpoint = this.variablesService.variables.host + '/api/images';
+
+  endpoint = environment.host + '/api/images';
   bearerToken = localStorage.getItem("ocioToken");
 
   httpOptions = {
@@ -39,7 +39,7 @@ export class ImagesService {
   };
 
 
-  constructor(private httpClient: HttpClient, private variablesService: VariablesService) { }
+  constructor(private httpClient: HttpClient) { }
 
   getAllImages(): Observable<Image[]> {
     return this.httpClient.get<Image[]>(this.endpoint, this.httpOptions)

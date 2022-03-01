@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
-import { VariablesService } from 'src/config/config';
+import { environment } from '../../environments/environment';
 
 
 
@@ -10,8 +10,7 @@ import { VariablesService } from 'src/config/config';
   providedIn: 'root'
 })
 export class UsersService {
-  variables = this.variablesService.getVariables();
-  endpoint = this.variablesService.variables.host + '/api/user';
+  endpoint = environment.host + '/api/user';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,7 +19,7 @@ export class UsersService {
     }
     )
   };
-  constructor(private httpClient:HttpClient, private variablesService:VariablesService) { }
+  constructor(private httpClient:HttpClient) { }
 
   createOrUpdateUser(user:User):Observable<any>{
     

@@ -1,4 +1,4 @@
-import { VariablesService } from './../../config/config';
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 //import { io } from 'socket.io-client';
 
@@ -10,19 +10,18 @@ import * as SockJS from 'sockjs-client';
   providedIn: 'root'
 })
 export class WebSocketService {
-  variables= this.variablesService.getVariables();
-  endpoint = this.variablesService.variables.host + '/api/punctuations';
+  endpoint = environment.host;
   bearerToken = localStorage.getItem("ocioToken");
 
 
   
   
-  sockJS = new SockJS( this.variablesService.getVariables().host + "/chat-websocket");
+  sockJS = new SockJS( this.endpoint + "/chat-websocket");
   client = Stomp.over(this.sockJS);
 
   
 
-  constructor(private variablesService: VariablesService) {
+  constructor() {
     
     this.client.connect({headers:{"Authorization":"Bearer "+this.bearerToken}},(info)=>{
       console.log("Connected to broker: " + this.client.connected + " :: " + info)

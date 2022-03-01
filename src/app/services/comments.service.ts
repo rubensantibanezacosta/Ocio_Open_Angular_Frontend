@@ -2,15 +2,15 @@ import { WebSocketService } from './web-socket.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { VariablesService } from 'src/config/config';
+import { environment } from '../../environments/environment';
 import { Comment } from '../models/comment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
-  variables = this.variablesService.getVariables();
-  endpoint = this.variablesService.variables.host + '/api/comments';
+
+  endpoint = environment.host + '/api/comments';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({
@@ -19,7 +19,7 @@ export class CommentsService {
     }
     )
   };
-  constructor(private httpClient: HttpClient, private variablesService: VariablesService, private webSocket:WebSocketService) { }
+  constructor(private httpClient: HttpClient, private webSocket:WebSocketService) { }
 
   getCommentsByEvent(event_id: number): Observable<Comment[]> {
     return this.httpClient.get<Comment[]>(this.endpoint + "/byevent/" + event_id, this.httpOptions);

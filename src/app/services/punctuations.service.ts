@@ -2,14 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Punctuation } from '../models/punctuation';
-import { VariablesService } from 'src/config/config';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PunctuationsService {
-  variables= this.variablesService.getVariables();
-  endpoint = this.variablesService.variables.host + '/api/punctuations';
+  endpoint = environment.host + '/api/punctuations';
   bearerToken = localStorage.getItem("ocioToken");
 
   httpOptions = {
@@ -18,7 +17,7 @@ export class PunctuationsService {
     'Authorization': `Bearer ${this.bearerToken}` }
     )
   };
-  constructor(private httpClient:HttpClient, private variablesService:VariablesService) { }
+  constructor(private httpClient:HttpClient) { }
 
   createOrUpdatePunctuation(punctuation:Punctuation):Observable<any>{
     return this.httpClient.post<any>(this.endpoint, JSON.stringify(punctuation), this.httpOptions)

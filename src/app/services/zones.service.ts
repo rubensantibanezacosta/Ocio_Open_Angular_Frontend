@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { VariablesService } from 'src/config/config';
+import { environment } from '../../environments/environment';
 import { Zones } from '../models/zone';
 
 
@@ -9,8 +9,7 @@ import { Zones } from '../models/zone';
   providedIn: 'root'
 })
 export class ZonesService {
-  variables= this.variablesService.getVariables();
-  endpoint = this.variablesService.variables.host + '/api/zones';
+  endpoint = environment.host+ '/api/zones';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({ 
@@ -18,7 +17,7 @@ export class ZonesService {
     'Authorization': `Bearer ${this.bearerToken}` }
     )
   };
-  constructor(private httpClient:HttpClient, private variablesService:VariablesService) { }
+  constructor(private httpClient:HttpClient) { }
 
   getAllZones():Observable<Zones[]>{
     return this.httpClient.get<Zones[]>(this.endpoint, this.httpOptions)
