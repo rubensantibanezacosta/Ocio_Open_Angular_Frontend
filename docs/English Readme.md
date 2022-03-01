@@ -302,7 +302,7 @@ Certainly, the learning period offered by a Higher Degree in application develop
 * [Tutorial of La Tecnologia avanza in Youtube](https://www.youtube.com/watch?v=1uvSOObbJ3k&t=4012s&ab_channel=LaTecnolog%C3%ADaAvanza)
 * [SockJs Documentation](https://openbase.com/js/sockjs/documentation)
 * [Spring Boot documentation](https://www.baeldung.com/)
-
+* [Fork of frontend from other proyect](https://github.com/rubensantibanezacosta/Ocio_Open)
 
 
 
