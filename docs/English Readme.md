@@ -26,8 +26,9 @@ The project is a basic social network that allows, enhances and rewards the orga
 
 Download links:
 
-* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend Frontend
-* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend Backend
+* From Github: https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend Frontend
+* From Github: https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend Backend
+* From Github: https://github.com/rubensantibanezacosta/Ocio_Open_Help Sistema de ayuda
 
 ## Prerequisites
 
@@ -45,18 +46,24 @@ Clone  repositories:
 ```
 git clone https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend
 git clone https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend
+git clone https://github.com/rubensantibanezacosta/Ocio_Open_Help
 ```
 
-The project consists of 3 different parts:
+The project consists of 4 different parts:
 * Frontend
 * Backend
 * Database
+* Help system
 
 
 Once cloned, you need to install dependencies.
 
 ```
 cd Ocio_Open_Angular_Frontend/
+npm install
+```
+```
+cd Ocio_Open_Help/
 npm install
 ```
 ```
@@ -236,12 +243,17 @@ mvn springboot:run
 frontend/
 npm run start
 ```
+```
+Help/
+npm run start
+```
 
 
-If you follow the instructions you should have three servers booted:
+If you follow the instructions you should have four servers booted:
 * Frontend (http://localhost:4200)
 * Backend (http://localhost:4000)
 * Mysql (Address selected by you in `DB_HOST`)
+* Help (http://localhost:4210)
 
 Enjoy!!!
 
