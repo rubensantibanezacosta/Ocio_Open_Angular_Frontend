@@ -2,7 +2,7 @@ import { VariablesService } from './../../config/config';
 import { Injectable } from '@angular/core';
 //import { io } from 'socket.io-client';
 
-import { Client } from '@stomp/stompjs';
+import { Client, StompConfig, StompHeaders, Stomp } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 
 
@@ -15,21 +15,18 @@ export class WebSocketService {
   bearerToken = localStorage.getItem("ocioToken");
 
 
-  client: Client = new Client({connectHeaders:{
-    Authorization: `Bearer ${this.bearerToken}`
-  }});
-  sockJS = new SockJS(this.variablesService.getVariables().host + "/chat-websocket");
+  
+  
+  sockJS = new SockJS( this.variablesService.getVariables().host + "/chat-websocket");
+  client = Stomp.over(this.sockJS);
+
+  
 
   constructor(private variablesService: VariablesService) {
-    this.client.webSocketFactory = () => {
-      return this.sockJS;
-    }
     
-    this.client.onConnect = (info) => {
+    this.client.connect({headers:{"Authorization":"Bearer "+this.bearerToken}},(info)=>{
       console.log("Connected to broker: " + this.client.connected + " :: " + info)
-    }
-
-    
+    })
   }
 
   //SOCKET.IO CLIENT CONNECTION UNABLE WITH SPRING JAVA

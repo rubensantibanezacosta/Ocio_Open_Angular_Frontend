@@ -30,7 +30,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   constructor(private activatedRoute: ActivatedRoute, private commentsService: CommentsService, private errorHandlerService: ErrorHandlerService, private webSocketService: WebSocketService) { }
 
   ngOnInit(): void {
-    this.webSocketService.client.activate();
+    this.webSocketService.client.connect({},()=>{});
     if (!this.comments[0]) {
       /* this.webSocketService */
       this.getCommentsByEvent().then(() => {
@@ -94,6 +94,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
+   
     this.webSocketService.client.unsubscribe(`/comments-chat/delete_${this.event_id}`);
     this.webSocketService.client.unsubscribe(`/comments-chat/${this.event_id}`);
   }
