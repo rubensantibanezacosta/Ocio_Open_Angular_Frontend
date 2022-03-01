@@ -278,11 +278,11 @@ Ciertamente, se me hace corto el periodo de aprendizaje que te ofrece un Grado s
 
 ## Enlaces y referencias
 
-[Repositorios del docente Tiburcio Cruz](https://github.com/tcrurav)
-[Platzi, academia online](https://platzi.com/)
-[Tutorial de Luigi Code en Youtube](https://www.youtube.com/watch?v=gKzEFSnWnk4&ab_channel=LuigiCode)
-[Tutorial de La Tecnologia avanza en Youtube](https://www.youtube.com/watch?v=1uvSOObbJ3k&t=4012s&ab_channel=LaTecnolog%C3%ADaAvanza)
-[Documentación de SockJs](https://openbase.com/js/sockjs/documentation)
-[Documentacion de Spring](https://www.baeldung.com/)
+* [Repositorios del docente Tiburcio Cruz](https://github.com/tcrurav)
+* [Platzi, academia online](https://platzi.com/)
+* [Tutorial de Luigi Code en Youtube](https://www.youtube.com/watch?v=gKzEFSnWnk4&ab_channel=LuigiCode)
+* [Tutorial de La Tecnologia avanza en Youtube](https://www.youtube.com/watch?v=1uvSOObbJ3k&t=4012s&ab_channel=LaTecnolog%C3%ADaAvanza)
+* [Documentación de SockJs](https://openbase.com/js/sockjs/documentation)
+* [Documentacion de Spring](https://www.baeldung.com/)
 
 
