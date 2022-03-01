@@ -1,5 +1,5 @@
 
-[Go back](https://github.com/rubensantibanezacosta/Ocio_Open/blob/main/docs/English%20Readme.md)
+[Go back](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/English%20Readme.md)
 
 # Usability Aspects
 
@@ -16,6 +16,10 @@ The homogeneity of colors that are repeated in all the interfaces.
 elegant, simple, in which overload is avoided. This helps your good
 operation, and to focus the attention of the user who manages it on the aspects
 that you will use.
+
+- You will have a dark theme, if you wish:
+
+
 
 
 ### Menus
