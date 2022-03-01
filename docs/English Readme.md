@@ -13,6 +13,25 @@ The project is a basic social network that allows, enhances and rewards the orga
 
 [Open Canarias SL](https://www.opencanarias.com/)
 
+## Used Technologies
+
+- [Angular for frontend](https://angular.io/)
+- [Spring boot for backend](https://spring.io/projects/spring-boot)
+- [Maven as Java package manager](https://maven.apache.org/)
+- [MySQL for Database](https://www.mysql.com/)
+- [Java Persistence Api as ORM](https://www.java.com/es/)
+- [FIGMA to design the prototype](https://www.figma.com/)
+- [HelpNDoc to develop Help system](https://www.helpndoc.com/es/)
+- [IntelliJ Ultimate as Java IDE](https://www.jetbrains.com/es-es/idea/)
+- [Visual Studio Code as Angular IDE](https://code.visualstudio.com/)
+- [PhpMyAdmin as database manager](https://www.phpmyadmin.net/)
+- [Git and Github to manage code versions](https://github.com/)
+- [Ubuntu 20.04 as OS](https://ubuntu.com/download)
+- [Linux Mint 20.03 as OS](https://linuxmint.com)
+- [Wine as windows emulator](https://www.winehq.org/)
+- [Postman desktop to test API](https://www.postman.com/)
+
+
 ## Project documentation
 
 - [Application Requirements Report](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/requisites.md)
