@@ -257,3 +257,33 @@ If you follow the instructions you should have four servers booted:
 
 Enjoy!!!
 
+## Project planning and monitoring
+
+The project planning has been raised and developed using a kanban board.
+The portal used has been [Trello](https://trello.com/).
+
+
+![Captura de pantalla de 2022-03-01 15-51-42](https://user-images.githubusercontent.com/44450566/156202170-3ce759a8-a4f0-4592-b286-7fce99cdd8a6.png)
+
+
+## Conclusions, opinions and reflections
+
+Taking into account the scope of the project and its objective, which is to bring the training of students closer to the possible real problems that could be faced in the company, I could say that the chosen method is a great way to improve at a professional level, technical, to learn to work in a team, and to learn to be autonomous in terms of training.
+
+That they guide us to obtain a series of basic knowledge, and ask us for requirements beyond them, gives us the opportunity to deepen and improve in many aspects.
+
+Certainly, the learning period offered by a Higher Degree in application development seems short to me, since the world of programming is so large, that it seems that even having obtained much knowledge, it seems that we are only scratching the surface of what could be achieved in the sector.
+
+
+## Links and references
+
+* [Repositories of the teacher Tiburcio Cruz](https://github.com/tcrurav)
+* [Platzi, online academy in spanish](https://platzi.com/)
+* [Tutorial of Luigi Code in Youtube](https://www.youtube.com/watch?v=gKzEFSnWnk4&ab_channel=LuigiCode)
+* [Tutorial of La Tecnologia avanza in Youtube](https://www.youtube.com/watch?v=1uvSOObbJ3k&t=4012s&ab_channel=LaTecnolog%C3%ADaAvanza)
+* [SockJs Documentation](https://openbase.com/js/sockjs/documentation)
+* [Spring Boot documentation](https://www.baeldung.com/)
+
+
+
+
