@@ -28,6 +28,7 @@ Links de descarga:
 
 * Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend Frontend
 * Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend Backend
+* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Help Sistema de ayuda
 
 ## Prerequisitos
 
@@ -45,12 +46,14 @@ Clone los repositorios:
 ```
 git clone https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend
 git clone https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend
+git clone https://github.com/rubensantibanezacosta/Ocio_Open_Help
 ```
 
-El proyecto consta de 3 partes diferenciadas:
+El proyecto consta de 4 partes diferenciadas:
 * Frontend
 * Backend
 * Base de datos
+* Sistema de ayuda
 
 
 Una vez clonados, debe actualizar las dependencias.
@@ -62,6 +65,10 @@ npm install
 ```
 cd Ocio_Open_Java_Backend/
 mvn install
+```
+```
+cd Ocio_Open_Help/
+npm install
 ```
 
 
@@ -236,11 +243,17 @@ frontend/
 npm run start
 ```
 
+```
+Help/
+npm run start
+```
 
-Si sigue las instrucciones debera tener arrancados tres servidores:
+
+Si sigue las instrucciones debera tener arrancados cuatro servidores:
 * Frontend (http://localhost:4200)
 * Backend (http://localhost:4000)
 * Mysql (Dirección seleccionada por usted en `DB_HOST`)
+* Ayuda (http://localhost:4210)
 
 Disfrute!!!
 
