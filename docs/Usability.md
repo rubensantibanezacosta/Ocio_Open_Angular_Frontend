@@ -19,7 +19,15 @@ that you will use.
 
 - You will have a dark theme, if you wish:
 
+![Captura de pantalla de 2022-03-01 11-00-07](https://user-images.githubusercontent.com/44450566/156157460-b2e4b8f6-fea1-4c4f-ab0f-6bb9438665c9.png)
 
+### Help system
+
+From the application you will have direct access to a help system, in the lower right part of the screen:
+
+![Captura de pantalla de 2022-03-01 11-02-30](https://user-images.githubusercontent.com/44450566/156157758-48b6079a-2ee2-4692-88d6-20c006807ea7.png)
+
+![Captura de pantalla de 2022-03-01 11-04-58](https://user-images.githubusercontent.com/44450566/156158058-d8cbc4b5-7c36-4eab-aafa-48015382b374.png)
 
 
 ### Menus
