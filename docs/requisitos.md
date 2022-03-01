@@ -1,4 +1,4 @@
-[Volver al Readme](https://github.com/rubensantibanezacosta/Ocio_Open/)
+[Volver al Readme](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend)
 
 ## REQUISITOS
 
