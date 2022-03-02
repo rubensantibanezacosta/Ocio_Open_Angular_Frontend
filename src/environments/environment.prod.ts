@@ -1,5 +1,5 @@
-const dotenv = require('dotenv');
-dotenv.config()
+import * as dotenv from 'dotenv';
+dotenv.config;
 export const environment = {
   production: true,
   googleClientId: process.env.GOOGLE_CLIENT_ID,
