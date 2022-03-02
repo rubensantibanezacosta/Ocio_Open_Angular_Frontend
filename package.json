@@ -42,7 +42,8 @@
     "sockjs-client": "^1.5.2",
     "tslib": "^2.3.0",
     "yargs": "^17.3.1",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@types/node": "^12.20.46"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.2.15",
