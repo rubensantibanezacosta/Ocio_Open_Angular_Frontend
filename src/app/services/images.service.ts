@@ -11,7 +11,7 @@ import { Image } from '../models/image';
 })
 export class ImagesService {
 
-  endpoint = process.env.BACKEND_HOST + '/api/images';
+  endpoint = environment.host + '/api/images';
   bearerToken = localStorage.getItem("ocioToken");
 
   httpOptions = {

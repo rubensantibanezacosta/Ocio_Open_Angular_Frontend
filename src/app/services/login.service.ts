@@ -12,7 +12,7 @@ import { Token } from '../models/token';
 
 export class LoginService {
 
-  endpoint = process.env.BACKEND_HOST +'/api/auth/sign-in/';
+  endpoint = environment.host+'/api/auth/sign-in/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

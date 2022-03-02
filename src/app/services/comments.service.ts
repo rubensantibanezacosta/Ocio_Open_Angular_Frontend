@@ -10,7 +10,7 @@ import { Comment } from '../models/comment';
 })
 export class CommentsService {
 
-  endpoint = process.env.BACKEND_HOST + '/api/comments';
+  endpoint = environment.host + '/api/comments';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({

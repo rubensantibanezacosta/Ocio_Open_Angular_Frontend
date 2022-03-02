@@ -101,7 +101,7 @@ import { environment } from '../environments/environment';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              process.env.GOOGLE_CLIENT_ID
+              environment.googleClientId,
             )
           },
           {

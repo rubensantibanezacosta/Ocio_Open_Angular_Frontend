@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 })
 export class AssistantsService {
   
-  endpoint = process.env.BACKEND_HOST + '/api/assistant';
+  endpoint = environment.host + '/api/assistant';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({ 
