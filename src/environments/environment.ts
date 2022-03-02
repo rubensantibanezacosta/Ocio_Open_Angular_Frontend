@@ -2,13 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const dotenv = require('dotenv');
-dotenv.config()
+
 export const environment = {
   production: false,
   googleClientId: process.env.GOOGLE_CLIENT_ID,
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  host: process.env.HOST,
+  host: (process.env.BACKEND_HOST),
 };
 
 
