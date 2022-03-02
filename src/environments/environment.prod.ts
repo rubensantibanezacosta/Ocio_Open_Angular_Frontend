@@ -1,7 +1,6 @@
 
 export const environment = {
   production: true,
-  googleClientId: process.env.GOOGLE_CLIENT_ID,
-  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  host: process.env.BACKEND_HOST
+  googleClientId: "481491250235-j401vq8g5o73j1hmm75b67j7104u2t70.apps.googleusercontent.com",
+  host: "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",
 };
