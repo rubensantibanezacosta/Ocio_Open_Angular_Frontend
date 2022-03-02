@@ -13,6 +13,25 @@ El proyecto es una red social básica, que permite, potencia y premia la organiz
 
 [Open Canarias SL](https://www.opencanarias.com/)
 
+
+## Technologias utilizadas
+
+- [Angular para el frontend](https://angular.io/)
+- [Spring boot para el backend](https://spring.io/projects/spring-boot)
+- [Maven como getor de paquetes de Java](https://maven.apache.org/)
+- [MySQL para la Base de datos](https://www.mysql.com/)
+- [Java Persistence Api como ORM](https://www.java.com/es/)
+- [FIGMA para el diseño del prototipo](https://www.figma.com/)
+- [HelpNDoc para el sistema de ayuda](https://www.helpndoc.com/es/)
+- [IntelliJ Ultimate como IDE para Java](https://www.jetbrains.com/es-es/idea/)
+- [Visual Studio Code como IDE para Angular](https://code.visualstudio.com/)
+- [PhpMyAdmin como gestor de bases de datos](https://www.phpmyadmin.net/)
+- [Git and Github como gestor de versiones](https://github.com/)
+- [Ubuntu 20.04 como SO](https://ubuntu.com/download)
+- [Linux Mint 20.03 como SO](https://linuxmint.com)
+- [Wine como emulador de windows](https://www.winehq.org/)
+- [Postman desktop para testear la API](https://www.postman.com/)
+
 ## Documentación del Proyecto
 
 - [Informe de requisitos de la aplicación](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/requisitos.md)
@@ -28,6 +47,7 @@ Links de descarga:
 
 * Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend Frontend
 * Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend Backend
+* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Help Sistema de ayuda
 
 ## Prerequisitos
 
@@ -45,12 +65,14 @@ Clone los repositorios:
 ```
 git clone https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend
 git clone https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend
+git clone https://github.com/rubensantibanezacosta/Ocio_Open_Help
 ```
 
-El proyecto consta de 3 partes diferenciadas:
+El proyecto consta de 4 partes diferenciadas:
 * Frontend
 * Backend
 * Base de datos
+* Sistema de ayuda
 
 
 Una vez clonados, debe actualizar las dependencias.
@@ -62,6 +84,10 @@ npm install
 ```
 cd Ocio_Open_Java_Backend/
 mvn install
+```
+```
+cd Ocio_Open_Help/
+npm install
 ```
 
 
@@ -236,11 +262,47 @@ frontend/
 npm run start
 ```
 
+```
+Help/
+npm run start
+```
 
-Si sigue las instrucciones debera tener arrancados tres servidores:
+
+Si sigue las instrucciones debera tener arrancados cuatro servidores:
 * Frontend (http://localhost:4200)
 * Backend (http://localhost:4000)
 * Mysql (Dirección seleccionada por usted en `DB_HOST`)
+* Ayuda (http://localhost:4210)
 
 Disfrute!!!
+
+
+## Planificación  y seguimiento del proyecto
+
+La planificación del proyecto se ha planteado y desarrollado utilizando un tablero kanban.
+El portal utilizado ha sido [Trello](https://trello.com/).
+
+
+![Captura de pantalla de 2022-03-01 15-51-42](https://user-images.githubusercontent.com/44450566/156202170-3ce759a8-a4f0-4592-b286-7fce99cdd8a6.png)
+
+
+## Conclusiones, opiniones y reflexiones
+
+Teniendo el cuenta el alcance del proyecto y su objetivo, que es el de acercar la formación de los alumnos a los posibles problemas reales a los que se podría enfrentar en la empresa, podría decir que el método elegido es una gran forma de mejorar a nivel técnico, de aprender a trabajar en equipo, y de aprender a ser autonónomo en cuanto a la formación se refiere.
+
+Que nos guien para obtener una serie de conocimientos básicos, y nos pidan requisitos mas allá de ellos, nos da la oportunidad de profundizar y mejorar en muchos aspectos.
+
+Ciertamente, se me hace corto el periodo de aprendizaje que te ofrece un Grado superior de desarrollo de aplicaciones, ya que el mundo de la programación es tan grande, que parece que aun habiendo obtenido numerosos conocimientos, da la sensación de que solo estamos rascando la superficie de lo que se podria lograr en el sector.
+
+
+## Enlaces y referencias
+
+* [Repositorios del docente Tiburcio Cruz](https://github.com/tcrurav)
+* [Platzi, academia online](https://platzi.com/)
+* [Tutorial de Luigi Code en Youtube](https://www.youtube.com/watch?v=gKzEFSnWnk4&ab_channel=LuigiCode)
+* [Tutorial de La Tecnologia avanza en Youtube](https://www.youtube.com/watch?v=1uvSOObbJ3k&t=4012s&ab_channel=LaTecnolog%C3%ADaAvanza)
+* [Documentación de SockJs](https://openbase.com/js/sockjs/documentation)
+* [Documentacion de Spring](https://www.baeldung.com/)
+* [Fork del frontend del proyecto anterior](https://github.com/rubensantibanezacosta/Ocio_Open)
+
 

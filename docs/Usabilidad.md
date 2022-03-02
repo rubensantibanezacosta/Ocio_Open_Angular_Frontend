@@ -17,6 +17,18 @@ elgante, simple, en la que se evita la sobrecarga. Esto ayuda a su buen
 funcionamiento, y a centrar la atención del usuario que la maneja en los aspectos
 necesarios que usará.
 
+- Se podra utilizar el tema oscuro, si lo desea:
+
+![Captura de pantalla de 2022-03-01 11-00-07](https://user-images.githubusercontent.com/44450566/156157460-b2e4b8f6-fea1-4c4f-ab0f-6bb9438665c9.png)
+
+### Sistema de ayuda
+
+Desde la aplicación se tendra acceso a un sistema de ayuda, en la parte inferior derecha de la pantalla:
+
+![Captura de pantalla de 2022-03-01 11-02-30](https://user-images.githubusercontent.com/44450566/156157758-48b6079a-2ee2-4692-88d6-20c006807ea7.png)
+
+![Captura de pantalla de 2022-03-01 11-04-58](https://user-images.githubusercontent.com/44450566/156158058-d8cbc4b5-7c36-4eab-aafa-48015382b374.png)
+
 
 ### Menús
 

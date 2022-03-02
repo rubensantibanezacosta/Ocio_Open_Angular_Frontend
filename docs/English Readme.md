@@ -13,6 +13,25 @@ The project is a basic social network that allows, enhances and rewards the orga
 
 [Open Canarias SL](https://www.opencanarias.com/)
 
+## Used Technologies
+
+- [Angular for frontend](https://angular.io/)
+- [Spring boot for backend](https://spring.io/projects/spring-boot)
+- [Maven as Java package manager](https://maven.apache.org/)
+- [MySQL for Database](https://www.mysql.com/)
+- [Java Persistence Api as ORM](https://www.java.com/es/)
+- [FIGMA to design the prototype](https://www.figma.com/)
+- [HelpNDoc to develop Help system](https://www.helpndoc.com/es/)
+- [IntelliJ Ultimate as Java IDE](https://www.jetbrains.com/es-es/idea/)
+- [Visual Studio Code as Angular IDE](https://code.visualstudio.com/)
+- [PhpMyAdmin as database manager](https://www.phpmyadmin.net/)
+- [Git and Github to manage code versions](https://github.com/)
+- [Ubuntu 20.04 as OS](https://ubuntu.com/download)
+- [Linux Mint 20.03 as OS](https://linuxmint.com)
+- [Wine as windows emulator](https://www.winehq.org/)
+- [Postman desktop to test API](https://www.postman.com/)
+
+
 ## Project documentation
 
 - [Application Requirements Report](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/requisites.md)
@@ -26,8 +45,9 @@ The project is a basic social network that allows, enhances and rewards the orga
 
 Download links:
 
-* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend Frontend
-* Desde Github: https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend Backend
+* From Github: https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend Frontend
+* From Github: https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend Backend
+* From Github: https://github.com/rubensantibanezacosta/Ocio_Open_Help Sistema de ayuda
 
 ## Prerequisites
 
@@ -45,18 +65,24 @@ Clone  repositories:
 ```
 git clone https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend
 git clone https://github.com/rubensantibanezacosta/Ocio_Open_Java_Backend
+git clone https://github.com/rubensantibanezacosta/Ocio_Open_Help
 ```
 
-The project consists of 3 different parts:
+The project consists of 4 different parts:
 * Frontend
 * Backend
 * Database
+* Help system
 
 
 Once cloned, you need to install dependencies.
 
 ```
 cd Ocio_Open_Angular_Frontend/
+npm install
+```
+```
+cd Ocio_Open_Help/
 npm install
 ```
 ```
@@ -112,7 +138,7 @@ export class VariablesService {
 
 2. Create the database, in your case it should be called ``` ocio_open ```
 
-3. Import the file to your database:  [Archivo SQL](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/ocio_open.sql)
+3. Import the file to your database:  [SQL file](https://github.com/rubensantibanezacosta/Ocio_Open_Angular_Frontend/blob/main/docs/ocio_open.sql)
 
 4. You will need to create the backend/application.properties file and fill it with your credentials using the schema from the backend/application.properties.example file. Remember to enter the values in plain text, without quotes.
 
@@ -236,12 +262,47 @@ mvn springboot:run
 frontend/
 npm run start
 ```
+```
+Help/
+npm run start
+```
 
 
-If you follow the instructions you should have three servers booted:
+If you follow the instructions you should have four servers booted:
 * Frontend (http://localhost:4200)
 * Backend (http://localhost:4000)
 * Mysql (Address selected by you in `DB_HOST`)
+* Help (http://localhost:4210)
 
 Enjoy!!!
+
+## Project planning and monitoring
+
+The project planning has been raised and developed using a kanban board.
+The portal used has been [Trello](https://trello.com/).
+
+
+![Captura de pantalla de 2022-03-01 15-51-42](https://user-images.githubusercontent.com/44450566/156202170-3ce759a8-a4f0-4592-b286-7fce99cdd8a6.png)
+
+
+## Conclusions, opinions and reflections
+
+Taking into account the scope of the project and its objective, which is to bring the training of students closer to the possible real problems that could be faced in the company, I could say that the chosen method is a great way to improve at a professional level, technical, to learn to work in a team, and to learn to be autonomous in terms of training.
+
+That they guide us to obtain a series of basic knowledge, and ask us for requirements beyond them, gives us the opportunity to deepen and improve in many aspects.
+
+Certainly, the learning period offered by a Higher Degree in application development seems short to me, since the world of programming is so large, that it seems that even having obtained much knowledge, it seems that we are only scratching the surface of what could be achieved in the sector.
+
+
+## Links and references
+
+* [Repositories of the teacher Tiburcio Cruz](https://github.com/tcrurav)
+* [Platzi, online academy in spanish](https://platzi.com/)
+* [Tutorial of Luigi Code in Youtube](https://www.youtube.com/watch?v=gKzEFSnWnk4&ab_channel=LuigiCode)
+* [Tutorial of La Tecnologia avanza in Youtube](https://www.youtube.com/watch?v=1uvSOObbJ3k&t=4012s&ab_channel=LaTecnolog%C3%ADaAvanza)
+* [SockJs Documentation](https://openbase.com/js/sockjs/documentation)
+* [Spring Boot documentation](https://www.baeldung.com/)
+* [Fork of frontend from other proyect](https://github.com/rubensantibanezacosta/Ocio_Open)
+
+
 
