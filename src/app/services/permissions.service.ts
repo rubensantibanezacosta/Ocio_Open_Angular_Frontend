@@ -9,7 +9,7 @@ import { Permissions } from '../models/permissions';
 })
 export class PermissionsService {
 
-  endpoint = environment.host + '/api/roles/admin';
+  endpoint = process.env.BACKEND_HOST + '/api/roles/admin';
   bearerToken = localStorage.getItem("ocioToken");
 
   httpOptions = {

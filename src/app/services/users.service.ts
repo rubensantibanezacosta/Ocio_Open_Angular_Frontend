@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class UsersService {
-  endpoint = environment.host + '/api/user';
+  endpoint = process.env.BACKEND_HOST + '/api/user';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({

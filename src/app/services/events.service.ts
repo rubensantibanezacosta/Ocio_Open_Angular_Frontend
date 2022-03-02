@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class EventsService {
-  endpoint = environment.host + '/api/events';
+  endpoint = process.env.BACKEND_HOST + '/api/events';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({ 

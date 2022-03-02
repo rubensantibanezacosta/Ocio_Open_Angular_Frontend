@@ -44,7 +44,10 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/config
-config.ts
 
+config.ts
+.env
 application.properties
+.env
+/config/dev.js
+/config/config.ts

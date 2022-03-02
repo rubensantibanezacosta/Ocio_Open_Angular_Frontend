@@ -9,7 +9,7 @@ import { Zones } from '../models/zone';
   providedIn: 'root'
 })
 export class ZonesService {
-  endpoint = environment.host+ '/api/zones';
+  endpoint = process.env.BACKEND_HOST+ '/api/zones';
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({ 

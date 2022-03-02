@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class PunctuationsService {
-  endpoint = environment.host + '/api/punctuations';
+  endpoint = process.env.BACKEND_HOST + '/api/punctuations';
   bearerToken = localStorage.getItem("ocioToken");
 
   httpOptions = {
