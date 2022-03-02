@@ -10,7 +10,7 @@ import * as SockJS from 'sockjs-client';
   providedIn: 'root'
 })
 export class WebSocketService {
-  endpoint = process.env.BACKEND_HOST;
+  endpoint = environment.host;
   bearerToken = localStorage.getItem("ocioToken");
 
 
