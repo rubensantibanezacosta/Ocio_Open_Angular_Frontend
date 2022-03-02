@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "config":"ts-node ./src/assets/setEnv.ts",
+    "start": "npm run config -- --enviroment=prod && node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -40,6 +41,7 @@
     "socket.io-client": "^4.4.1",
     "sockjs-client": "^1.5.2",
     "tslib": "^2.3.0",
+    "yargs": "^17.3.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
