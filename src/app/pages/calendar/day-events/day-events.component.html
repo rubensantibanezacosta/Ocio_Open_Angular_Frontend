@@ -1,3 +1,4 @@
+<!-- <app-loading-logo [loader]="loading"></app-loading-logo> -->
 <div class="day-container" routerLink="/eventsbydate/{{date}}">
     <p class="dayValue">{{dayValue}}</p>
     <app-day-event *ngFor="let event of eventsFiltered" [event_id]="event.event_id" [eventName]="event.tittle"></app-day-event>

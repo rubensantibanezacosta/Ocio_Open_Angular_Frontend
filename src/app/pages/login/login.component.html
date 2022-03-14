@@ -11,14 +11,13 @@
         <p class="login-p-light">
             Inicia sesión con tu cuenta de Google de Open Canarias:
         </p>
-        <button class="login-button" (click)="signInWithGoogle()" tabindex=0>
+        <button mat-raised-button (click)="signInWithGoogle()" tabindex=0>
             <img class="login-button-icon" src="{{ googleIcon }}" alt="googleIcon" />
             Iniciar sesión con Google
         </button>
-        <div class="login-rememberme-container">
-            <input type="checkbox" [checked]="isChecked$" (change)="toggleChecked()">
-            <label for="rememberMe">Recuérdame</label>
-        </div>
+    
+        
+    
       <!--   <a class="login-p-light-underline" (click)="adminFormVisibilityToggle()" ><p>¿Eres administrador?</p></a>
         <form  class="login-admin-form" *ngIf="adminFormVisibility">
             <label for="apiKeyToken" >Introduce tu clave de administrador</label>
@@ -28,6 +27,5 @@
 </div>
 
 
-<div #modal></div> 
 
 

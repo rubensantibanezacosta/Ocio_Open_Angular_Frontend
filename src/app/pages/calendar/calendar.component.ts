@@ -12,8 +12,7 @@ import { EventsService } from 'src/app/services/events.service';
 })
 
 export class CalendarComponent implements OnInit {
-  tittle: string = "Calendario";
-  image = "../../../assets/icons/calendarIcon-menu.png";
+
   previousIcon="../../../assets/icons/previous-icon.png";
   nextIcon="../../../assets/icons/next-icon.png";
 
@@ -40,6 +39,7 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllEvents().then(()=>{
+      
       this.getDaysFromDate(moment().format("M"), moment().format("YYYY"));
     });
     
@@ -62,7 +62,6 @@ export class CalendarComponent implements OnInit {
 
 
 getDaysFromDate(month, year) {
-
     const startDay = moment.utc(`${year}/${month}/01`);
     const endDay = startDay.clone().endOf('month');
     this.dateSelected = startDay;

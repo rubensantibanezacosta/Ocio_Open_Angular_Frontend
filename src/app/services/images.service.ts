@@ -10,7 +10,7 @@ import { Image } from '../models/image';
   providedIn: 'root'
 })
 export class ImagesService {
-
+  
   endpoint = environment.host + '/api/images';
   bearerToken = localStorage.getItem("ocioToken");
 

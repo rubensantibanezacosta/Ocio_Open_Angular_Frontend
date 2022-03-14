@@ -11,7 +11,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from 'angularx-social-login';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyeventsComponent } from './pages/myevents/myevents.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -42,6 +42,11 @@ import { FileSaverModule } from 'ngx-filesaver';
 import { PermissionsComponent } from './pages/profile-administration/permissions/permissions.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MaterialUIModule } from './materialUI.module';
+import { LoadingLogoComponent } from './components/loading-logo/loading-logo.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { CommentInfoComponent } from './pages/comments/comment-info/comment-info.component';
+
 
 
 @NgModule({
@@ -75,11 +80,16 @@ import { environment } from '../environments/environment';
     EventsByDateComponent,
     DayEventComponent,
     PermissionsComponent,
+    LoadingLogoComponent,
+    CommentInfoComponent
   ],
+
   imports: [
     BrowserModule,
+    MaterialUIModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
@@ -93,6 +103,7 @@ import { environment } from '../environments/environment';
     }),
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

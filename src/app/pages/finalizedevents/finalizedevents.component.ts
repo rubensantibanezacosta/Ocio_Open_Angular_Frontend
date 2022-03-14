@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
@@ -7,14 +7,17 @@ import { ErrorHandlerService } from 'src/app/services/error-handler.service';
   templateUrl: './finalizedevents.component.html',
   styleUrls: ['./finalizedevents.component.scss']
 })
-export class FinalizedeventsComponent implements OnInit {
+export class FinalizedeventsComponent implements AfterViewInit {
 tittle:string="Eventos Terminados";
 image="../../../assets/icons/calendar-ok-icon.png";
+modalShown=true;
 
 ErrorMessage:string;
   constructor( private errorHandlerService:ErrorHandlerService) { }
 
-  ngOnInit(): void {
+
+  ngAfterViewInit(): void {
+
   }
 
 

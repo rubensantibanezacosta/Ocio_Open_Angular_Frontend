@@ -7,6 +7,8 @@ import { ImagesService } from 'src/app/services/images.service';
 import { EventsService } from 'src/app/services/events.service';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { GalleryComponent } from 'src/app/components/gallery/gallery.component';
 
 
 
@@ -40,7 +42,8 @@ export class EventFormComponent implements OnInit {
   ErrorMessage:string;
 
 
-  constructor(private activatedRoute: ActivatedRoute, private imagesService: ImagesService, private eventsService: EventsService, private router: Router,  private errorHandlerService:ErrorHandlerService) { }
+  constructor(private activatedRoute: ActivatedRoute, private imagesService: ImagesService, private eventsService: EventsService, private router: Router,  private errorHandlerService:ErrorHandlerService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.myEvent.zone = "GC";
@@ -124,19 +127,27 @@ export class EventFormComponent implements OnInit {
     this.imageFormVisible = false;
   }
 
-  showGallery() {
+ /*  showGallery() {
     this.galleryVisible = true;
   }
 
   hideGallery() {
     this.myEvent.image_id;
     this.galleryVisible = false;
+  } */
+
+  showGallery() {
+    const dialogRef = this.dialog.open(GalleryComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
-  getId(e) {
+/*   getId(e) {
     this.myEvent.image_id = e;
     this.hideGallery();
-  }
+  } */
 
   zoneSelected() {
     switch (this.myEvent.zone) {
@@ -163,6 +174,9 @@ export class EventFormComponent implements OnInit {
     return moment(date).format("DD-MM-YYYY hh:mm")
   }
   
+  back(){
+    window.history.back();
+  }
 
     //Error handler modals
     @ViewChild('modal', { read: ViewContainerRef })

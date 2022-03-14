@@ -1,4 +1,4 @@
-
+<!-- 
 
 <div id="menuIcon" class="icon" tabindex="0" (click)="showMenu()">
     <img src="{{ menuIcon }}" alt="{{ menuIcon }}" />
@@ -114,4 +114,72 @@
 
 <div id="collapse-icon" class="collapse-icon" (click)=showMenu()>
     <img src="{{collapseIcon}}" alt="{{collapseIcon}}" />
+</div> -->
+
+<div class="container">
+    <mat-toolbar class="toolbar">
+        <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="app-name">{{title}}</h1>
+    </mat-toolbar>
+    <mat-drawer-container class="container" autosize>
+        <mat-drawer #drawer class="sidenav" mode="side">
+          <div class="nav-header">
+            <img src="{{openLogo}}" alt="Open Canarias Logo">
+            <p> Ocio Open </p>
+            <br>
+            
+          </div>
+          <mat-action-list>
+            <span *ngFor="let item of menu">
+              <mat-list-item routerLink={{item.route}} (click)="drawer.close()" (click)="setTitle()">
+                <div class="item-content">
+                    <mat-icon>{{item.iconName}}</mat-icon>
+                    <p>{{item.displayName}}</p>
+                </div>
+              </mat-list-item>
+            </span>
+            <mat-list-item  (click)="darkToogle.toggle()" (click)="darkmodeToogleButton()">
+                <div class="item-content">
+                    <mat-icon>nights_stay</mat-icon>
+                    <p> Modo oscuro</p>
+                    <mat-slide-toggle #darkToogle color="primary" disabled="true">
+                    </mat-slide-toggle>
+                </div>
+              </mat-list-item>
+              <mat-list-item  (click)="signOut()">
+                <div class="item-content">
+                <mat-icon>logout</mat-icon>
+                <p>Cerrar sesión</p>
+                </div>
+              </mat-list-item>
+            
+          </mat-action-list>
+        </mat-drawer>
+      
+        <div class="sidenav-content" (click)="drawer.close()" [@routeAnimations]="prepareRoute(outletMenu)">
+             
+            <router-outlet #outletMenu="outlet"></router-outlet>
+        </div>
+      
+      </mat-drawer-container>
+
+ <!--    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #snav 
+            fixedTopGap="56">
+            <mat-nav-list>
+                <span *ngFor="let item of menu">
+                    <mat-list-item routerLink={{item.route}}>
+                      
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <mat-icon>{{item.iconName}}</mat-icon>
+                            {{item.displayName}}
+                        </div>
+                    </mat-list-item>
+                </span>
+            </mat-nav-list>
+        </mat-sidenav>
+    </mat-sidenav-container> -->
+    
 </div>

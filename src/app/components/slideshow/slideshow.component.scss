@@ -1,17 +1,124 @@
 @import "./../../../assets/variablesSass/variables.scss";
 
-.notevents{
-  margin-top: 50%;
+.notevents {
+  margin-top: 30%;
   color: $color-text-darkmode;
   width: 100%;
   text-align: center;
-  
-}
-cdk-virtual-scroll-viewport{
+  color: rgba($color: white, $alpha: .4);
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
 }
-.slider {
+
+
+.pointer{
+  cursor: pointer !important;
+}
+.card-container {
+  display: block;
+  position: relative;
+  min-height: calc(100vh - 105px);
+  /*  min-height: 100vh; */
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.card {
+  min-height: 100%;
+  /*  min-height: 100vh; */
+  position: absolute;
+  background-color: transparent;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0.3),
+    rgba(0, 0, 0, 0.5)
+  );
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: white;
+}
+
+.background-img {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+mat-card-title {
+  color: white;
+  max-width: 70vw;
+  word-wrap: break-word;
+}
+mat-card-subtitle {
+  color: white;
+  max-width: 70vw;
+  word-wrap: break-word;
+}
+
+.header-image {
+  overflow: hidden;
+}
+.header-image img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.content-icons {
+  margin: 0 5px;
+  transform: translateY(5px);
+}
+
+.main-container {
+  min-width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+  min-height: calc(100vh - 105px);
+  max-height: calc(100vh - 105px);
+  scroll-snap-type: y mandatory;
+  max-width: 100vw;
+}
+
+.hidden{
+  display: none;
+  opacity: 0;
+}
+
+.loadMore{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  border: 1px white solid;
+  opacity: 0.8;
+  transition: 0.5s;
+}
+
+
+.item__ministar--container mat-icon{
+  color:yellow;
+  font-size: 13px;
+}
+/* .slider {
   text-shadow: 1px 1px 5px black;
   color:$color-text-darkmode;
   display: flex;
@@ -21,7 +128,6 @@ cdk-virtual-scroll-viewport{
   scroll-snap-type: x mandatory;
   height: calc(100vh - 100px);
   white-space: nowrap;
-  margin-top: 70px;
   padding-left: 10px;
   padding-right: 10px;
   
@@ -214,3 +320,4 @@ color:$color-text-darkmode;
     transform: scale(1);
   }
 }
+ */

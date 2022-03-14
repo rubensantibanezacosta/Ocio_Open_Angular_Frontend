@@ -1,0 +1,11 @@
+<div class="spinner-modal" *ngIf="$isLoading | async">
+    <div class="spinner-container">
+        <div class="spinner-container-absolute">
+            <mat-spinner class="spinner" diameter="160" color="accent"></mat-spinner>
+        </div>
+        <div class="spinner-container-absolute">
+            <img src="{{logo}}" alt="">
+            Cargando...{{$progress | async}}%
+        </div>
+    </div>
+</div>

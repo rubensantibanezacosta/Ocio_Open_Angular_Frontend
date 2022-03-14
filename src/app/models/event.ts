@@ -2,6 +2,8 @@ import { Asisstant } from "./assistant";
 import { User } from "./user";
 import { Comment } from "./comment"
 import { Image } from "./image";
+import { Timestamp } from "rxjs/internal/operators/timestamp";
+import { Moment } from "moment";
 
 export class Event{
     event_id: number;
@@ -10,7 +12,7 @@ export class Event{
     zone: string;
     place: string;
     description: string;
-    punctuation_avg: number;
+    punctuationAvg: number;
     organizer: string;
     image_id: number;
     organizerdata:User;

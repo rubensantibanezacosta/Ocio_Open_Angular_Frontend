@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class MyeventsComponent implements OnInit {
 
-  tittle = "Mis Eventos";
+ 
   image = "../../../assets/icons/my-event-icon.png";
   star = "../../../assets/icons/big-star.png";
   trash = "../../../assets/icons/trash-icon.png";
@@ -30,7 +30,7 @@ export class MyeventsComponent implements OnInit {
   userPosition: number = 0;
   user: User = new User();
   pastEvents: Event[] = [];
-  futureEvents: Event[] = [];
+  futureEvents: Event[] ;
 
   ErrorMessage:string;
 
@@ -48,7 +48,6 @@ export class MyeventsComponent implements OnInit {
       this.user = user;
     },
     (error) => {
-      
       this.ErrorMessage=error.error.message;
       this.createModal();
 
@@ -60,7 +59,6 @@ export class MyeventsComponent implements OnInit {
       this.userPosition = position;
     },
     (error) => {
-      
       this.ErrorMessage=error.error.message;
       this.createModal();
 
@@ -75,7 +73,6 @@ export class MyeventsComponent implements OnInit {
 
     },
     (error) => {
-      
       this.ErrorMessage=error.error.message;
       this.createModal();
 
@@ -89,7 +86,6 @@ export class MyeventsComponent implements OnInit {
       });
     },
     (error) => {
-      
       this.ErrorMessage=error.error.message;
       this.createModal();
 
@@ -98,9 +94,9 @@ export class MyeventsComponent implements OnInit {
 //
   deleteEventById(id:number){
     this.eventService.deleteEventById(id).subscribe(
-      res=>{return this.getFutureEventsByUser(); },
+      res=>{
+        return this.getFutureEventsByUser(); },
     (error) => {
-      
       this.ErrorMessage=error.error.message;
       this.createModal();
 

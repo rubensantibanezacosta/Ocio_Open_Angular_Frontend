@@ -1,11 +1,103 @@
-<app-header [tittle]="tittle" [image]="image"></app-header>
-<div class="main">
-    <div class="tittle-container">
-        <p class="tittle">Comentarios</p>
-        <p class="quantity">{{comments.length}}</p>
+<main class="main-comments">
+    <mat-list-item class="tittle-container">
+        <mat-label> {{comments.length}} Comentarios </mat-label>
+        <mat-icon>back</mat-icon>
+    </mat-list-item>
+    <div *ngFor="let comment of comments, let i=index" id="commentscontainer" class="commentscontainer">
+        <div class="message-container-mine" *ngIf="userEmail==comment.assistant">
+            <div class="comment-content">
+                <mat-chip-list>
+                    <mat-chip class="comment-info">
+                        <mat-chip-avatar>
+                            <img class="avatar" src="{{comment.user.image_url}}" />
+                        </mat-chip-avatar>
+                        <p><b>Yo </b></p>
+                    </mat-chip>
+                </mat-chip-list>
+                <div class="comment-string-mine">
+                    <p>{{comment.comment}}</p>
+                    <button mat-icon-button>
+                        <mat-icon class="empty-icons" (click)="deleteComment(comment.comment_id, i)">cancel</mat-icon>
+                    </button>
+                </div>
+                <div class="comment-date">{{formatTime(comment.date)}}</div>
+            </div>
+        </div>
+
+
+        <div class="message-container-others" *ngIf="userEmail!=comment.assistant">
+            <div class="comment-content">
+                <mat-chip-list>
+                    <mat-chip class="comment-info">
+                        <mat-chip-avatar>
+                            <img class="avatar" src="{{comment.user.image_url}}" />
+                        </mat-chip-avatar>
+                        <p><b>{{comment.user.name}} </b></p>
+                    </mat-chip>
+                </mat-chip-list>
+                <div class="comment-string-others">
+                    <p>{{comment.comment}}</p>
+                </div>
+                <div class="comment-date">{{formatTime(comment.date)}}</div>
+            </div>
+        </div>
     </div>
 
-    <div class="comment" *ngFor="let comment of comments, let i=index" id="commentcontainer">
+
+    <!--
+    <div class="message-container-mine">
+div
+    <mat-chip-list *ngFor="let comment of comments, let i=index" id="commentcontainer">
+
+        <div class="message-container-mine">
+            <mat-chip class="yourComments" *ngIf="userEmail==comment.assistant">
+                <mat-chip-avatar>
+                    <img class="avatar" src="{{comment.user.image_url}}" alt="Photo of a Shiba Inu" />
+                </mat-chip-avatar>
+
+                <p>{{comment.comment}}</p>
+                
+                <button matChipRemove (click)="deleteComment(comment.comment_id, i)">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip>
+        </div>
+
+        <div class="message-container-others">
+            <mat-chip class="otherComments" *ngIf="userEmail!=comment.assistant">
+                <mat-chip-avatar>
+                    <img class="avatar" src="{{comment.user.image_url}}" alt="Photo of a Shiba Inu" />
+                </mat-chip-avatar>
+                {{comment.comment}}
+            </mat-chip>
+        </div>
+
+       <p>{{formatTime(comment.date)}}</p> 
+    </mat-chip-list>-->
+
+</main>
+
+<mat-toolbar class="comment-editor-container">
+    <mat-chip-list>
+        <mat-chip class="writing-chip">
+            <input (keydown)="keyDownFunction($event, textComment)" (keydown)="$event.stopImmediatePropagation()"
+                #message maxlength="256" placeholder="Escribe tu comentario..." [(ngModel)]="textComment">
+            <button *ngIf="textComment" matSuffix mat-icon-button aria-label="Clear" a (click)="textComment=''">
+                <mat-icon class="reset">close</mat-icon>
+            </button>
+        </mat-chip>
+    </mat-chip-list>
+
+    <button *ngIf="textComment!=''" class="send" mat-mini-fab aria-label="Enviar" (click)="createComment(textComment)">
+        <mat-icon>send</mat-icon>
+    </button>
+    <button *ngIf="textComment==''" class="back" mat-icon-button aria-label="Enviar" (click)="back()">
+        <mat-icon class="empty-icons">arrow_back</mat-icon>
+    </button>
+
+</mat-toolbar>
+
+<!--  <div class="comment" *ngFor="let comment of comments, let i=index" id="commentcontainer">
         <div class="comment-data-container" *ngIf="comments">
             <div class="comment-data" id="id_{{comment.comment_id}}">
                 <p class="comment-author" title="{{comment.assistant}}">{{comment.user.name}}{{comment.user.surname}}</p>
@@ -29,10 +121,4 @@
         <img src="{{checkIcon}}" alt="check">
     </button>
 </div>
-</form>
-
-<app-back-icon></app-back-icon>
-<app-footer></app-footer>
-
-
-<div #modal></div> 
+</form> -->

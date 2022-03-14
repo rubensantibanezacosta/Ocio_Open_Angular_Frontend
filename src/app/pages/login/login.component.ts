@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       (data) => {
-
+        console.log(data);
         if (data.email) {
           const user: User = new User();
           user.email = data.email;
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
               const token: Token = data;
               localStorage.setItem("ocioToken", token.token);
 
-              this.router.navigateByUrl("/home");
+              this.router.navigateByUrl("/");
             }
           },
             (error) => {

@@ -1,42 +1,35 @@
-import { Component, Input, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { style, state } from '@angular/animations';
+import { AfterViewChecked, AfterViewInit, Component, Input, OnDestroy, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { EventsService } from 'src/app/services/events.service';
 import { Event } from '../../models/event';
 import * as moment from 'moment';
-import { PunctuationsService } from 'src/app/services/punctuations.service';
-import { Punctuation } from 'src/app/models/punctuation';
-import { getDataFromToken } from '../../utils/jwtparser';
 import { Asisstant } from 'src/app/models/assistant';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { Subscription } from 'rxjs';
 import { ScrollRestoreService } from 'src/app/services/scroll-restore.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
-  styleUrls: ['./slideshow.component.scss']
+  styleUrls: ['./slideshow.component.scss'],
 })
 
 
-export class SlideshowComponent implements OnInit {
+export class SlideshowComponent implements OnInit, OnDestroy {
   @Input() future: boolean;
   @Input() userEmailOutput: string;
   @Input() dateToFilter: Date;
 
 
-  profileIcon = "../../../assets/icons/user-icon.png";
-  miniStar = "../../../assets/icons/mini-star.png";
-  zoneIcon = "../../../assets/icons/zone-icon.png";
-  hourIcon = "../../../assets/icons/hour-icon.png";
-  placeIcon = "../../../assets/icons/place-icon.png";
-  assistantsIcon = "../../../assets/icons/assistants_icon.png";
-  commentIcon = "../../../assets/icons/comments-icon-white.png";
-  navigateIcon = "../../../assets/icons/navigate-icon.png";
 
   ErrorMessage: string;
 
-  events: Event[] = [];
+  events: Event[] = undefined;
+  lazyEvents: Event[] = [];
+  scrollObserver;
+  loading=false;
+
 
 
   formatDate = (date) => { return moment(date).locale("es").format("D [de] MMMM") };
@@ -45,53 +38,89 @@ export class SlideshowComponent implements OnInit {
   constructor(private eventsService: EventsService, private errorHandlerService: ErrorHandlerService, private scrollRestoreService: ScrollRestoreService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadEvents().then(()=>{
-      setTimeout(()=>{
-        this.scrollRestore();
-      },1000);
-      
-    });
+    this.loadEvents();
+
   }
 
-  ngAfterViewInit(): void {
-    
+
+  scrollPositionlistener(target) {
+    if (target.scrollHeight - target.scrollTop < 1000) {
+      if (document.querySelector(".loadMore")) {
+        document.querySelector(".loadMore").classList.remove("hidden");
+      }
+    } else {
+      if (document.querySelector(".loadMore")) {
+        document.querySelector(".loadMore").classList.add("hidden");
+      }
+    }
   }
+
+
+  loadMore() {
+
+    if (document.querySelector(".loadMore")) {
+      document.querySelector(".loadMore").classList.add("hidden");
+    }
+    if (this.events.length - this.lazyEvents.length > 5) {
+      for (let i = 0; i < 5; i++) {
+        this.lazyEvents.push(this.events[this.lazyEvents.length])
+      }
+    } else {
+      const rest = this.events.length - this.lazyEvents.length;
+      for (let i = 0; i < rest; i++) {
+        this.lazyEvents.push(this.events[this.lazyEvents.length])
+      }
+    }
+    if (document.querySelector(".loadMore")) {
+      document.querySelector(".loadMore").classList.remove("hidden");
+    }
+  }
+
+
   async loadEvents() {
+    this.loading=true;
     if (this.dateToFilter) {
       return this.eventsService.getEventsByDate(this.dateToFilter).subscribe((res) => {
-
+        this.loading=false;
         this.events = res;
+        this.loadMore();
+
       },
         (error) => {
-  
-          this.ErrorMessage=error.error.message;
+          this.loading=false;
+          this.ErrorMessage = error.error.message;
           this.createModal();
 
         })
     }
     if (this.future) {
-      return this.eventsService.getAllEventsASC().subscribe(data => {
-        this.events = data.filter((event => {
-          return moment(event.date).isAfter(moment()) == this.future;
+      return this.eventsService.getAllEventsASC().subscribe(async data => {
+        this.loading=false;
+        this.events = await data.filter((event => {
 
+          return moment(event.date).isAfter(moment()) == this.future;
         }));
+        this.loadMore();
+
       },
         (error) => {
-
-          
-          this.ErrorMessage=error.error.message;
+          this.loading=false;
+          this.ErrorMessage = error.error.message;
           this.createModal();
 
         })
     } else {
-      return this.eventsService.getAllEventsDESC().subscribe(data => {
-        this.events = data.filter((event => {
+      return this.eventsService.getAllEventsDESC().subscribe(async data => {
+        this.loading=false;
+        this.events = await data.filter((event => {
           return moment(event.date).isAfter(moment()) == this.future;
         }));
+        this.loadMore();
+
       },
         (error) => {
-
-          this.ErrorMessage=error.error.message;
+          this.loading=false;
+          this.ErrorMessage = error.error.message;
           this.createModal();
 
         })
@@ -136,6 +165,10 @@ export class SlideshowComponent implements OnInit {
       window.location.hash = "anchor" + 0;
       window.location.hash = "anchor" + this.scrollRestoreService.getAnchor(), false;
     }
+  }
+
+  ngOnDestroy() {
+
   }
 
 }

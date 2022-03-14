@@ -33,8 +33,6 @@ export class ValorationComponent implements OnInit {
   assistedValidation() {
     return this.assistantService.getAssistantByPk(this.event_id, this.userEmail)
       .subscribe((assistant) => {
-        console.log(assistant)
-
         if (assistant && assistant[0]) {
           if (assistant[0].attendance) {
             this.assisted = true;
@@ -44,7 +42,7 @@ export class ValorationComponent implements OnInit {
       },
         (error) => {
 
-          this.ErrorMessage=error.error.message;
+          this.ErrorMessage = error.error.message;
           this.createModal();
 
         })
@@ -53,12 +51,12 @@ export class ValorationComponent implements OnInit {
   loadPunctuationByPk() {
     return this.punctuationService.getPunctuationByPk(this.event_id, this.userEmail)
       .subscribe((Punctuation) => {
-        if (Punctuation[0]) {
+        if (Punctuation && Punctuation[0]) {
           return this.myPunctuation = Punctuation[0].punctuation;
         }
       },
         (error) => {
-          this.ErrorMessage=error.error.message;
+          this.ErrorMessage = error.error.message;
           this.createModal();
 
         })
@@ -74,7 +72,7 @@ export class ValorationComponent implements OnInit {
       this.loadPunctuationByPk();
     },
       (error) => {
-        this.ErrorMessage=error.error.message;
+        this.ErrorMessage = error.error.message;
         this.createModal();
 
       })

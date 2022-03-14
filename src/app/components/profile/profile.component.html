@@ -1,24 +1,20 @@
-<div class="profile">
-    <div class="profile__image--container">
-        <div class="profile__image">
-            <img *ngIf="user.image_url==undefined" src="{{profileAvatar}}" alt=""/>
-            <img *ngIf="user.image_url" src="{{user.image_url}}" alt=""/>
-            
+<mat-card class="card">
+    <mat-card-header>
+        <div mat-card-avatar class="header-img">
+            <img *ngIf="user.image_url==undefined" src="{{profileAvatar}}" alt="" />
+            <img *ngIf="user.image_url" src="{{user.image_url}}" alt="" />
         </div>
-
-    </div>
-    <div class="profile__data">
-        <p class="profile__name"><b>{{user.name}} </b>{{user.surname}}</p>
-        <p class="profile__valoration">Mi valoración <b class="rank-number">{{userPosition}}º</b></p>
-        <div class="star-container">
-            <img *ngIf="user.punctuation_avg>=1" src="{{star}}" alt="star">
-            <img *ngIf="user.punctuation_avg>=2" src="{{star}}" alt="star">
-            <img *ngIf="user.punctuation_avg>=3" src="{{star}}" alt="star">
-            <img *ngIf="user.punctuation_avg>=4" src="{{star}}" alt="star">
-            <img *ngIf="user.punctuation_avg>=5" src="{{star}}" alt="star">
-        </div>
-    </div>
-</div>
-
-
-<div #modal></div> 
+        <mat-card-title>
+            <b>{{user.name}} </b>{{user.surname}}
+        </mat-card-title>
+        <mat-card-title><b>{{userPosition}}º</b> posición</mat-card-title>
+        <mat-card-subtitle>
+            <mat-icon class="star-icon" *ngIf="user.punctuation_avg>=1">star</mat-icon>
+            <mat-icon class="star-icon" *ngIf="user.punctuation_avg>=2">star</mat-icon>
+            <mat-icon class="star-icon" *ngIf="user.punctuation_avg>=3">star</mat-icon>
+            <mat-icon class="star-icon" *ngIf="user.punctuation_avg>=4">star</mat-icon>
+            <mat-icon class="star-icon" *ngIf="user.punctuation_avg>=5">star</mat-icon>
+            <span>{{user.punctuation_avg*2}} / 10</span>
+        </mat-card-subtitle>
+    </mat-card-header>
+</mat-card>

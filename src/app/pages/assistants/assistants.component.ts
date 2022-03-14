@@ -42,6 +42,9 @@ export class AssistantsComponent implements OnInit {
   entry!: ViewContainerRef;
   sub!: Subscription;
 
+  back(){
+    window.history.back();
+  }
 
   createModal() {
     this.sub = this.errorHandlerService

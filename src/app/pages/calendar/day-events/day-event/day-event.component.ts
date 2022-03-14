@@ -1,3 +1,4 @@
+import { LoadingService } from './../../../../services/loading.service';
 import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { AssistantsService } from 'src/app/services/assistants.service';
 import { Asisstant } from 'src/app/models/assistant';
@@ -23,13 +24,14 @@ import { state, style, trigger } from '@angular/animations';
   ]
 })
 export class DayEventComponent implements OnInit {
+  
   @Input() event_id: number;
   @Input() eventName: string;
   assistant: Asisstant;
   attendanceState = "grey";
 
   ErrorMessage: string;
-  constructor(private assistantService: AssistantsService, private errorHandlerService: ErrorHandlerService) { }
+  constructor(private assistantService: AssistantsService, private errorHandlerService: ErrorHandlerService, private loadingService:LoadingService) { }
   userEmail: string = getDataFromToken().username;
   ngOnInit(): void {
   this.getAttendance();
@@ -37,6 +39,7 @@ export class DayEventComponent implements OnInit {
 
   getAttendance() {
     this.assistantService.getAssistantByPk(this.event_id, this.userEmail).subscribe((assistant) => {
+
       if (!assistant[0]) {
         return undefined;
       }
@@ -47,7 +50,6 @@ export class DayEventComponent implements OnInit {
       }
     },
       (error) => {
-
         this.ErrorMessage=error.error.message;
         this.createModal();
 

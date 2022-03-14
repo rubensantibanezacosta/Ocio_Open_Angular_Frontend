@@ -1,7 +1,9 @@
+import { LoadingService } from './../../../services/loading.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Event } from "../../../models/event";
 import * as moment from 'moment';
 import { AssistantsService } from 'src/app/services/assistants.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-day-events',
@@ -9,14 +11,14 @@ import { AssistantsService } from 'src/app/services/assistants.service';
   styleUrls: ['./day-events.component.scss']
 })
 export class DayEventsComponent implements OnInit {
-
+  loading=false;
   @Input() events: Event[] = [];
   @Input() date: string;
   @Input() dayValue: number;
 
   eventsFiltered: Event[] = [];
 
-  constructor() { }
+  constructor(private loadingService:LoadingService) { }
 
   ngOnInit(): void {
     this.getfromLocalEvents();
@@ -32,9 +34,5 @@ export class DayEventsComponent implements OnInit {
       }
     })
     return this.eventsFiltered = eventsFiltered;
-  }
-
-  getAttendanceOfEvent(){
-    this.getAttendanceOfEvent
   }
 }

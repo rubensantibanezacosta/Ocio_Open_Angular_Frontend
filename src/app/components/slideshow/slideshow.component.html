@@ -1,9 +1,209 @@
-<a href="home#45" style="display:hidden" id="url"></a>
 
-<h3 class="notevents" *ngIf="events.length<=0">Aun no hay eventos</h3>
+<h3 class="notevents" *ngIf="events!==undefined && events.length==0">
+    <mat-icon>info</mat-icon>
+    Aun no hay eventos</h3>
+<span *ngIf="events!==undefined">
 
-<section orientation="horizontal" class="slider" *ngIf="dateToFilter" itemSize="50">
-    <div class="card-container" *ngFor="let event of events">
+
+    <!-- IF EVENTS BY DATE -->
+
+    <main appendOnly itemSize="30" class="main-container" *ngIf="dateToFilter" (scroll)="scrollPositionlistener($event.target)">
+        <span *ngFor="let event of lazyEvents">
+
+            <div class="card-container">
+                <div class="background-img">
+                    <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
+                </div>
+                <mat-card class="card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="header-image">
+                            <img src="{{event.organizerdata.image_url}}">
+                        </div>
+                        <mat-card-title>{{event.organizerdata.name}} {{event.organizerdata.surname}}
+                        </mat-card-title>
+                        <mat-card-subtitle>{{event.organizer}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>{{event.tittle}}</mat-card-title>
+                        <mat-card-subtitle>{{event.punctuationAvg}}</mat-card-subtitle>
+                    </mat-card-title-group>
+
+                    <mat-card-content>
+                        <p>
+                            <mat-icon class="content-icons">public</mat-icon>{{event.zone}}
+                        </p>
+                        <p *ngIf="event.zone!='VIRTUAL'">
+                        <p *ngIf="event.zone!='VIRTUAL'">
+                            <mat-icon class="content-icons">explore</mat-icon>{{event.place}}
+                        </p>
+                        <a *ngIf="event.zone=='VIRTUAL'">{{event.place}}</a>
+                        <p>
+                            <mat-icon class="content-icons">watch_later</mat-icon>{{formatTime(event.date)}}
+                        </p>
+                        <p>
+                            <mat-icon class="content-icons">event</mat-icon>{{formatDate(event.date)}}
+                        </p>
+                        <p class="pointer" routerLink="assistants/{{event.event_id}}">
+                            <mat-icon class="content-icons">groups</mat-icon>
+                            {{filterByAttendance(event.assistants)}}
+                            Asistentes
+                        </p>
+                        <p class="pointer"routerLink="comments/{{event.event_id}}">
+                            <mat-icon class="content-icons">forum</mat-icon>
+                            {{event.comments.length}} Comentarios
+                        </p>
+                        <p>{{event.description}}</p>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <app-attendance *ngIf="datePastOrFuture(event.date)" [event_id]="event.event_id">
+                        </app-attendance>
+                        <app-valoration *ngIf="!datePastOrFuture(event.date)" [event_id]="event.event_id">
+                        </app-valoration>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </span>
+        <button class="card-container loadMore hidden" *ngIf="events>lazyEvents" mat-button (click)="loadMore()">Cargar
+            mas...</button>
+    </main>
+
+
+
+    <!-- IF FUTURE EVENTS -->
+
+    <main class="main-container" *ngIf="future==true&&events.length>0 && !dateToFilter" (scroll)="scrollPositionlistener($event.target)">
+        <span *ngFor="let event of lazyEvents">
+
+            <div class="card-container">
+                <div class="background-img">
+                    <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
+                </div>
+                <mat-card class="card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="header-image">
+                            <img src="{{event.organizerdata.image_url}}" alt="profile">
+                        </div>
+                        <mat-card-title>{{event.organizerdata.name}} {{event.organizerdata.surname}}
+                        </mat-card-title>
+                        <mat-card-subtitle>{{event.organizer}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>{{event.tittle}}</mat-card-title>
+                        <mat-card-subtitle>{{event.punctuationAvg}}</mat-card-subtitle>
+                    </mat-card-title-group>
+
+                    <mat-card-content>
+                        <p>
+                            <mat-icon class="content-icons">public</mat-icon>{{event.zone}}
+                        </p>
+                        <p *ngIf="event.zone!='VIRTUAL'">
+                            <mat-icon class="content-icons">explore</mat-icon>{{event.place}}
+                        </p>
+                        <a *ngIf="event.zone=='VIRTUAL'">{{event.place}}</a>
+                        <p>
+                            <mat-icon class="content-icons">watch_later</mat-icon>{{formatTime(event.date)}}
+                        </p>
+                        <p>
+                            <mat-icon class="content-icons">event</mat-icon>{{formatDate(event.date)}}
+                        </p>
+                        <p class="pointer" routerLink="assistants/{{event.event_id}}">
+                            <mat-icon class="content-icons">groups</mat-icon>
+                            {{filterByAttendance(event.assistants)}}
+                            Asistentes
+                        </p>
+                        <p  class="pointer" routerLink="comments/{{event.event_id}}">
+                            <mat-icon class="content-icons">forum</mat-icon>
+                            {{event.comments.length}} Comentarios
+                        </p>
+                        <p>{{event.description}}</p>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <app-attendance *ngIf="datePastOrFuture(event.date)" [event_id]="event.event_id">
+                        </app-attendance>
+                        <app-valoration *ngIf="!datePastOrFuture(event.date)" [event_id]="event.event_id">
+                        </app-valoration>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </span>
+
+        <button class="card-container loadMore hidden" *ngIf="events>lazyEvents" mat-button (click)="loadMore()">Cargar
+            mas...</button>
+
+    </main>
+
+
+    <!-- IF PAST EVENTS -->
+    <main class="main-container" *ngIf="future==false && !dateToFilter" (scroll)="scrollPositionlistener($event.target)">
+        <span *ngFor="let event of lazyEvents">
+
+            <div class="card-container">
+                <div class="background-img">
+                    <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
+                </div>
+                <mat-card class="card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="header-image">
+                            <img src="{{event.organizerdata.image_url}}" alt="profile">
+                        </div>
+                        <mat-card-title>
+                            {{event.organizerdata.name}} {{event.organizerdata.surname}}</mat-card-title>
+                        <mat-card-subtitle><div class="item__ministar--container" >
+                            
+                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=1">star</mat-icon>
+                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=2">star</mat-icon>
+                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=3">star</mat-icon>
+                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=4">star</mat-icon>
+                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=5">star</mat-icon>
+                        </div></mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>{{event.tittle}}</mat-card-title>
+                        <mat-card-subtitle>{{event.punctuationAvg}}</mat-card-subtitle>
+                    </mat-card-title-group>
+
+                    <mat-card-content>
+                        <p>
+                            <mat-icon class="content-icons">public</mat-icon>{{event.zone}}
+                        </p>
+                        <p *ngIf="event.zone!='VIRTUAL'">
+                        <p *ngIf="event.zone!='VIRTUAL'">
+                            <mat-icon class="content-icons">explore</mat-icon>{{event.place}}
+                        </p>
+                        <p *ngIf="event.zone=='VIRTUAL'"><u>{{event.place}}</u></p>
+                        <p>
+                            <mat-icon class="content-icons">watch_later</mat-icon>{{formatTime(event.date)}}
+                        </p>
+                        <p>
+                            <mat-icon class="content-icons">event</mat-icon>{{formatDate(event.date)}}
+                        </p>
+                        <p class="pointer" routerLink="assistants/{{event.event_id}}">
+                            <mat-icon class="content-icons">groups</mat-icon>
+                            <u>{{filterByAttendance(event.assistants)}}
+                                Asistentes</u>
+                        </p>
+                        <p class="pointer" routerLink="comments/{{event.event_id}}">
+                            <mat-icon class="content-icons">forum</mat-icon>
+                            <u>{{event.comments.length}} Comentarios</u>
+                        </p>
+                        <p>{{event.description}}</p>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <app-attendance *ngIf="datePastOrFuture(event.date)" [event_id]="event.event_id">
+                        </app-attendance>
+                        <app-valoration *ngIf="!datePastOrFuture(event.date)" [event_id]="event.event_id">
+                        </app-valoration>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </span>
+
+
+    </main>
+    <button class="loadMore hidden" *ngIf="events>lazyEvents" mat-button (click)="loadMore()">Cargar mas...</button>
+</span>
+<!--  <section orientation="vertical" class="slider" *ngIf="dateToFilter" itemSize="50"> -->
+<!--<div class="card-container" *ngFor="let event of events">
 
         <div class="card">
             <p id="anchor{{event.event_id}}" style="display:hidden; size:0px;"></p>
@@ -73,12 +273,12 @@
 
         </div>
     </div>
-</section>
+</section> -->
 
 
 
 
-<section orientation="horizontal" class="slider" *ngIf="future==true&&events.length>0 && !dateToFilter" itemSize="50">
+<!-- <section  orientation="horizontal" class="slider" *ngIf="future==true&&events.length>0 && !dateToFilter" itemSize="50">
 
     <div class="card-container" *ngFor="let event of events">
 
@@ -226,10 +426,4 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-<div #modal></div>
+ -->

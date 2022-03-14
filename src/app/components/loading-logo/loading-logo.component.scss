@@ -1,0 +1,37 @@
+.spinner-modal{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999999999;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinner-container{
+    position: relative;
+    min-height: 160px;
+    min-width: 160px;
+    justify-content: center;
+    align-items: center;
+}
+.spinner-container-absolute{
+    position: absolute;
+    min-height: 160px;
+    min-width: 160px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.mat-spinner {
+    ::ng-deep circle {
+        stroke: rgb(185, 90, 0);
+    }
+}

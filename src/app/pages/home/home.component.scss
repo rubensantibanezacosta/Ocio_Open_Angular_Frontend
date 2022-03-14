@@ -1,7 +1,11 @@
 @import "./../../../assets/variablesSass/variables.scss";
 
+.main-container{
+  width: 100vw;
+  height: 100%;
+}
 
-.slider {
+/* .slider {
   color:$color-text-darkmode;
   display: flex;
   overflow-y: hidden;
@@ -10,7 +14,6 @@
   height: 85vh;
   min-height: 468px;
   white-space: nowrap;
-  margin-top: 70px;
   padding-left: 10px;
   padding-right: 10px;
   
@@ -241,3 +244,4 @@ font-size: 1.0rem;
     transform: scale(1);
   }
 }
+ */

@@ -1,51 +1,77 @@
-<app-header [tittle]="tittle" [image]="image"></app-header>
-
-<app-profile></app-profile>
-
-<div class="contain-main__container">
-    <div class="available-events__container">
-        <div class="tittle__container">
-            <p class="available-events__tittle">Mis eventos disponibles</p>
-            <button class="add-button">
-                <img src="{{plus}}" alt="" routerLink="/eventform/{{0}}/new">
-            </button>
-        </div>
-        <div class="available-events__item--container">
-            <div class="available-events__item" *ngFor="let futureEvent of futureEvents">
-                <p class="available-events__item--text">{{futureEvent.tittle}} <i>{{formatDate(futureEvent.date)}}</i></p>
-                <button class="trash-button">
-                    <img src="{{trash}}" alt="" (click)="deleteEventById(futureEvent.event_id)">
-                </button>
-                <button class="edit-button">
-                    <img src="{{editIcon}}" alt="" routerLink="/eventform/{{futureEvent.event_id}}/edit">
-                </button>
-            </div>
-            
-        </div>
-    </div>
-
-    <div class="finalized-events__container">
-        <div class="tittle__container">
-            <p class="finalized-events__tittle">Mis eventos terminados</p>
-        </div>
-        <div class="finalized-events__item--container">
-            <div class="finalized-events__item" *ngFor="let pastEvent of pastEvents">
-                <p class="finalized-events__item--text">{{pastEvent.tittle}} <i>{{formatDate(pastEvent.date)}}</i></p>
-                <div class="item__ministar--container" >
-                    <img *ngIf="pastEvent.punctuation_avg" src="{{miniStar}}" alt="star">
-                    <img *ngIf="pastEvent.punctuation_avg>=2" src="{{miniStar}}" alt="star">
-                    <img *ngIf="pastEvent.punctuation_avg>=3" src="{{miniStar}}" alt="star">
-                    <img *ngIf="pastEvent.punctuation_avg>=4" src="{{miniStar}}" alt="star">
-                    <img *ngIf="pastEvent.punctuation_avg>=5" src="{{miniStar}}" alt="star">
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<app-menu></app-menu>
-<app-footer></app-footer>
+<main class="main-container">
+    <app-profile></app-profile>
 
 
-<div #modal></div> 
+    <mat-toolbar class="tittle__container">
+        <p class="available-events__tittle">Mis eventos disponibles</p>
+        <button color="accent" mat-raised-button routerLink="eventform/{{0}}/new" class="add-button">
+            <mat-icon>playlist_add</mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <span *ngIf="futureEvents && futureEvents.length==0">
+        <mat-list>
+            <mat-list-item>
+                <p class="empty-list">
+                    <mat-icon>info</mat-icon> No tienes eventos próximos
+                </p>
+            </mat-list-item>
+        </mat-list>
+    </span>
+    <span *ngIf="futureEvents && futureEvents.length>0">
+        <mat-list *ngFor="let futureEvent of futureEvents">
+            <mat-list-item>
+                <p>{{futureEvent.tittle}} <i>{{formatDate(futureEvent.date)}}</i></p>
+            </mat-list-item>
+        </mat-list>
+    </span>
+
+
+    <mat-toolbar class="tittle__container">
+        <p class="available-events__tittle">Mis eventos finalizados</p>
+    </mat-toolbar>
+
+    <span *ngIf="pastEvents && pastEvents.length==0">
+        <mat-list>
+            <mat-list-item>
+                <p class="empty-list">
+                    <mat-icon>info</mat-icon> Aun no has creado ningun evento
+                </p>
+            </mat-list-item>
+        </mat-list>
+    </span>
+    <span *ngIf="pastEvents && pastEvents.length>0">
+        <span *ngFor="let pastEvent of pastEvents">
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{pastEvent.tittle}}</mat-card-title>
+                    <mat-card-subtitle>{{formatDate(pastEvent.date)}}</mat-card-subtitle>
+                
+                    <mat-card-subtitle>
+                        <mat-icon class="star-icon" *ngIf="pastEvent.punctuationAvg>=1">star</mat-icon>
+                        <mat-icon class="star-icon" *ngIf="pastEvent.punctuationAvg>=2">star</mat-icon>
+                        <mat-icon class="star-icon" *ngIf="pastEvent.punctuationAvg>=3">star</mat-icon>
+                        <mat-icon class="star-icon" *ngIf="pastEvent.punctuationAvg>=4">star</mat-icon>
+                        <mat-icon class="star-icon" *ngIf="pastEvent.punctuationAvg>=5">star</mat-icon>
+                        <span>{{pastEvent.punctuationAvg *2}} / 10</span>
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        <mat-icon>people_outline</mat-icon> {{pastEvent.assistants.length}}</mat-card-subtitle>
+                </mat-card-header>
+                 <span class="background-image-div">
+                    <app-image-viewer [imageId]="pastEvent.image_id"></app-image-viewer>
+                </span> 
+                
+
+               <!--  <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                </mat-card-actions> -->
+
+            </mat-card>
+
+        </span>
+    </span>
+
+</main>

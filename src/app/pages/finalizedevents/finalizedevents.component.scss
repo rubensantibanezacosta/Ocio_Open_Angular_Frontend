@@ -1,0 +1,53 @@
+@import "./../../../assets/variablesSass/variables.scss";
+
+.main-container {
+  width: 100vw;
+  height: 100%;
+}
+
+::ng-deep mat-drawer-content{
+  overflow: hidden !important;
+  scroll-snap-type: y mandatory;
+  
+}
+
+::ng-deep .mat-tab-body-content{
+  overflow: hidden;
+
+}
+::ng-deep mat-tab-group {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  z-index: 1;
+
+}
+
+::ng-deep mat-tab{
+  background-color: $header-footer !important;
+}
+::ng-deep mat-ink-bar{
+  background-color: orange !important;
+}
+::ng-deep .mat-tab-label {
+  color: white !important;
+  background-color: $header-footer !important;
+}
+::ng-deep .mat-tab-header-pagination {
+  display: none !important;
+} 
+
+.tab-content {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: calc(100vh - 100px);
+  overflow: hidden;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+}

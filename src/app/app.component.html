@@ -1,2 +1,6 @@
-<html><router-outlet></router-outlet></html>
+<html [@routeAnimations]="prepareRoute(outlet)">
+ 
+<router-outlet #outlet="outlet"></router-outlet>
+<app-loading-logo></app-loading-logo> 
+</html>
 

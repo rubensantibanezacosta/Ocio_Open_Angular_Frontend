@@ -1,9 +1,31 @@
-<app-header [tittle]="tittle" [image]="image"></app-header>
-<div class="main">
-<app-slideshow [future]=false></app-slideshow>
-</div>
-<app-menu></app-menu>
-<app-footer></app-footer>
+<main class="main-container">
+    <div class="main">
+        <mat-tab-group mat-stretch-tabs>
+            <span class="tabs">
+                <mat-tab>
+                    <ng-template mat-tab-label class="mat-tab-label">Disponibles</ng-template>
+                        <div class="tab-content">
+                            <app-slideshow [future]=true></app-slideshow>
+                        </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label class="mat-tab-label">Terminados</ng-template>
+                    
+                    <div class="tab-content">
+                        <app-slideshow [future]=false></app-slideshow>
+                    </div>
+                    
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label class="mat-tab-label">Mis Eventos</ng-template>
+                    <div class="tab-content">
+                        <app-myevents></app-myevents>
+                    </div>
+                </mat-tab>
+            </span>
+        </mat-tab-group>
+        <!-- <app-slideshow [future]=false></app-slideshow> -->
+    </div>
+</main>
 
-
-<div #modal></div> 
+<router-outlet *ngIf="modalShown" ></router-outlet>

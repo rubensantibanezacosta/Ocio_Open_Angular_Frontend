@@ -1,5 +1,6 @@
-<app-header [tittle]="tittle" [image]="image"></app-header>
-
+<!-- 
+<app-loading-logo [loader]="loading"></app-loading-logo> -->
+<main class="main-container">
 <div class="main" *ngIf="events">
     <p class="previous" (click)="changueMonth(-1)"><img src="{{previousIcon}}" alt=""></p>
     <p class="next" (click)="changueMonth(1)"><img src="{{nextIcon}}" alt=""></p>
@@ -14,9 +15,5 @@
     </ul>
 </div>
 
+</main>
 
-<app-menu></app-menu>
-<app-footer></app-footer>
-
-
-<div #modal></div>

@@ -5,6 +5,7 @@ import { ImagesService } from 'src/app/services/images.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-gallery',
@@ -34,14 +35,13 @@ export class GalleryComponent implements OnInit {
   filterState="inactive";
 
 
-  constructor(private imagesService: ImagesService,  private errorHandlerService:ErrorHandlerService) { }
+  constructor(private imagesService: ImagesService,  private errorHandlerService:ErrorHandlerService, ) { }
 
   ngOnInit(): void {
     this.getAllUrls();
 
   }
-
-
+ 
   getAllUrls() {
     this.imagesService.getAllImages().subscribe((data) => {
       this.images = data;

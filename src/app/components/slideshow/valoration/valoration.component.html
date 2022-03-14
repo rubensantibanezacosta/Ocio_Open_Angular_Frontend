@@ -2,26 +2,32 @@
     <p>¿Puntuación?</p>
     <div class="card-button-subcontainer">
         <div class="empty-star">
-            <img src="{{emptyStar}}" alt="" *ngIf="myPunctuation==0||myPunctuation==undefined" (click)="createOrUpdatePunctuation(1)">
+            <mat-icon *ngIf="myPunctuation==0||myPunctuation==undefined" (click)="createOrUpdatePunctuation(1)" mat-icon-xl-icon>star_outline</mat-icon>
         </div>
         <div class="full-star">
-            <img src="{{fullStar}}" alt="" *ngIf="myPunctuation>=1" (click)="createOrUpdatePunctuation(1)">
-            <img src="{{emptyStar}}" alt="" *ngIf="myPunctuation<=1 ||myPunctuation==undefined" (click)="createOrUpdatePunctuation(2)">
+            <mat-icon *ngIf="myPunctuation>=1" (click)="createOrUpdatePunctuation(1)">star</mat-icon>
+            <mat-icon *ngIf="myPunctuation<=1 ||myPunctuation==undefined" (click)="createOrUpdatePunctuation(2)">star_outline</mat-icon>
+            
         </div>
         <div class="full-star">
-            <img src="{{fullStar}}" alt="" *ngIf="myPunctuation>=2" (click)="createOrUpdatePunctuation(2)">
-            <img src="{{emptyStar}}" alt="" *ngIf="myPunctuation<=2 ||myPunctuation==undefined" (click)="createOrUpdatePunctuation(3)">
+            <mat-icon *ngIf="myPunctuation>=2" (click)="createOrUpdatePunctuation(2)">star</mat-icon>
+            <mat-icon *ngIf="myPunctuation<=2 ||myPunctuation==undefined" (click)="createOrUpdatePunctuation(3)">star_outline</mat-icon>
+
         </div>
         <div class="full-star">
-            <img src="{{fullStar}}" alt="" *ngIf="myPunctuation>=3" (click)="createOrUpdatePunctuation(3)">
-            <img src="{{emptyStar}}" alt="" *ngIf="myPunctuation<=3 ||myPunctuation==undefined" (click)="createOrUpdatePunctuation(4)">
+            <mat-icon *ngIf="myPunctuation>=3" (click)="createOrUpdatePunctuation(3)">star</mat-icon>
+            <mat-icon  *ngIf="myPunctuation<=3 ||myPunctuation==undefined" (click)="createOrUpdatePunctuation(4)">star_outline</mat-icon>
+
+
         </div>
         <div class="full-star">
-            <img src="{{fullStar}}" alt="" *ngIf="myPunctuation>=4" (click)="createOrUpdatePunctuation(4)">
-            <img src="{{emptyStar}}" alt="" *ngIf="myPunctuation<=4 || myPunctuation==undefined" (click)="createOrUpdatePunctuation(5)">
+            <mat-icon *ngIf="myPunctuation>=4" (click)="createOrUpdatePunctuation(4)">star</mat-icon>
+            <mat-icon  *ngIf="myPunctuation<=4 || myPunctuation==undefined" (click)="createOrUpdatePunctuation(5)">star_outline</mat-icon>
+
+
         </div>
         <div class="full-star">
-            <img src="{{fullStar}}" alt="" *ngIf="myPunctuation>=5" (click)="createOrUpdatePunctuation(5)">
+            <mat-icon *ngIf="myPunctuation>=5" (click)="createOrUpdatePunctuation(5)">star</mat-icon>
         </div>
        
     </div>

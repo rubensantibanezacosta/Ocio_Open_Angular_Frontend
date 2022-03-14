@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ImagesService } from 'src/app/services/images.service';
@@ -9,13 +9,10 @@ import { ImagesService } from 'src/app/services/images.service';
   styleUrls: ['./image-viewer.component.scss']
 })
 export class ImageViewerComponent implements OnInit {
-
   @Input() imageId:number;
   downloaded: File;
   src: string | ArrayBuffer = "";
   bearerToken = localStorage.getItem("ocioToken");
-  spinner="../../../../assets/loaders/Spinner.gif";
-  loaded=false;
 
   ErrorMessage:string;
   constructor(private imagesService: ImagesService,  private errorHandlerService:ErrorHandlerService) { }
@@ -31,9 +28,6 @@ export class ImageViewerComponent implements OnInit {
       return this.createImageFromBlob(this.downloaded);
     },
     (error) => {
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
     })
   }
 
@@ -42,7 +36,6 @@ export class ImageViewerComponent implements OnInit {
     let reader = new FileReader();
     reader.addEventListener("load", async () => {
       this.src = reader.result;
-      this.loaded=true;
     },false);
     if (image) {
       reader.readAsDataURL(image);

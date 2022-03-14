@@ -1,6 +1,6 @@
 import { Client, IFrame } from '@stomp/stompjs';
 import { WebSocketService } from './../../services/web-socket.service';
-import { Component, OnInit, ViewChild, ViewContainerRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CommentsService } from 'src/app/services/comments.service';
 import { getDataFromToken } from 'src/app/utils/jwtparser';
@@ -30,15 +30,12 @@ export class CommentsComponent implements OnInit, OnDestroy {
   constructor(private activatedRoute: ActivatedRoute, private commentsService: CommentsService, private errorHandlerService: ErrorHandlerService, private webSocketService: WebSocketService) { }
 
   ngOnInit(): void {
-    this.webSocketService.client.connect({},()=>{});
+    this.webSocketService.client.connect({}, () => { });
     if (!this.comments[0]) {
       /* this.webSocketService */
       this.getCommentsByEvent().then(() => {
 
-        setTimeout(() => {
-          let mainContainer = document.querySelector(".main");
-          mainContainer.scrollTop = mainContainer.scrollHeight;
-        }, 500);
+       
       });
       if (this.webSocketService.client.connected) {
 
@@ -46,8 +43,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
           let comment: Comment = JSON.parse(frame.body) as Comment;
           comment ? this.comments.push(comment) : null;
           setTimeout(() => {
-            let mainContainer = document.querySelector(".main");
-            mainContainer.scrollTop = mainContainer.scrollHeight;
+            let mainContainer = document.querySelector(".main-comments");
+            mainContainer.scrollTop = mainContainer.scrollHeight+300000000;
           }, 200);
         })
 
@@ -63,8 +60,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
             let comment: Comment = JSON.parse(frame.body) as Comment;
             comment ? this.comments.push(comment) : null;
             setTimeout(() => {
-              let mainContainer = document.querySelector(".main");
-              mainContainer.scrollTop = mainContainer.scrollHeight;
+              let mainContainer = document.querySelector(".main-comments");
+              mainContainer.scrollTop = mainContainer.scrollHeight+300000000;
             }, 200);
           })
 
@@ -75,6 +72,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
           })
         })
       }
+
 
 
 
@@ -94,20 +92,26 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-   
     this.webSocketService.client.unsubscribe(`/comments-chat/delete_${this.event_id}`);
     this.webSocketService.client.unsubscribe(`/comments-chat/${this.event_id}`);
+  }
+
+  back() {
+    window.history.back();
   }
 
   async getCommentsByEvent() {
     return this.commentsService.getCommentsByEvent(this.event_id).subscribe((comments) => {
       this.comments = comments;
-
+      setTimeout(() => {
+        let mainContainer = document.querySelector(".main-comments");
+        mainContainer.scrollTop = mainContainer.scrollHeight+300000000;
+      }, 200);
 
       /* this.connectSocket(this.event_id);   */
     },
       (error) => {
-        this.ErrorMessage=error.error.message;
+        this.ErrorMessage = error.error.message;
         this.createModal();
 
       })
@@ -120,12 +124,13 @@ export class CommentsComponent implements OnInit, OnDestroy {
     comment.comment = text;
     this.webSocketService.client.publish({ destination: "/app/message", body: JSON.stringify(comment) })
     this.textComment = "";
-    this.ngOnInit()
+    this.ngOnInit();
 
 
   }
   keyDownFunction(event, text: string) {
-    if (event.code === 'Enter') {
+    console.log(event.code)
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
       this.createComment(text);
     }
   }
@@ -136,11 +141,11 @@ export class CommentsComponent implements OnInit, OnDestroy {
       index: index
     }
     this.webSocketService.client.publish({ destination: "/app/message_delete", body: JSON.stringify(commentToDelete) })
-
-
   }
 
-  formatTime = (date: Date) => { return moment(date).format("DD.MM.YY HH:mm:ss") }
+  formatTime = (date: Date) => { return moment(date).format("DD.MM.YY HH:mm") }
+
+
 
   //Error handler modals
   @ViewChild('modal', { read: ViewContainerRef })
