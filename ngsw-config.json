@@ -26,5 +26,17 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "urls":["https://boiling-inlet-01582.herokuapp.com/**"],
+      "cacheConfig": {
+        "maxSize": 1,
+        "maxAge": "7d",
+        "strategy": "performance",
+        "timeout": "1s"
+      }
+    }
   ]
 }
