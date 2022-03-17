@@ -1,3 +1,4 @@
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { UsersTableComponent } from './pages/administration/users-table/users-table.component';
 import { EventsTableComponent } from './pages/administration/events-table/events-table.component';
 import { PermissionsTableComponent } from './pages/profile-administration/permissions/permissions-table/permissions-table.component';
@@ -13,7 +14,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from 'angularx-social-login';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyeventsComponent } from './pages/myevents/myevents.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -111,6 +112,9 @@ import { ExcuseDialogComponent } from './components/excuse-dialog/excuse-dialog.
     }),
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true},
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
