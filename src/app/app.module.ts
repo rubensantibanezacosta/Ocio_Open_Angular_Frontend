@@ -1,3 +1,6 @@
+import { UsersTableComponent } from './pages/administration/users-table/users-table.component';
+import { EventsTableComponent } from './pages/administration/events-table/events-table.component';
+import { PermissionsTableComponent } from './pages/profile-administration/permissions/permissions-table/permissions-table.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -42,6 +45,10 @@ import { PermissionsComponent } from './pages/profile-administration/permissions
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MaterialUIModule } from './materialUI.module';
+import { UserEventsTableComponent } from './pages/profile-administration/user-events-table/user-events-table.component';
+import { LoadingLogoComponent } from './components/loading-logo/loading-logo.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ExcuseDialogComponent } from './components/excuse-dialog/excuse-dialog.component';
 
 
 @NgModule({
@@ -74,6 +81,15 @@ import { MaterialUIModule } from './materialUI.module';
     DayEventsComponent,
     EventsByDateComponent,
     DayEventComponent,
+    PermissionsTableComponent,
+    UserEventsTableComponent,
+    EventsTableComponent,
+    UserEventsTableComponent,
+    LoadingLogoComponent,
+    ConfirmDialogComponent,
+    ExcuseDialogComponent,
+    UsersTableComponent
+
     
     
   ],
