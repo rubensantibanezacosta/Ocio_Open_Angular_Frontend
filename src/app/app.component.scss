@@ -1,5 +1,3 @@
-@media screen and (orientation: landscape) {
-    *{
-        orientation: portrait;
-    }
+::ng-deep.loading{
+    z-index: 200;
 }
