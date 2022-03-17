@@ -10,15 +10,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from 'angularx-social-login';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { FileSaverModule } from 'ngx-filesaver';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { MaterialUIModule } from './materialUI.module';
-import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { MyeventsComponent } from './pages/myevents/myevents.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -44,47 +36,48 @@ import { ErrorHandlerComponent } from './components/error-handler/error-handler.
 import { DayEventsComponent } from './pages/calendar/day-events/day-events.component';
 import { EventsByDateComponent } from './pages/events-by-date/events-by-date.component';
 import { DayEventComponent } from './pages/calendar/day-events/day-event/day-event.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FileSaverModule } from 'ngx-filesaver';
 import { PermissionsComponent } from './pages/profile-administration/permissions/permissions.component';
-import { LoadingLogoComponent } from './components/loading-logo/loading-logo.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { ExcuseDialogComponent } from './components/excuse-dialog/excuse-dialog.component';
-import { UsersTableComponent } from './pages/administration/users-table/users-table.component';
-import { EventsTableComponent } from './pages/administration/events-table/events-table.component';
-import { UserEventsTableComponent } from './pages/profile-administration/user-events-table/user-events-table.component';
-import { PermissionsTableComponent } from './pages/profile-administration/permissions/permissions-table/permissions-table.component';
-
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PermissionsComponent,
+    LoginComponent,
+    MyeventsComponent,
     MenuComponent,
     FooterComponent,
     HeaderComponent,
     RankingComponent,
     FinalizedeventsComponent,
+    AdministrationComponent,
     NofoundComponent,
+    CalendarComponent,
+    ProfileAdministrationComponent,
     SlideshowComponent,
+    ValorationComponent,
+    AttendanceComponent,
+    CommentsComponent,
+    AssistantsComponent,
     BackIconComponent,
+    EventFormComponent,
+    GalleryComponent,
+    ImageViewerComponent,
+    ProfileComponent,
+    EventsAdministrationComponent,
     ErrorHandlerComponent,
     DayEventsComponent,
     EventsByDateComponent,
     DayEventComponent,
-    PermissionsComponent,
-    LoadingLogoComponent,
-    ConfirmDialogComponent,
-    ExcuseDialogComponent,
-    UsersTableComponent,
-    EventsTableComponent,
-    UserEventsTableComponent,
-    PermissionsTableComponent
+    
     
   ],
-
   imports: [
-    CommonModule,
     BrowserModule,
-    MaterialUIModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SocialLoginModule,
@@ -100,7 +93,6 @@ import { PermissionsTableComponent } from './pages/profile-administration/permis
     }),
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -109,7 +101,7 @@ import { PermissionsTableComponent } from './pages/profile-administration/permis
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              environment.googleClientId,
+              environment.googleClientId
             )
           },
           {
@@ -120,7 +112,6 @@ import { PermissionsTableComponent } from './pages/profile-administration/permis
       } as SocialAuthServiceConfig,
     }
   ],
-
   bootstrap: [AppComponent]
 })
 export class AppModule { }
