@@ -41,6 +41,7 @@ import { FileSaverModule } from 'ngx-filesaver';
 import { PermissionsComponent } from './pages/profile-administration/permissions/permissions.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MaterialUIModule } from './materialUI.module';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { environment } from '../environments/environment';
     FormsModule,
     ScrollingModule,
     FileSaverModule,
+    MaterialUIModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
