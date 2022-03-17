@@ -35,7 +35,7 @@
         "maxSize": 3,
         "maxAge": "7d",
         "strategy": "performance",
-        "timeout": "6s"
+        "timeout": "12s"
       }
     }
   ]
