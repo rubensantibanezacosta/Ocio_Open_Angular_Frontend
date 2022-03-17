@@ -13,7 +13,9 @@ import { error } from 'console';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LoadingInterceptor implements HttpInterceptor {
   private countRequestadd: number = 0;
   private countRequestdiscount: number = 0;
