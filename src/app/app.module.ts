@@ -69,7 +69,6 @@ import { PermissionsTableComponent } from './pages/profile-administration/permis
     SlideshowComponent,
     BackIconComponent,
     EventFormComponent,
-    EventsAdministrationComponent,
     ErrorHandlerComponent,
     DayEventsComponent,
     EventsByDateComponent,
