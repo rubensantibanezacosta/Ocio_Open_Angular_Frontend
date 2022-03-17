@@ -31,6 +31,12 @@
                     </mat-slide-toggle>
                 </div>
               </mat-list-item>
+              <mat-list-item *ngIf="installEvent" (click)="installByUser()">
+                <div class="item-content">
+                <mat-icon>phonelink_setup</mat-icon>
+                <p>Istalar aplicación</p>
+                </div>
+              </mat-list-item>
               <mat-list-item  (click)="signOut()">
                 <div class="item-content">
                 <mat-icon>logout</mat-icon>
@@ -42,7 +48,6 @@
         </mat-drawer>
       
         <div class="sidenav-content" (click)="drawer.close()">
-             
             <router-outlet ></router-outlet>
         </div>
       

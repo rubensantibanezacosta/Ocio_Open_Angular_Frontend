@@ -1,6 +1,6 @@
 import { LoadingService } from './services/loading.service';
 import { DarkmodeService } from './services/darkmode.service';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 
 @Component({
@@ -12,9 +12,11 @@ import { Component } from '@angular/core';
 
 
 export class AppComponent {
-  constructor(private darkmodeService:DarkmodeService, public loadingService:LoadingService){
   
+
+  constructor(private darkmodeService:DarkmodeService, public loadingService:LoadingService){
+    
   }
   title = 'frontend';
-
+  
 }

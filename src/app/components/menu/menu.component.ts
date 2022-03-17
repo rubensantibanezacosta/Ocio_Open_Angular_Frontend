@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import {  Component, OnInit } from '@angular/core';
+import {  Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
 
@@ -37,6 +37,7 @@ export class MenuComponent implements OnInit {
   darkActivateSliderState: string = "inactive";
   darkActivateButtonContainerState: string = "inactive";
   darkModeActive: boolean = false;
+  installEvent;
 
   menu = [
     {
@@ -70,7 +71,24 @@ export class MenuComponent implements OnInit {
     private loginService: LoginService, private darkmodeService: DarkmodeService) {
   }
 
+ 
 
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onBeforeInstallPrompt(event:Event){
+    event.preventDefault();
+    this.installEvent=event;
+  }
+  
+
+    installByUser(){
+      if(this.installEvent){
+        this.installEvent.prompt();
+        this.installEvent.userChoice.then(res=>{
+          console.log(res);
+        })
+      }
+    }
+    
   adminSectionAllowed = false;
 
   ngOnInit(): void {
