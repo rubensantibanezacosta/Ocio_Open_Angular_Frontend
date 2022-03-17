@@ -1,80 +1,109 @@
-
-
-<div class="main">
+<div class="main" [@modalAnimation]>
+    <mat-list-item class="tittle-container">
+        <mat-label> {{tittle}}</mat-label>
+        <mat-icon>back</mat-icon>
+    </mat-list-item>
     <form (ngSubmit)="submit()" #eventForm="ngForm">
-        <div class="tittle-div">
-            <label for="tittle">Titulo</label>
-            <input type="text" [(ngModel)]="myEvent.tittle" name="eventTittle" #eventTittle="ngModel" required
-                minlength="3" maxlength="25" placeholder="Introduce un título..." />
-            <div *ngIf="eventTittle.invalid && eventTittle.dirty">
-                <div *ngIf="eventTittle.errors?.required">Campo requerido</div>
-                <div *ngIf="eventTittle.errors?.minlength">Mínimo 3 caracteres</div>
-                <div *ngIf="eventTittle.errors?.maxlength">Máximo 25 caracteres</div>
-            </div>
-        </div>
-        <div class="datetime-div" *ngIf="dateinputVisible==true">
-            <label for="date">Fecha y hora</label>
-            <input  type="datetime-local" [(ngModel)]="myEvent.date" name="date" #date="ngModel" required
-                min="{{minDate}}"/>
+
+
+        <mat-form-field appearance="outline" color="custom">
+            <mat-label>Título</mat-label>
+            <input matInput type="text" [(ngModel)]="myEvent.tittle" name="eventTittle" #eventTittle="ngModel" required
+                minlength="3" maxlength="25" placeholder="Introduce un título..." autocomplete="off">
+            <mat-icon matSuffix *ngIf="eventTittle.valid" class="check">check</mat-icon>
+            <mat-hint>
+                <div *ngIf="eventTittle.invalid && eventTittle.dirty">
+                    <div *ngIf="eventTittle.errors?.required">Campo requerido</div>
+                    <div *ngIf="eventTittle.errors?.minlength">Mínimo 3 caracteres</div>
+                    <div *ngIf="eventTittle.errors?.maxlength">Máximo 25 caracteres</div>
+                </div>
+            </mat-hint>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="outline" color="custom" *ngIf="dateinputVisible==true">
+            <mat-label for="date">Fecha y hora</mat-label>
+            <input matInput type="datetime-local" [(ngModel)]="myEvent.date" name="date" #date="ngModel" required
+                min="{{minDate}}" />
+            <mat-icon matSuffix *ngIf="date.valid" class="check">check</mat-icon>
             <div *ngIf="date.invalid && date.dirty">
                 <div *ngIf="date.errors?.required">Campo requerido</div>
                 <div *ngIf="date.errors?.min">Fecha invalida</div>
             </div>
-        </div>
+        </mat-form-field>
+
         <div class="datetime-div" *ngIf="dateinputVisible==false" (click)="setVisibleDate()">
-            <label for="date">Fecha y hora</label>
-            <input  type="string" value="{{formatDate(myEvent.date)}}" readonly/>
+            <label for="date">Fecha y hora *</label>
+            <input type="string" value="{{formatDate(myEvent.date)}}" readonly />
         </div>
 
-        <div class="zone-div">
-            <label for="zone">Zona</label>
-            <div class="select-zone">
-                <select  [(ngModel)]="myEvent.zone" name="zone" #zone="ngModel">
-                    <option value="GC">GC</option>
-                    <option value="TNF">TNF</option>
-                    <option value="VIRTUAL">VIRTUAL</option>
-                    <option value="Others">Otros</option>
-                </select>
-                <p>{{zoneSelected()}}</p>
-            </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Select</mat-label>
+            <mat-select [(ngModel)]="myEvent.zone" name="zone" #zone="ngModel">
+                <mat-option value="GC">GC</mat-option>
+                <mat-option value="TNF">TNF</mat-option>
+                <mat-option value="VIRTUAL">VIRTUAL</mat-option>
+                <mat-option value="Others">Otros</mat-option>
+            </mat-select>
+            <mat-hint style="color: white; font-size: 0.9rem;">{{zoneSelected()}}</mat-hint>
+        </mat-form-field>
 
-        </div>
 
-        <div class="place-div">
-            <label for="place" placeholder="Introduce la dirección">Ubicación o URL</label>
-            <input type="text" [(ngModel)]="myEvent.place" name="place" #place="ngModel" required minlength="4"
-                maxlength="50" placeholder="Dirección..." />
-            <div *ngIf="place.invalid && place.dirty">
-                <div *ngIf="place.errors?.required">Campo requerido</div>
-                <div *ngIf="place.errors?.minlength">Mínimo 4 caracteres</div>
-            </div>
-        </div>
 
-        <div class="image-div">
-            <label for="image">Imagen (Opcional)</label>
-            <div class="buttons">
-                <div class="image-mini" *ngIf="myEvent.image_id>0">
-                    <app-image-viewer  [imageId]="myEvent.image_id"></app-image-viewer>
+        <mat-form-field appearance="outline" color="custom">
+            <mat-label for="place">Ubicación o URL</mat-label>
+            <input matInput type="text" placeholder="Introduce la dirección" [(ngModel)]="myEvent.place" name="place"
+                #place="ngModel" required minlength="4" maxlength="200" placeholder="Dirección..." autocomplete="off">
+            <mat-icon matSuffix *ngIf="place.valid" class="check">check</mat-icon>
+            <mat-hint>
+                <div *ngIf="place.invalid && place.dirty">
+                    <div *ngIf="place.errors?.required">Campo requerido</div>
+                    <div *ngIf="place.errors?.minlength">Mínimo 4 caracteres</div>
                 </div>
-                <input type="number" required style="display: none;" [(ngModel)]="myEvent.image_id" name=image #image_id="ngModel"
-                    placeholder="Imagen...">
-                <button class="image" (click)="$event.preventDefault()" (click)="showGallery()"   (click)="myEvent.image_id=0"><img src="{{galeryIcon}}" alt=""></button>
-                <button (click)="$event.preventDefault()" (click)="showImageForm()" class="image"><img src="{{fileIcon}}" alt=""></button>
-        </div>
+            </mat-hint>
+        </mat-form-field>
 
-        </div>
-
-        <div class="description-div">
-            <label for="description">Descripción (Opcional)</label>
-            <textarea type="text" [(ngModel)]="myEvent.description" name="description" #description="ngModel"
+        <mat-form-field appearance="outline" color="custom">
+            <mat-label for="description">Descripción (Opcional)</mat-label>
+            <textarea matInput type="text" [(ngModel)]="myEvent.description" name="description" #description="ngModel"
                 maxlength="160" placeholder="Detalles del evento..."></textarea>
-            <div *ngIf="place.invalid && place.dirty">
-                <div *ngIf="place.errors?.maxlength">Máximo 160 caracteres</div>
-            </div>
+            <mat-hint>
+                <div *ngIf="place.invalid && place.dirty">
+                    <div *ngIf="description.errors?.required">Campo requerido</div>
+                    <div *ngIf="description.errors?.minlength">Mínimo 4 caracteres</div>
+                </div>
+            </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="image_id">Imagen</mat-label>
+            <input matInput type="number" required style="display: hidden;" [(ngModel)]="myEvent.image_id"
+                name="image_id" #image_id="ngModel" readonly>
+            <mat-icon matSuffix *ngIf="image_id.valid" class="check">check</mat-icon>
+        </mat-form-field>
+
+        <div class="buttons">
+            <button mat-raised-button class="image-button" (click)="$event.preventDefault()" (click)="showGallery()"
+                (click)="myEvent.image_id=0">
+                <p>
+                    <mat-icon>collections</mat-icon> Galería
+                </p>
+            </button>
+            <button class="image-button" mat-raised-button (click)="$event.preventDefault()" (click)="showImageForm()"
+                class="image">
+                <p>
+                    <mat-icon>backup</mat-icon> Cargar
+                </p>
+            </button>
         </div>
+        <div class="image-mini" *ngIf="myEvent.image_id>0">
+            <app-image-viewer [resetFormSubject]="subjectImage" [imageId]="myEvent.image_id"></app-image-viewer>
+        </div>
+
         <div class="submit-buttons-div">
-            <button class="reset-button" type="reset">Borrar</button>
-            <button class="save-button" type="submit" [disabled]="!eventForm.form.valid">
+            <button class="reset-button" mat-raised-button type="reset">Borrar</button>
+            <button class="save-button" mat-raised-button type="submit" [disabled]="!eventForm.form.valid">
                 Guardar
             </button>
         </div>
@@ -87,30 +116,31 @@
     <input type="file" accept="image/*" style="visibility:hidden;" />
 </div>
 
-<app-back-icon></app-back-icon>
-
-
 
 <div *ngIf="imageFormVisible" class="upload-image__container" #fileForm (submit)="uploadImage()">
-    <form class="upload-image__background"  enctype="multipart/form-data">
+    <form class="upload-image__background" enctype="multipart/form-data">
         <div class="preview-image-div" (click)="photoInput.click()" (click)="file=undefined">
             <img [src]="imageSrc|| '../../../assets/images/no-image.png'" alt="your image" />
             <p *ngIf="!file" (click)="photoInput.click()">Haz click en la imagen</p>
         </div>
-            <input type="file" style="visibility: hidden;" #photoInput (change)="onPhotoSelected($event)"/>
-            
-            <div class="fileForm--buttons">
-                <button class="reset-button" (click)="hideImageForm()">Cancelar</button>
-                <button class="save-button" type="submit">Guardar</button>
-            </div>
+        <input type="file" style="visibility: hidden;" #photoInput (change)="onPhotoSelected($event)" />
+
+        <div class="fileForm--buttons">
+            <button class="reset-button" (click)="hideImageForm()">Cancelar</button>
+            <button class="save-button" type="submit">Guardar</button>
+        </div>
     </form>
 </div>
 
-<div *ngIf="galleryVisible" class="gallery-container">
-    <app-gallery (imageSelected)="getId($event)">
-    </app-gallery>
-    <button (click)="hideGallery()">Cancelar</button>
-</div>
+<!-- <div *ngIf="galleryVisible" class="gallery-container">
+   <app-gallery (imageSelected)="getId($event)">
+   </app-gallery>
+   <button (click)="hideGallery()">Cancelar</button>
+</div> -->
 
 
-<div #modal></div> 
+<mat-toolbar class="back-toolbar">
+    <button mat-icon-button (click)="back()">
+        <mat-icon class="empty-icons">arrow_back</mat-icon>
+    </button>
+</mat-toolbar>

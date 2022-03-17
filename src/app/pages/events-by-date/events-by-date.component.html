@@ -1,8 +1,13 @@
-
-<div class="main">
-<app-slideshow [dateToFilter]="date"></app-slideshow>
+<div class="main-date" [@modalAnimation]>
+    <mat-toolbar class="date-toolbar">
+        {{formatDate(date)}}
+        <button class="back-button" mat-icon-button (click)="back()" align="end">
+            <mat-icon class="empty-icons">arrow_back</mat-icon>
+        </button>
+    </mat-toolbar>
+    <app-slideshow [dateToFilter]="date" class="slideshow"></app-slideshow>
 </div>
 
+<mat-toolbar class="back-toolbar">
 
-<app-back-icon></app-back-icon>
-
+</mat-toolbar>

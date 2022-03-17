@@ -1,0 +1,36 @@
+table {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+  
+  th{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 50%;
+    padding: 0 !important;
+  }
+
+  ::ng-deep th p{
+    display: flex;
+    justify-content: center;
+    min-width: 50vw;
+    margin:0;
+    height: 100%;
+  }
+
+  td span{
+    display: flex;
+    justify-content: center;
+  }
+  td {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 50%;
+  }
+ 
+
+  ::ng-deep mat-paginator{
+    width: 100%;
+    background-color: transparent  !important;
+    color: white !important;
+  }

@@ -1,16 +1,25 @@
-
-    <p mat-dialog-title>Selecciona...</p>
-    <mat-dialog-content>
-        <div class="slider">
-            <div class="images-div" *ngFor="let image of images">
-                <app-image-viewer [imageId]="image.id"></app-image-viewer>
-                <div class="select-div" (click)="selectImage(image.id)" [@filter]="filterState">
-                    <p class="select-text">Seleccionar</p>
-                </div>
-            </div>
-        </div>
-    </mat-dialog-content>
 <app-loading-logo></app-loading-logo>
 
 
+<div class="modal-title-container">
+    <p mat-dialog-title>Selecciona...</p>
+    <button mat-icon-button mat-dialog-close cdkFocusInitial>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
 
+
+<mat-dialog-content>
+    <span *ngFor="let image of images">
+        <div class="images-div">
+            <app-image-viewer class="image-viewer" [resetFormSubject]="subjectImage" [imageId]="image.id">
+            </app-image-viewer>
+
+            <mat-dialog-actions align="end">
+                <button class="select-button" mat-raised-button [mat-dialog-close]="image.id"
+                    cdkFocusInitial>Seleccionar</button>
+            </mat-dialog-actions>
+        </div>
+
+    </span>
+</mat-dialog-content>

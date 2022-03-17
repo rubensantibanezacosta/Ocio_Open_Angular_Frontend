@@ -56,6 +56,6 @@ export class ImagesService {
   createImage(image: File) {
     const fd = new FormData();
     fd.append('uploadedImage', image);
-    return this.httpClient.post(this.endpoint, fd, this.httpOptionsPostImage);
+    return this.httpClient.post<any>(this.endpoint, fd, this.httpOptionsPostImage);
   }
 }

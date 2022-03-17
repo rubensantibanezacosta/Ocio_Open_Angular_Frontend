@@ -1,4 +1,4 @@
-<main class="main-container">
+<main class="main-container" >
     <app-profile></app-profile>
 
 
@@ -18,12 +18,55 @@
             </mat-list-item>
         </mat-list>
     </span>
-    <span *ngIf="futureEvents && futureEvents.length>0">
+
+
+
+    <!--    <span *ngIf="futureEvents && futureEvents.length>0">
         <mat-list *ngFor="let futureEvent of futureEvents">
             <mat-list-item>
                 <p>{{futureEvent.tittle}} <i>{{formatDate(futureEvent.date)}}</i></p>
             </mat-list-item>
         </mat-list>
+    </span>
+ -->
+    <span *ngIf="futureEvents && futureEvents.length>0">
+        <span *ngFor="let futureEvent of futureEvents">
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{futureEvent.tittle}}</mat-card-title>
+                    <mat-card-subtitle>{{formatDate(futureEvent.date)}}</mat-card-subtitle>
+
+                    <mat-card-subtitle>
+                        <mat-icon class="star-icon" *ngIf="futureEvent.punctuationAvg>=1">star</mat-icon>
+                        <mat-icon class="star-icon" *ngIf="futureEvent.punctuationAvg>=2">star</mat-icon>
+                        <mat-icon class="star-icon" *ngIf="futureEvent.punctuationAvg>=3">star</mat-icon>
+                        <mat-icon class="star-icon" *ngIf="futureEvent.punctuationAvg>=4">star</mat-icon>
+                        <mat-icon class="star-icon" *ngIf="futureEvent.punctuationAvg>=5">star</mat-icon>
+                        <span>{{futureEvent.punctuationAvg *2}} / 10</span>
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        <mat-icon>people_outline</mat-icon> {{futureEvent.assistants.length}}
+                    </mat-card-subtitle>
+                    
+                    <mat-card-actions class="actions" align="end">
+                        <button mat-button class="card-delete">
+                            <mat-icon (click)="deleteEventById(futureEvent.event_id, futureEvent.tittle)">delete</mat-icon>
+                        </button>
+                        <button mat-button class="card-edit" routerLink="eventform/{{futureEvent.event_id}}/edit">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </mat-card-actions>
+                </mat-card-header>
+
+                <span class="background-image-div">
+                    <app-image-viewer [imageId]="futureEvent.image_id"></app-image-viewer>
+                </span>
+
+
+            </mat-card>
+
+        </span>
     </span>
 
 
@@ -40,6 +83,7 @@
             </mat-list-item>
         </mat-list>
     </span>
+
     <span *ngIf="pastEvents && pastEvents.length>0">
         <span *ngFor="let pastEvent of pastEvents">
 
@@ -47,7 +91,7 @@
                 <mat-card-header>
                     <mat-card-title>{{pastEvent.tittle}}</mat-card-title>
                     <mat-card-subtitle>{{formatDate(pastEvent.date)}}</mat-card-subtitle>
-                
+
                     <mat-card-subtitle>
                         <mat-icon class="star-icon" *ngIf="pastEvent.punctuationAvg>=1">star</mat-icon>
                         <mat-icon class="star-icon" *ngIf="pastEvent.punctuationAvg>=2">star</mat-icon>
@@ -57,20 +101,13 @@
                         <span>{{pastEvent.punctuationAvg *2}} / 10</span>
                     </mat-card-subtitle>
                     <mat-card-subtitle>
-                        <mat-icon>people_outline</mat-icon> {{pastEvent.assistants.length}}</mat-card-subtitle>
+                        <mat-icon>people_outline</mat-icon> {{pastEvent.assistants.length}}
+                    </mat-card-subtitle>
                 </mat-card-header>
-                 <span class="background-image-div">
+                <span class="background-image-div">
                     <app-image-viewer [imageId]="pastEvent.image_id"></app-image-viewer>
-                </span> 
-                
-
-               <!--  <mat-card-actions>
-                    <button mat-button>LIKE</button>
-                    <button mat-button>SHARE</button>
-                </mat-card-actions> -->
-
+                </span>
             </mat-card>
-
         </span>
     </span>
 

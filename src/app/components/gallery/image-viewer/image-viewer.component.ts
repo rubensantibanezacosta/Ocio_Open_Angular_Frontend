@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, ViewChild, ViewContainerRef, EventEmitter } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
 import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
@@ -9,28 +8,29 @@ import { ImagesService } from 'src/app/services/images.service';
   styleUrls: ['./image-viewer.component.scss']
 })
 export class ImageViewerComponent implements OnInit {
+  @Input() resetFormSubject: Subject<number> = new Subject<number>();
   @Input() imageId:number;
   downloaded: File;
   src: string | ArrayBuffer = "";
   bearerToken = localStorage.getItem("ocioToken");
 
-  ErrorMessage:string;
-  constructor(private imagesService: ImagesService,  private errorHandlerService:ErrorHandlerService) { }
+
+  constructor(private imagesService: ImagesService) { }
 
   ngOnInit(): void {
     this.getImage();
+    this.resetFormSubject.subscribe((id)=>{
+      this.imageId=id;
+      this.getImage();
+    })
   }
-
 
   getImage() {
     return this.imagesService.getImageById(this.imageId).subscribe((data) => {
       this.downloaded = new File([data], "filename", { type: "image/jpg" });
       return this.createImageFromBlob(this.downloaded);
-    },
-    (error) => {
     })
   }
-
 
   createImageFromBlob(image: any) {
     let reader = new FileReader();
@@ -42,18 +42,4 @@ export class ImageViewerComponent implements OnInit {
     }
   }
 
-
-    //Error handler modals
-    @ViewChild('modal', { read: ViewContainerRef })
-    entry!: ViewContainerRef;
-    sub!: Subscription;
-  
-  
-    createModal(){
-        this.sub = this.errorHandlerService
-          .openModal(this.entry, 'ERROR', this.ErrorMessage)
-          .subscribe((v) => {
-            //your logic
-          });
-    }
 }

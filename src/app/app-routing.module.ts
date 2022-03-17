@@ -1,3 +1,4 @@
+import { PermissionsComponent } from './pages/profile-administration/permissions/permissions.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,9 +11,7 @@ import { EventFormComponent } from './pages/event-form/event-form.component';
 import { EventsAdministrationComponent } from './pages/events-administration/events-administration.component';
 import { EventsByDateComponent } from './pages/events-by-date/events-by-date.component';
 import { FinalizedeventsComponent } from './pages/finalizedevents/finalizedevents.component';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-import { MyeventsComponent } from './pages/myevents/myevents.component';
 import { NofoundComponent } from './pages/nofound/nofound.component';
 import { ProfileAdministrationComponent } from './pages/profile-administration/profile-administration.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
@@ -40,40 +39,56 @@ import { RankingComponent } from './pages/ranking/ranking.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "menu",
+    redirectTo: "menu/home",
     pathMatch: 'full'
   },
   {
     path: 'login',
-    component: LoginComponent,data: {animation: 'HomePage'}
+    component: LoginComponent, data: { animation: 'loginPage' }
   },
 
   {
     path: 'menu',
-    component: MenuComponent,data: [{animation: 'AboutPage'},],
+    component: MenuComponent, data: [{ animation: 'menuPage' },],
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: FinalizedeventsComponent ,
-      
-      children: [
-        { path: 'eventform/:event_id/:type', component: EventFormComponent},
-        { path: 'comments/:event_id', component: CommentsComponent },
-        { path: 'assistants/:event_id', component: AssistantsComponent },
-      ]},
       {
-        path: 'administration', component: AdministrationComponent, 
+        path: 'home', component: FinalizedeventsComponent, data: { animation: 'homePage'},
+
         children: [
-          { path: 'profileAdministration/:email', component: ProfileAdministrationComponent },
-          { path: 'eventsAdministration/:event_id', component: EventsAdministrationComponent },
+          { path: 'eventform/:event_id/:type', component: EventFormComponent, data: { animation: 'eventFormPage'} },
+          { path: 'comments/:event_id', component: CommentsComponent, data: { animation: 'CommentsPage'} },
+          { path: 'assistants/:event_id', component: AssistantsComponent, data: { animation: 'assistantsPage'} },
         ]
       },
-      { path: 'ranking', component: RankingComponent},
-      { path: 'calendar', 
-      component: CalendarComponent,
-      children:[
-        { path: 'eventsbydate/:date', component: EventsByDateComponent },
-      ] 
-    },
+      {
+        path: 'administration', component: AdministrationComponent,
+        data: { animation: 'administrationPage'},
+        children: [
+          {
+            path: 'profileAdministration/:email', component: ProfileAdministrationComponent,
+            data: { animation: 'profileAdministrationPage'},
+            children: [
+              { path: 'eventsAdministration/:event_id', component: EventsAdministrationComponent, data: { animation: 'eventAdministrationPage'} },
+              {
+                path: 'permissions/:email', component: PermissionsComponent,
+                data: { animation: 'permissionsPage'}
+              },
+            ]
+          },
+          {
+            path: 'eventsAdministration/:event_id', component: EventsAdministrationComponent, data: { animation: 'eventAdministrationPage'}
+          },
+        ]
+      },
+      { path: 'ranking', component: RankingComponent },
+      {
+        path: 'calendar',
+        component: CalendarComponent,
+        data: { animation: 'calendarPage'},
+        children: [
+          { path: 'eventsbydate/:date', component: EventsByDateComponent, data: { animation: 'eventsByDatePage'} },
+        ]
+      },
       { path: '**', component: NofoundComponent }
     ]
 

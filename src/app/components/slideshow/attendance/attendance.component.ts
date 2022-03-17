@@ -3,7 +3,6 @@ import { Asisstant } from 'src/app/models/assistant';
 import { AssistantsService } from 'src/app/services/assistants.service';
 import { getDataFromToken } from 'src/app/utils/jwtparser';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,7 +13,7 @@ import { Subscription } from 'rxjs';
     trigger('yesButton', [
       state('inactive', style({})),
       state('active', style({
-        background:  "linear-gradient(180deg, #52FF00, #1C5600)",
+        background: "linear-gradient(180deg, #52FF00, #1C5600)",
         border: "solid 2px green"
       })),
       transition("inactive <=> active", animate('0.3s')),
@@ -22,7 +21,7 @@ import { Subscription } from 'rxjs';
     trigger('noButton', [
       state('inactive', style({})),
       state('active', style({
-        background:  "linear-gradient(180deg, #FF0000, #450000)",
+        background: "linear-gradient(180deg, #FF0000, #450000)",
         border: "solid 2px red"
       })),
       transition("inactive <=> active", animate('0.3s')),
@@ -30,93 +29,60 @@ import { Subscription } from 'rxjs';
   ]
 })
 export class AttendanceComponent implements OnInit {
-  userEmail:string=getDataFromToken().username;
-  @Input() event_id:number;
-  assistantState:boolean=undefined;
+  userEmail: string = getDataFromToken().username;
+  @Input() event_id: number;
+  assistantState: boolean = undefined;
 
+  yesButtonState: string = "inactive";
+  noButtonState: string = "inactive";
 
-  yesButtonState:string="inactive";
-  noButtonState:string="inactive";
+  ErrorMessage: string;
 
-  ErrorMessage:string;
-
-  constructor(private assistantsService:AssistantsService,  private errorHandlerService:ErrorHandlerService) { }
+  constructor(private assistantsService: AssistantsService) { }
 
   ngOnInit(): void {
     this.refreshAssistantState();
-    
-    
   }
 
-  refreshAssistantState(){
+  refreshAssistantState() {
     this.assistantsService.getAssistantByPk(this.event_id, this.userEmail)
-    .subscribe((assistant)=>{
-      if(assistant[0]){
-        if(assistant[0].attendance==true){
-          this.yesButtonState="active";
-          this.noButtonState="inactive";
-          this.assistantState=true;
+      .subscribe((assistant) => {
+        if (assistant[0]) {
+          if (assistant[0].attendance == true) {
+            this.yesButtonState = "active";
+            this.noButtonState = "inactive";
+            this.assistantState = true;
+          }
+          if (assistant[0].attendance == false) {
+            this.yesButtonState = "inactive";
+            this.noButtonState = "active";
+            this.assistantState = false;
+          }
         }
-        if(assistant[0].attendance==false){
-          this.yesButtonState="inactive";
-          this.noButtonState="active";
-          this.assistantState=false;
-        }
-      }
-    },
-    (error) => {
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
-    })
+      })
   }
 
-  suscribeToEvent(){
-    const assistant=new Asisstant();
-    assistant.assistant=this.userEmail;
-    assistant.event_id=this.event_id;
-    assistant.attendance=true;
+  suscribeToEvent() {
+    const assistant = new Asisstant();
+    assistant.assistant = this.userEmail;
+    assistant.event_id = this.event_id;
+    assistant.attendance = true;
     this.assistantsService.createOrUpdateAssistant(assistant).subscribe(
-      (response)=>{
+      (response) => {
         this.refreshAssistantState();
-      },
-      (error) => {
-        this.ErrorMessage=error.error.message;
-        this.createModal();
-  
       });
   }
 
-  unSuscribeToEvent(){
-    const assistant=new Asisstant();
-    assistant.assistant=this.userEmail;
-    assistant.event_id=this.event_id;
-    assistant.attendance=false;
+  unSuscribeToEvent() {
+    const assistant = new Asisstant();
+    assistant.assistant = this.userEmail;
+    assistant.event_id = this.event_id;
+    assistant.attendance = false;
     this.assistantsService.createOrUpdateAssistant(assistant)
-    .subscribe(
-      (response)=>{
-        this.refreshAssistantState();
-      },
-      (error) => {
-        this.ErrorMessage=error.error.message;
-        this.createModal();
-  
-      });
+      .subscribe(
+        (response) => {
+          this.refreshAssistantState();
+        });
   }
 
-
-
-    //Error handler modals
-    @ViewChild('modal', { read: ViewContainerRef })
-    entry!: ViewContainerRef;
-    sub!: Subscription;
-  
-  
-    createModal(){
-        this.sub = this.errorHandlerService
-          .openModal(this.entry, 'ERROR', this.ErrorMessage)
-          .subscribe((v) => {
-            //your logic
-          });
-    }
 }

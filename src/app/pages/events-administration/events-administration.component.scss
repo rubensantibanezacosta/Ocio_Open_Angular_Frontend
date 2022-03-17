@@ -1,20 +1,318 @@
 @import "./../../../assets/variablesSass/variables.scss";
 
 
-.main{
-    font-family: 'Ubuntu', sans-serif;
-    color: $color-text-darkmode;
-    padding-top: 70px;
-    max-height: calc(100vh - 110px);
-    overflow-y: scroll;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 100px;
-    
+mat-form-field {
+  color: white;
+  width: 80%;
+}
+
+::ng-deep .mat-form-field-outline-start {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+::ng-deep .mat-form-field-outline-gap {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+::ng-deep .mat-form-field-outline-end {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+mat-form-field input {
+  color: white !important;
+}
+mat-form-field input::placeholder {
+  color: rgba($color: white, $alpha: 0.7) !important;
+  font-weight: bolder;
+}
+
+mat-label {
+  color: white;
+}
+
+mat-hint {
+  color: red;
+}
+
+::ng-deep .mat-form-field-label {
+  color: white;
+}
+::ng-deep input::placeholder {
+  color: white;
+}
+::ng-deep .mat-select-min-line {
+  color: white !important;
+}
+.back-toolbar {
+  position: absolute;
+  width: 10%;
+  height: 60px;
+  box-sizing: border-box;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  bottom: 60px;
+  right: 0;
+  z-index: 3;
+  color: white;
+}
+.empty-icons {
+  color: white;
+  text-shadow: 3px 3px 10px black;
+}
+
+::ng-deep.mat-dialog-container {
+  z-index: 10 !important;
+  background-image: $image-background;
+  border-radius: 10px;
+  border: solid $color-text-menu 2px;
+  color: white;
+}
+
+.check{
+  color: green;
+}
+
+.main {
+  background-image: $image-background;
+  min-height: 100%;
+  min-width: 100vw;
+  box-sizing: border-box;
+  padding: 10px 20px 150px 20px;
+  box-sizing: border-box;
+  color: $color-text-darkmode;
+  max-height: 100vh;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  justify-content: center;
+}
+
+form {
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.datetime-div {
+  flex-direction: column;
+  width: 80%;
+  margin-bottom: 40px;
+  transform: translateY(-10px);
+}
+.datetime-div label {
+  transform: translateY(9px) translateX(8px);
+  font-size: 0.6rem;
+}
+.datetime-div input {
+  color: white;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 52px;
+  border-radius: 4px;
+  border: 0;
+  font-size: 0.9rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.image-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+::ng-deep.image-mini img {
+  max-width: 20%;
+  object-fit: contain;
+  margin-right: 20px;
+  border-radius: 10px;
+  border: solid white 1px;
+}
+
+.buttons {
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.tittle-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid;
+  margin-bottom: 10px;
+}
+
+.mat-form-field {
+  margin-bottom: 20px;
+}
+
+.buttons button {
+  background-color: transparent;
+  border: 2px solid white;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+::ng-deep.buttons button p {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.submit-buttons-div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  padding-bottom: 40px;
+  padding-top: 15px;
+}
+
+.save-button {
+  width: 111.8px;
+  height: 46.43px;
+  background-color: transparent;
+  border: 3px rgb(0, 255, 0) solid;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  margin-right: 5px;
+  color: $color-text-darkmode;
+  font-size: 1rem;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  margin: 0 10px;
+  cursor: pointer;
+}
+.reset-button {
+  width: 111.8px;
+  height: 46.43px;
+  background-color: transparent;
+  border: 3px red solid;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  margin-left: 5px;
+  color: $color-text-darkmode;
+  font-size: 1rem;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.upload-image__container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
+}
+
+.upload-image__background {
+  min-width: 100%;
+  min-height: 100%;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+.preview-image-div {
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 60vh;
+  position: relative;
+  background-color: transparent;
+  box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.7);
+  border: 2px white solid;
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+.preview-image-div img {
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+}
+.preview-image-div p {
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  width: 100%;
+  bottom: 0;
+  justify-content: center;
+  text-align: center;
+  color: grey;
+}
+.gallery-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  backdrop-filter: blur(5px);
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+.gallery-container button {
+  width: 111.8px;
+  height: 46.43px;
+  background-color: transparent;
+  border: 3px red solid;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  margin-left: 5px;
+  color: $color-text-darkmode;
+  font-size: 1rem;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  margin: 0 10px;
+  cursor: pointer;
 }
 
 
-form{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* form{
     width: 100%;
     padding: 0 20px;
     box-sizing: border-box;
@@ -291,3 +589,4 @@ form{
     margin: 0 10px;
     cursor: pointer;
 }
+ */

@@ -1,20 +1,20 @@
-<main class="main-container">
+<main class="main-container" [@modalAnimation]>
     <div class="main">
         <mat-tab-group mat-stretch-tabs>
             <span class="tabs">
                 <mat-tab>
                     <ng-template mat-tab-label class="mat-tab-label">Disponibles</ng-template>
-                        <div class="tab-content">
-                            <app-slideshow [future]=true></app-slideshow>
-                        </div>
+                    <div class="tab-content">
+                        <app-slideshow [future]=true></app-slideshow>
+                    </div>
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label class="mat-tab-label">Terminados</ng-template>
-                    
+
                     <div class="tab-content">
                         <app-slideshow [future]=false></app-slideshow>
                     </div>
-                    
+
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label class="mat-tab-label">Mis Eventos</ng-template>
@@ -24,8 +24,7 @@
                 </mat-tab>
             </span>
         </mat-tab-group>
-        <!-- <app-slideshow [future]=false></app-slideshow> -->
     </div>
 </main>
 
-<router-outlet *ngIf="modalShown" ></router-outlet>
+<router-outlet></router-outlet>

@@ -1,0 +1,36 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- tittle Column -->
+        <ng-container matColumnDef="tittle">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td matRipple mat-cell *matCellDef="let row"> {{row.tittle}} </td>
+        </ng-container>
+
+        <!-- date Column -->
+        <ng-container matColumnDef="date">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+            <td matRipple mat-cell *matCellDef="let row"> {{formatDate(row.date)}} </td>
+        </ng-container>
+
+        <!-- zone Column -->
+        <ng-container matColumnDef="zone">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Zona </th>
+            <td matRipple mat-cell *matCellDef="let row"> {{row.zone}} </td>
+        </ng-container>
+
+        <!-- organizer column -->
+        <ng-container matColumnDef="surname">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Organizador </th>
+            <td matRipple mat-cell *matCellDef="let row"> {{row.organizerdata.surname}} </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10]" aria-label="Select page of events"></mat-paginator>
+</div>

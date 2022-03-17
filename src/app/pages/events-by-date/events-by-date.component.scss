@@ -1,0 +1,31 @@
+@import "./../../../assets/variablesSass/variables.scss";
+
+
+.main-date{
+    position: absolute;
+    min-width: 100vw;
+    min-height: 100%;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    margin: 0;
+    background-color: black;
+}
+.slideshow{
+    position:relative;
+}
+
+.date-toolbar{
+    background-color: $header-footer;
+    color: $color-text-darkmode;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.back-button{
+    position: absolute;
+    right: 10px;
+}
+

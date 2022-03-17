@@ -1,0 +1,36 @@
+
+
+<div class="mat-elevation-z8">
+    <table  mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Name column -->
+        <ng-container matColumnDef="name">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td routerLink="profileAdministration/{{row.email}}" matRipple mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+
+        <!-- surname Column -->
+        <ng-container matColumnDef="surname">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </th>
+            <td routerLink="profileAdministration/{{row.email}}" matRipple mat-cell *matCellDef="let row"> {{row.surname}} </td>
+        </ng-container>
+
+        <!-- last connection Column -->
+        <ng-container matColumnDef="lastconnection">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Conexión </th>
+            <td routerLink="profileAdministration/{{row.email}}" matRipple mat-cell *matCellDef="let row"> {{formatDateTime(row.lastconnection)}} </td>
+        </ng-container>
+
+        <!-- created At Column -->
+        <ng-container matColumnDef="createdAt">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Alta </th>
+            <td routerLink="profileAdministration/{{row.email}}" matRipple mat-cell *matCellDef="let row"> {{formatDate(row.createdAt)}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10]" aria-label="Select page of users"></mat-paginator>
+</div>

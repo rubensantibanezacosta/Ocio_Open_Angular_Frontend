@@ -1,34 +1,35 @@
+import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { PermissionsService } from './../../../services/permissions.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/models/user';
 import * as moment from 'moment';
+import { Subject } from 'rxjs';
+import { slideInAnimationModals } from 'src/app/animations/animations';
 
 @Component({
   selector: 'app-permissions',
   templateUrl: './permissions.component.html',
-  styleUrls: ['./permissions.component.scss']
+  styleUrls: ['./permissions.component.scss'],
+  animations:[
+    slideInAnimationModals,
+  ]
 })
 export class PermissionsComponent implements OnInit {
-checkPermission= (permissionName)=> {
-  let checkbox:HTMLInputElement=<HTMLInputElement>document.getElementById(permissionName);
-  checkbox.checked=this.user.permissions.split(",").includes(permissionName);
-}
-  tittle = "Permisos";
-  image = "../../../assets/icons/data-icon.png";
-  star = "../../../assets/icons/big-star.png";
-  profileAvatar = "../../../assets/images/avatar.jpg";
-  collapseIcon = "../../../assets/icons/collapse-icon.png";
   permissions: string[];
-  @Input() userPosition: number = 0;
-  @Input() user: User = new User();
-  @Input() attendanceCounter: number = 0;
-  @Output() closePermissions = new EventEmitter<boolean>();
+  userEmail: string = this.activatedRoute.snapshot.params.email;
+  user: User;
+  permissionsSubject: Subject<string> = new Subject<string>();
+  userPermissionsSubject: Subject<string> = new Subject<string>();
   ErrorMessage: string;
-  constructor(private permissionsService: PermissionsService, private usersService:UsersService) { }
+
+  constructor(private permissionsService: PermissionsService, private usersService: UsersService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getListPermissions();
+    if (!this.user) {
+      this.getUser();
+      this.getListPermissions();
+    }
   }
 
   formatDateString(date: string) {
@@ -43,36 +44,25 @@ checkPermission= (permissionName)=> {
     return moment(dateTime).format("DD-MM-YY HH:mm");
   }
 
-  closeModal() {
-    this.usersService.updateUsersPermissions(this.user.permissions, this.user.email).subscribe(
-      res=>this.closePermissions.emit(false),
-      error=>this.closePermissions.emit(false));
+  getUser() {
+    this.usersService.getUserByEmail(this.userEmail).subscribe((user) => {
+      this.user = user;
+      this.userPermissionsSubject.next(user.permissions);
+    })
+  }
+
+  updateUser(event) {
+    this.usersService.updateUsersPermissions(event, this.userEmail);
   }
 
   getListPermissions() {
     this.permissionsService.getAllPermissions().subscribe((res) => {
-      this.permissions = res.permissions.split(",");
-
-    }),
-      error => console.error(error);
+      this.permissionsSubject.next(res.permissions);
+    })
   }
 
-
-
-  tooglePermission(name, target) {
-    console.log(this.user.permissions)
-    if (target.checked == true) {
-      this.user.permissions += "," + name;
-      if (this.user.permissions[0] == ",") {
-        this.user.permissions = this.user.permissions.substring(1);
-      }
-    } else {
-      this.user.permissions =
-        this.user.permissions.split(",").filter((line) => {
-          return line != name
-        })
-          .toString()
-          .replace("{", "").replace("}", "")
-    }
+  back() {
+    window.history.back();
   }
+
 }

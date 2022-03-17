@@ -1,0 +1,35 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- permission Column -->
+        <ng-container matColumnDef="name">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header><p>Permiso</p></th>
+            <td matRipple mat-cell *matCellDef="let row"> {{row}} </td>
+        </ng-container>
+
+        <!-- checkbox Column -->
+        <ng-container matColumnDef="exist">
+            <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header><p>Si / No </p></th>
+            <td matRipple mat-cell *matCellDef="let row">
+                <!--  <mat-checkbox (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+    </mat-checkbox> -->
+                <span>
+                    <mat-checkbox [checked]="checkPermission(row)" (change)="permissionToggle(row)">
+                    </mat-checkbox>
+                </span>
+            </td>
+        </ng-container>
+
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10]" aria-label="Select page of events"></mat-paginator>
+</div>

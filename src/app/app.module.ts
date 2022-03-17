@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {
@@ -12,6 +11,14 @@ import {
   FacebookLoginProvider
 } from 'angularx-social-login';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FileSaverModule } from 'ngx-filesaver';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { MaterialUIModule } from './materialUI.module';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { CommonModule } from '@angular/common';
 import { MyeventsComponent } from './pages/myevents/myevents.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -37,22 +44,21 @@ import { ErrorHandlerComponent } from './components/error-handler/error-handler.
 import { DayEventsComponent } from './pages/calendar/day-events/day-events.component';
 import { EventsByDateComponent } from './pages/events-by-date/events-by-date.component';
 import { DayEventComponent } from './pages/calendar/day-events/day-event/day-event.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { FileSaverModule } from 'ngx-filesaver';
 import { PermissionsComponent } from './pages/profile-administration/permissions/permissions.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { MaterialUIModule } from './materialUI.module';
 import { LoadingLogoComponent } from './components/loading-logo/loading-logo.component';
-import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { CommentInfoComponent } from './pages/comments/comment-info/comment-info.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ExcuseDialogComponent } from './components/excuse-dialog/excuse-dialog.component';
+import { UsersTableComponent } from './pages/administration/users-table/users-table.component';
+import { EventsTableComponent } from './pages/administration/events-table/events-table.component';
+import { UserEventsTableComponent } from './pages/profile-administration/user-events-table/user-events-table.component';
+import { PermissionsTableComponent } from './pages/profile-administration/permissions/permissions-table/permissions-table.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    AppComponent,
     LoginComponent,
     MyeventsComponent,
     MenuComponent,
@@ -81,15 +87,21 @@ import { CommentInfoComponent } from './pages/comments/comment-info/comment-info
     DayEventComponent,
     PermissionsComponent,
     LoadingLogoComponent,
-    CommentInfoComponent
+    ConfirmDialogComponent,
+    ExcuseDialogComponent,
+    UsersTableComponent,
+    EventsTableComponent,
+    UserEventsTableComponent,
+    PermissionsTableComponent
+    
   ],
 
   imports: [
+    CommonModule,
     BrowserModule,
     MaterialUIModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
@@ -123,6 +135,7 @@ import { CommentInfoComponent } from './pages/comments/comment-info/comment-info
       } as SocialAuthServiceConfig,
     }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

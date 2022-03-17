@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" [@modalAnimation]>
     <mat-list-item class="tittle-container">
         <mat-label> {{assistants.length}} Asistentes </mat-label>
         <mat-icon>back</mat-icon>
@@ -17,7 +17,7 @@
                     <mat-icon class="star-icon" *ngIf="assistant.user.punctuation_avg>=3">star</mat-icon>
                     <mat-icon class="star-icon" *ngIf="assistant.user.punctuation_avg>=4">star</mat-icon>
                     <mat-icon class="star-icon" *ngIf="assistant.user.punctuation_avg>=5">star</mat-icon>
-                    <span>{{assistant.user.punctuation_avg}} / 10</span>
+                    <span>{{assistant.user.punctuation_avg*2}} / 10</span>
                 </mat-card-subtitle>
             </mat-card-header>
         </mat-card>
@@ -26,5 +26,5 @@
         <button mat-icon-button (click)="back()">
             <mat-icon class="empty-icons">arrow_back</mat-icon>
         </button>
-        </mat-toolbar>
+    </mat-toolbar>
 </div>

@@ -5,10 +5,11 @@ import { getDataFromToken } from 'src/app/utils/jwtparser';
 import * as moment from 'moment';
 import { ImagesService } from 'src/app/services/images.service';
 import { EventsService } from 'src/app/services/events.service';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { GalleryComponent } from 'src/app/components/gallery/gallery.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { slideInAnimationModals } from 'src/app/animations/animations';
 
 
 
@@ -16,7 +17,10 @@ import { GalleryComponent } from 'src/app/components/gallery/gallery.component';
 @Component({
   selector: 'app-event-form',
   templateUrl: './event-form.component.html',
-  styleUrls: ['./event-form.component.scss']
+  styleUrls: ['./event-form.component.scss'],
+  animations:[
+    slideInAnimationModals
+  ]
 })
 export class EventFormComponent implements OnInit {
   image = "../../../assets/icons/my-event-icon.png";
@@ -39,16 +43,19 @@ export class EventFormComponent implements OnInit {
   galleryVisible: boolean = false;
   dateinputVisible: boolean = false;
 
-  ErrorMessage:string;
+  subjectImage = new Subject<number>();
+  ErrorMessage: string;
 
 
-  constructor(private activatedRoute: ActivatedRoute, private imagesService: ImagesService, private eventsService: EventsService, private router: Router,  private errorHandlerService:ErrorHandlerService,
-    public dialog: MatDialog) { }
+  constructor(private activatedRoute: ActivatedRoute, private imagesService: ImagesService, private eventsService: EventsService, private router: Router,
+    public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.myEvent.zone = "GC";
+
+    /* this.myEvent.zone = "GC"; */
     this.getEventToEdit();
     this.validateDate();
+
   }
 
   validateDate() {
@@ -56,45 +63,40 @@ export class EventFormComponent implements OnInit {
   }
 
   submit() {
-    
-    if(this.type == "new"){
-    this.eventsService.createEvent(this.myEvent).subscribe(
-      (res) => {window.history.back()},
-    (error) => {
-
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
-    })
-  }else{
+    if (this.type == "new") {
+      this.eventsService.createEvent(this.myEvent).subscribe(
+        (res) => {
+          this._snackBar.open(`Has creado el evento ${this.myEvent.tittle}`, `Cerrar`, {
+            duration: 5000,
+            
+          })
+          window.history.back()
+        },
+      )
+    } else {
       this.eventsService.updateEvent(this.myEvent).subscribe(
         res => {
-        window.history.back()
-      },
-      (error) => {
-       
-        this.ErrorMessage=error.error.message;
-        this.createModal();
-  
-      });
+          this._snackBar.open(`Has modificado el evento ${this.myEvent.tittle}`, `Cerrar`, {
+            duration: 5000,
+            
+          })
+          window.history.back()
+        },
+      );
     }
   }
 
   async getEventToEdit() {
     if (this.type != "new") {
-      this.eventsService.getEventById(this.event_id).subscribe(res => {
-        return this.myEvent = res
-      },
-      (error) => {
-        
-        this.ErrorMessage=error.error.message;
-        this.createModal();
-  
-      })
+      if (this.myEvent.image_id == null) {
+        this.eventsService.getEventById(this.event_id).subscribe(res => {
+          this.myEvent = res;
+          this.subjectImage.next(this.myEvent.event_id);
+        })
+      }
     }
   }
   onPhotoSelected(event: any): void {
-
     if (event.target.files && event.target.files[0]) {
       this.file = <File>event.target.files[0];
       const reader = new FileReader();
@@ -102,17 +104,15 @@ export class EventFormComponent implements OnInit {
       reader.readAsDataURL(this.file);
     }
   }
-  uploadImage(): boolean {
+
+  uploadImage() {
     this.imagesService.createImage(this.file).subscribe((res) => {
       this.hideImageForm();
-      this.myEvent.image_id = res[0].id;
+      this.myEvent.image_id = res.id;
+      this.ngOnInit();
+      this.subjectImage.next(this.myEvent.image_id);
     },
-    (error) => {
-      
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
-    })
+    )
 
     return false;
   }
@@ -127,27 +127,18 @@ export class EventFormComponent implements OnInit {
     this.imageFormVisible = false;
   }
 
- /*  showGallery() {
-    this.galleryVisible = true;
-  }
-
-  hideGallery() {
-    this.myEvent.image_id;
-    this.galleryVisible = false;
-  } */
-
   showGallery() {
-    const dialogRef = this.dialog.open(GalleryComponent);
+    const dialogRef = this.dialog.open(GalleryComponent, {
+      height: '80vh',
+      width: '100vw'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.myEvent.image_id = result;
+      }
     });
   }
-
-/*   getId(e) {
-    this.myEvent.image_id = e;
-    this.hideGallery();
-  } */
 
   zoneSelected() {
     switch (this.myEvent.zone) {
@@ -173,22 +164,9 @@ export class EventFormComponent implements OnInit {
   formatDate(date: Date) {
     return moment(date).format("DD-MM-YYYY hh:mm")
   }
-  
-  back(){
+
+  back() {
     window.history.back();
   }
 
-    //Error handler modals
-    @ViewChild('modal', { read: ViewContainerRef })
-    entry!: ViewContainerRef;
-    sub!: Subscription;
-  
-  
-    createModal(){
-        this.sub = this.errorHandlerService
-          .openModal(this.entry, 'ERROR', this.ErrorMessage)
-          .subscribe((v) => {
-            //your logic
-          });
-    }
 }

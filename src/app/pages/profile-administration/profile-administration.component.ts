@@ -6,81 +6,60 @@ import { UsersService } from 'src/app/services/users.service';
 import { EventsService } from 'src/app/services/events.service';
 import * as moment from 'moment';
 import { AssistantsService } from 'src/app/services/assistants.service';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { slideInAnimationModals } from 'src/app/animations/animations';
 @Component({
   selector: 'app-profile-administration',
   templateUrl: './profile-administration.component.html',
-  styleUrls: ['./profile-administration.component.scss']
+  styleUrls: ['./profile-administration.component.scss'],
+  animations:[
+    slideInAnimationModals,
+  ]
 })
 export class ProfileAdministrationComponent implements OnInit {
-  tittle = "Administración";
-  image = "../../../assets/icons/data-icon.png";
-  star = "../../../assets/icons/big-star.png";
-  profileAvatar="../../../assets/images/avatar.jpg";
   userEmail: string = this.activatedRoute.snapshot.params.email;
   userPosition: number = 0;
   user: User = new User();
   events: Event[] = [];
-  attendanceCounter:number=0;
-  permissionsModal:boolean=false;
-  ErrorMessage:string;
-  constructor(private userService: UsersService, private activatedRoute: ActivatedRoute, private eventsService: EventsService, private assistantsService:AssistantsService,  private errorHandlerService:ErrorHandlerService) { }
+  attendanceCounter: number = 0;
+  eventsSubject: Subject<Event[]> = new Subject<Event[]>();
+
+  constructor(private userService: UsersService, private activatedRoute: ActivatedRoute, private eventsService: EventsService, private assistantsService: AssistantsService) { }
 
   ngOnInit(): void {
     this.getUser();
     this.getUserPosition();
     this.getEventsByUser();
-    this.countAttendance(); 
+    this.countAttendance();
+  }
+
+  back() {
+    window.history.back();
   }
 
   getUser() {
     this.userService.getUserByEmail(this.userEmail).subscribe((res) => {
       this.user = res;
-      console.log(res);
-    },
-    (error) => {
-      
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
     })
   }
 
   getUserPosition() {
     this.userService.getUserPosition(this.userEmail).subscribe((position) => {
       this.userPosition = position;
-    },
-    (error) => {
-      
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
     })
   }
 
   getEventsByUser() {
     this.eventsService.getEventsByOrganizerDESC(this.userEmail).subscribe((events) => {
       this.events = events;
-    },
-    (error) => {
-      
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
+      this.eventsSubject.next(this.events)
     })
   }
 
-  countAttendance(){
-    this.assistantsService.countAttendance(this.userEmail).subscribe((res)=>{
-      
-      this.attendanceCounter = res;
-    },
-    (error) => {
-      
-      this.ErrorMessage=error.error.message;
-      this.createModal();
+  countAttendance() {
+    this.assistantsService.countAttendance(this.userEmail).subscribe((res) => {
 
+      this.attendanceCounter = res;
     })
   }
 
@@ -96,20 +75,4 @@ export class ProfileAdministrationComponent implements OnInit {
     return moment(dateTime).format("DD-MM-YY HH:mm");
   }
 
-  closePermissionsModal(event){
-    this.permissionsModal=event;
-  }
-    //Error handler modals
-    @ViewChild('modal', { read: ViewContainerRef })
-    entry!: ViewContainerRef;
-    sub!: Subscription;
-  
-  
-    createModal(){
-        this.sub = this.errorHandlerService
-          .openModal(this.entry, 'ERROR', this.ErrorMessage)
-          .subscribe((v) => {
-            //your logic
-          });
-    }
 }

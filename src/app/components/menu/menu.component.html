@@ -1,122 +1,5 @@
-<!-- 
 
-<div id="menuIcon" class="icon" tabindex="0" (click)="showMenu()">
-    <img src="{{ menuIcon }}" alt="{{ menuIcon }}" />
-</div>
-<div id="slider" class="slider">
-    <div id="menu" class="hideMenu">
-        <div class="menuContainer__items__borderless" routerLink="/home" *ngIf="url!='/home'">
-            <div class="item-to-animate" tabindex="0">
-                <div class="item__p item-to-animate__sub">
-                    <p>Eventos disponibles</p>
-                </div>
-                <div class="nav-icon item-to-animate__sub">
-                    <div class="icon-container">
-                        <img src="{{ eventsIcon }}" alt="{{ eventsIcon }}" />
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="menuContainer__items__borderless" routerLink="/calendar" *ngIf="url!='/calendar'">
-            <div class="item-to-animate " tabindex="0">
-                <div class="item__p item-to-animate__sub">
-                    <p>Calendario</p>
-                </div>
-                <div class="nav-icon item-to-animate__sub">
-                    <div class="icon-container">
-                        <img src="{{ calendarIconMenu }}" alt="{{ calendarIconMenu }}" />
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="menuContainer__items__borderless" routerLink="/ranking" *ngIf="url!='/ranking'">
-            <div class="item-to-animate " tabindex="0">
-                <div class="item__p item-to-animate__sub">
-                    <p>Ranking</p>
-                </div>
-                <div class="nav-icon item-to-animate__sub">
-                    <div class="icon-container">
-                        <img src="{{ rankingIconMenu }}" alt="{{ rankingIconMenu }}" />
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="menuContainer__items__borderless" routerLink="/myevents" *ngIf="url!='/myevents'">
-            <div class="item-to-animate" tabindex="0">
-                <div class="item__p item-to-animate__sub">
-                    <p>Mis eventos</p>
-                </div>
-                <div class="nav-icon item-to-animate__sub ">
-                    <div class="icon-container">
-                        <img src="{{ myEventIcon }}" alt="{{ myEventIcon }}" />
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="menuContainer__items" routerLink="/finalizedevents" *ngIf="url!='/finalizedevents'">
-            <div class="item-to-animate" tabindex="0">
-                <div class="item__p item-to-animate__sub">
-                    <p>Eventos terminados</p>
-                </div>
-                <div class="nav-icon item-to-animate__sub ">
-                    <div class="icon-container">
-                        <img src="{{ calendarIconMenuOk }}" alt="{{ calendarIconMenuOk }}" />
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="menuContainer__items" (click)="signOut()">
-            <div class="item-to-animate" tabindex="0">
-                <div class="item__p item-to-animate__sub">
-                    <p>Cerrar sesión</p>
-                </div>
-                <div class="nav-icon item-to-animate__sub logout-nav-icon">
-                    <div class="icon-container">
-                        <img src="{{ logoutIcon }}" alt="{{ logoutIcon }}" />
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="menuContainer__items" routerLink="/administration" *ngIf="adminSectionAllowed &&url!='/administration'">
-            <div class="item-to-animate" tabindex="0">
-                <div class="item__p item-to-animate__sub">
-                    <p>Administración</p>
-                </div>
-                <div class="nav-icon item-to-animate__sub ">
-                    <div class="icon-container">
-                        <img src="{{ dataBaseIcon }}" alt="{{ dataBaseIcon }}" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="menuContainer__items__borderless">
-            <div class="item-to-animate" tabindex="0">
-                <div class="dark-switch-container"  (click)="darkmodeToogleButton()"  >
-                    <div class="dark-switch" [@darkActivateButtonContainer]="darkActivateButtonContainerState" >
-                        <div class="dark-switch-button" [@darkActivateSlider]="darkActivateSliderState" ></div>
-                        <p>Dark</p>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    
-        
-    </div>
-</div>
-
-
-<div id="collapse-icon" class="collapse-icon" (click)=showMenu()>
-    <img src="{{collapseIcon}}" alt="{{collapseIcon}}" />
-</div> -->
-
-<div class="container">
+<div class="container" [@modalAnimation]>
     <mat-toolbar class="toolbar">
         <button mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
@@ -158,9 +41,9 @@
           </mat-action-list>
         </mat-drawer>
       
-        <div class="sidenav-content" (click)="drawer.close()" [@routeAnimations]="prepareRoute(outletMenu)">
+        <div class="sidenav-content" (click)="drawer.close()">
              
-            <router-outlet #outletMenu="outlet"></router-outlet>
+            <router-outlet ></router-outlet>
         </div>
       
       </mat-drawer-container>

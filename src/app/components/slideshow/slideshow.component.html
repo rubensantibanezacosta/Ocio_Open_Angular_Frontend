@@ -1,13 +1,14 @@
-
 <h3 class="notevents" *ngIf="events!==undefined && events.length==0">
     <mat-icon>info</mat-icon>
-    Aun no hay eventos</h3>
+    Aun no hay eventos
+</h3>
 <span *ngIf="events!==undefined">
 
 
     <!-- IF EVENTS BY DATE -->
 
-    <main appendOnly itemSize="30" class="main-container" *ngIf="dateToFilter" (scroll)="scrollPositionlistener($event.target)">
+    <main appendOnly itemSize="30" class="main-container" *ngIf="dateToFilter"
+        (scroll)="scrollPositionlistener($event.target)">
         <span *ngFor="let event of lazyEvents">
 
             <div class="card-container">
@@ -17,22 +18,29 @@
                 <mat-card class="card">
                     <mat-card-header>
                         <div mat-card-avatar class="header-image">
-                            <img src="{{event.organizerdata.image_url}}">
+                            <img src="{{event.organizerdata.image_url}}" alt="profile">
                         </div>
                         <mat-card-title>{{event.organizerdata.name}} {{event.organizerdata.surname}}
                         </mat-card-title>
-                        <mat-card-subtitle>{{event.organizer}}</mat-card-subtitle>
+                        <mat-card-subtitle>
+                            <div class="item__ministar--container">
+
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=1">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=2">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=3">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=4">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=5">star</mat-icon>
+                            </div>
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title>{{event.tittle}}</mat-card-title>
-                        <mat-card-subtitle>{{event.punctuationAvg}}</mat-card-subtitle>
                     </mat-card-title-group>
 
                     <mat-card-content>
                         <p>
                             <mat-icon class="content-icons">public</mat-icon>{{event.zone}}
                         </p>
-                        <p *ngIf="event.zone!='VIRTUAL'">
                         <p *ngIf="event.zone!='VIRTUAL'">
                             <mat-icon class="content-icons">explore</mat-icon>{{event.place}}
                         </p>
@@ -48,7 +56,7 @@
                             {{filterByAttendance(event.assistants)}}
                             Asistentes
                         </p>
-                        <p class="pointer"routerLink="comments/{{event.event_id}}">
+                        <p class="pointer" routerLink="comments/{{event.event_id}}">
                             <mat-icon class="content-icons">forum</mat-icon>
                             {{event.comments.length}} Comentarios
                         </p>
@@ -71,7 +79,8 @@
 
     <!-- IF FUTURE EVENTS -->
 
-    <main class="main-container" *ngIf="future==true&&events.length>0 && !dateToFilter" (scroll)="scrollPositionlistener($event.target)">
+    <main class="main-container" *ngIf="future==true&&events.length>0 && !dateToFilter"
+        (scroll)="scrollPositionlistener($event.target)">
         <span *ngFor="let event of lazyEvents">
 
             <div class="card-container">
@@ -85,11 +94,19 @@
                         </div>
                         <mat-card-title>{{event.organizerdata.name}} {{event.organizerdata.surname}}
                         </mat-card-title>
-                        <mat-card-subtitle>{{event.organizer}}</mat-card-subtitle>
+                        <mat-card-subtitle>
+                            <div class="item__ministar--container">
+
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=1">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=2">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=3">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=4">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=5">star</mat-icon>
+                            </div>
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title>{{event.tittle}}</mat-card-title>
-                        <mat-card-subtitle>{{event.punctuationAvg}}</mat-card-subtitle>
                     </mat-card-title-group>
 
                     <mat-card-content>
@@ -111,7 +128,7 @@
                             {{filterByAttendance(event.assistants)}}
                             Asistentes
                         </p>
-                        <p  class="pointer" routerLink="comments/{{event.event_id}}">
+                        <p class="pointer" routerLink="comments/{{event.event_id}}">
                             <mat-icon class="content-icons">forum</mat-icon>
                             {{event.comments.length}} Comentarios
                         </p>
@@ -134,7 +151,8 @@
 
 
     <!-- IF PAST EVENTS -->
-    <main class="main-container" *ngIf="future==false && !dateToFilter" (scroll)="scrollPositionlistener($event.target)">
+    <main class="main-container" *ngIf="future==false && !dateToFilter"
+        (scroll)="scrollPositionlistener($event.target)">
         <span *ngFor="let event of lazyEvents">
 
             <div class="card-container">
@@ -148,18 +166,20 @@
                         </div>
                         <mat-card-title>
                             {{event.organizerdata.name}} {{event.organizerdata.surname}}</mat-card-title>
-                        <mat-card-subtitle><div class="item__ministar--container" >
-                            
-                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=1">star</mat-icon>
-                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=2">star</mat-icon>
-                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=3">star</mat-icon>
-                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=4">star</mat-icon>
-                            <mat-icon *ngIf="event.organizerdata.punctuation_avg>=5">star</mat-icon>
-                        </div></mat-card-subtitle>
+                        <mat-card-subtitle>
+                            <div class="item__ministar--container">
+
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=1">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=2">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=3">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=4">star</mat-icon>
+                                <mat-icon *ngIf="event.organizerdata.punctuation_avg>=5">star</mat-icon>
+                            </div>
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title>{{event.tittle}}</mat-card-title>
-                        <mat-card-subtitle>{{event.punctuationAvg}}</mat-card-subtitle>
+                        <mat-card-subtitle>{{0||event.punctuationAvg*2}} / 10</mat-card-subtitle>
                     </mat-card-title-group>
 
                     <mat-card-content>
@@ -202,228 +222,3 @@
     </main>
     <button class="loadMore hidden" *ngIf="events>lazyEvents" mat-button (click)="loadMore()">Cargar mas...</button>
 </span>
-<!--  <section orientation="vertical" class="slider" *ngIf="dateToFilter" itemSize="50"> -->
-<!--<div class="card-container" *ngFor="let event of events">
-
-        <div class="card">
-            <p id="anchor{{event.event_id}}" style="display:hidden; size:0px;"></p>
-            <p class="card-date">{{formatDate(event.date)}}</p>
-            <p class="car-tittle">{{event.tittle}}</p>
-            <div class="card-data-container">
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{profileIcon}}" alt="icon">
-                        <p>{{event.organizerdata.name + " " +event.organizerdata.surname}}</p>
-                        <div class="star-container">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=1" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=2" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=3" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=4" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=5" src="{{miniStar}}" alt="miniStar">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{zoneIcon}}" alt="icon">
-                        <p>{{event.zone}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{hourIcon}}" alt="icon">
-                        <p>{{formatTime(event.date)}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row" *ngIf="event.zone!='VIRTUAL'">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{placeIcon}}" alt="icon">
-                        <p>{{event.place}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row" *ngIf="event.zone=='VIRTUAL'">
-                    <a class="row__a" href="{{event.place}}">
-                        <img class="row__a--icon" src="{{navigateIcon}}" alt="icon">
-                        <p>{{event.place}}</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row">
-                    <a class="row__a" routerLink="/assistants/{{event.event_id}}" (click)="saveScroll(event.event_id)">
-                        <img class="row__a--icon" src="{{assistantsIcon}}" alt="icon">
-                        <p>{{filterByAttendance(event.assistants)}} Asistentes</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row">
-                    <a class="row__a" routerLink="/comments/{{event.event_id}}" (click)="saveScroll(event.event_id)">
-                        <img class="row__a--icon" src="{{commentIcon}}" alt="icon">
-                        <p>{{event.comments.length}} Comentarios</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row card-data-container__row-last">
-                    <p>{{event.description}}</p>
-                </div>
-            </div>
-            <app-attendance *ngIf="datePastOrFuture(event.date)" [event_id]="event.event_id"></app-attendance>
-            <app-valoration *ngIf="!datePastOrFuture(event.date)" [event_id]="event.event_id"></app-valoration>
-            <div class="card-bakground">
-                <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
-            </div>
-            <div class="card-bakground-darkfilter">
-            </div>
-
-        </div>
-    </div>
-</section> -->
-
-
-
-
-<!-- <section  orientation="horizontal" class="slider" *ngIf="future==true&&events.length>0 && !dateToFilter" itemSize="50">
-
-    <div class="card-container" *ngFor="let event of events">
-
-        <div class="card">
-            <p id="anchor{{event.event_id}}" style="display:hidden; size:0px;"></p>
-            <p class="card-date">{{formatDate(event.date)}}</p>
-            <p class="car-tittle">{{event.tittle}}</p>
-            <div class="card-data-container">
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{profileIcon}}" alt="icon">
-                        <p>{{event.organizerdata.name + " " +event.organizerdata.surname}}</p>
-                        <div class="star-container">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=1" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=2" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=3" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=4" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=5" src="{{miniStar}}" alt="miniStar">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{zoneIcon}}" alt="icon">
-                        <p>{{event.zone}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{hourIcon}}" alt="icon">
-                        <p>{{formatTime(event.date)}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row" *ngIf="event.zone!='VIRTUAL'">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{placeIcon}}" alt="icon">
-                        <p>{{event.place}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row" *ngIf="event.zone=='VIRTUAL'">
-                    <a class="row__a" href="{{event.place}}">
-                        <img class="row__a--icon" src="{{navigateIcon}}" alt="icon">
-                        <p>{{event.place}}</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row">
-                    <a class="row__a" routerLink="../assistants/{{event.event_id}}"
-                        (click)="saveScroll(event.event_id)">
-                        <img class="row__a--icon" src="{{assistantsIcon}}" alt="icon">
-                        <p>{{filterByAttendance(event.assistants)}} Asistentes</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row">
-                    <a class="row__a" routerLink="../comments/{{event.event_id}}" (click)="saveScroll(event.event_id)">
-                        <img class="row__a--icon" src="{{commentIcon}}" alt="icon">
-                        <p>{{event.comments.length}} Comentarios</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row card-data-container__row-last">
-                    <p>{{event.description}}</p>
-                </div>
-            </div>
-            <app-attendance [event_id]="event.event_id"></app-attendance>
-            <div class="card-bakground">
-                <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
-            </div>
-            <div class="card-bakground-darkfilter">
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-
-<section orientation="horizontal" class="slider" *ngIf="future==false && !dateToFilter" itemSize="50">
-    <div class="card-container" *ngFor="let event of events">
-
-        <div class="card">
-            <p id="anchor{{event.event_id}}" style="display:hidden; size:0px;"></p>
-            <p class="card-date">{{formatDate(event.date)}}</p>
-            <p class="car-tittle">{{event.tittle}}</p>
-            <div class="card-data-container">
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{profileIcon}}" alt="icon">
-                        <p>{{event.organizerdata.name + " " +event.organizerdata.surname}}</p>
-                        <div class="star-container">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=1" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=2" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=3" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=4" src="{{miniStar}}" alt="miniStar">
-                            <img *ngIf="event.organizerdata.punctuation_avg>=5" src="{{miniStar}}" alt="miniStar">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{zoneIcon}}" alt="icon">
-                        <p>{{event.zone}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{hourIcon}}" alt="icon">
-                        <p>{{formatTime(event.date)}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row" *ngIf="event.zone!='VIRTUAL'">
-                    <div class="row__div" href="">
-                        <img class="row__a--icon" src="{{placeIcon}}" alt="icon">
-                        <p>{{event.place}}</p>
-                    </div>
-                </div>
-                <div class="card-data-container__row" *ngIf="event.zone=='VIRTUAL'">
-                    <a class="row__div" href="{{event.place}}">
-                        <img class="row__a--icon" src="{{navigateIcon}}" alt="icon">
-                        <p>Enlace al evento</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row">
-                    <a class="row__a" routerLink="../assistants/{{event.event_id}}"
-                        (click)="saveScroll(event.event_id)">
-                        <img class="row__a--icon" src="{{assistantsIcon}}" alt="icon">
-                        <p>{{filterByAttendance(event.assistants)}} Asistentes</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row">
-                    <a class="row__a" routerLink="../comments/{{event.event_id}}" (click)="saveScroll(event.event_id)">
-                        <img class="row__a--icon" src="{{commentIcon}}" alt="icon">
-                        <p>{{event.comments.length}} Comentarios</p>
-                    </a>
-                </div>
-                <div class="card-data-container__row card-data-container__row-last">
-                    <p>{{event.description}}</p>
-                </div>
-            </div>
-            <app-valoration [event_id]="event.event_id"></app-valoration>
-            <div class="card-bakground">
-                <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
-            </div>
-            <div class="card-bakground-darkfilter">
-
-            </div>
-        </div>
-    </div>
-</section>
- -->

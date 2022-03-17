@@ -6,13 +6,16 @@ import { CommentsService } from 'src/app/services/comments.service';
 import { getDataFromToken } from 'src/app/utils/jwtparser';
 import { Comment } from '../../models/comment';
 import * as moment from 'moment';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { Subscription } from 'rxjs';
+import { slideInAnimationModals } from 'src/app/animations/animations';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  styleUrls: ['./comments.component.scss'],
+  animations:[
+    slideInAnimationModals,
+  ]
 })
 export class CommentsComponent implements OnInit, OnDestroy {
   event_id: number = this.activatedRoute.snapshot.params.event_id;
@@ -23,11 +26,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
   checkIcon = "../../../assets/icons/check-icon.png";
   textComment: string = "";
 
-  ErrorMessage: string;
 
   comments: Comment[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private commentsService: CommentsService, private errorHandlerService: ErrorHandlerService, private webSocketService: WebSocketService) { }
+  constructor(private activatedRoute: ActivatedRoute, private commentsService: CommentsService, private webSocketService: WebSocketService) { }
 
   ngOnInit(): void {
     this.webSocketService.client.connect({}, () => { });
@@ -35,7 +37,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
       /* this.webSocketService */
       this.getCommentsByEvent().then(() => {
 
-       
+
       });
       if (this.webSocketService.client.connected) {
 
@@ -44,7 +46,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
           comment ? this.comments.push(comment) : null;
           setTimeout(() => {
             let mainContainer = document.querySelector(".main-comments");
-            mainContainer.scrollTop = mainContainer.scrollHeight+300000000;
+            mainContainer.scrollTop = mainContainer.scrollHeight + 300000000;
           }, 200);
         })
 
@@ -61,7 +63,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
             comment ? this.comments.push(comment) : null;
             setTimeout(() => {
               let mainContainer = document.querySelector(".main-comments");
-              mainContainer.scrollTop = mainContainer.scrollHeight+300000000;
+              mainContainer.scrollTop = mainContainer.scrollHeight + 300000000;
             }, 200);
           })
 
@@ -72,24 +74,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
           })
         })
       }
-
-
-
-
-
-
-
-
-      /* this.webSocketService.io.on(this.event_id.toString(), (comment) => {
-         console.log(comment)
-         comment?this.comments.unshift(comment):null;
-       })
-       this.webSocketService.io.on(this.event_id.toString()+"_delete", (deleteindex) => {
-         deleteindex?this.comments.splice(deleteindex, 1):null;
-       })*/
     }
   }
-
 
   ngOnDestroy() {
     this.webSocketService.client.unsubscribe(`/comments-chat/delete_${this.event_id}`);
@@ -105,16 +91,9 @@ export class CommentsComponent implements OnInit, OnDestroy {
       this.comments = comments;
       setTimeout(() => {
         let mainContainer = document.querySelector(".main-comments");
-        mainContainer.scrollTop = mainContainer.scrollHeight+300000000;
+        mainContainer.scrollTop = mainContainer.scrollHeight + 300000000;
       }, 200);
-
-      /* this.connectSocket(this.event_id);   */
-    },
-      (error) => {
-        this.ErrorMessage = error.error.message;
-        this.createModal();
-
-      })
+    })
   }
 
   createComment(text: string) {
@@ -125,9 +104,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
     this.webSocketService.client.publish({ destination: "/app/message", body: JSON.stringify(comment) })
     this.textComment = "";
     this.ngOnInit();
-
-
   }
+
   keyDownFunction(event, text: string) {
     console.log(event.code)
     if (event.code === 'Enter' || event.code === 'NumpadEnter') {
@@ -144,21 +122,5 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   formatTime = (date: Date) => { return moment(date).format("DD.MM.YY HH:mm") }
-
-
-
-  //Error handler modals
-  @ViewChild('modal', { read: ViewContainerRef })
-  entry!: ViewContainerRef;
-  sub!: Subscription;
-
-
-  createModal() {
-    this.sub = this.errorHandlerService
-      .openModal(this.entry, 'ERROR', this.ErrorMessage)
-      .subscribe((v) => {
-        //your logic
-      });
-  }
 
 }

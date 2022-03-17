@@ -1,13 +1,18 @@
-.day-event {
+@import "./../../../../../assets/variablesSass/variables.scss";
+
+
+::ng-deep.day-event {
   font-size: 0.6rem;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border-radius: 5px;
-  max-height: 20px;
+  max-height: 15px !important;
   margin-top: 2px;
   padding: 2px 2px;
   background-color: #808080;
+  border-radius: 5px;
+  border: 1px $color-text-menu solid;
+  color: white;
   box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.6);
 }
 @media (min-width: 1024px) {

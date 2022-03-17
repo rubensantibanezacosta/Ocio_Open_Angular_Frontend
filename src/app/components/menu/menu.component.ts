@@ -4,6 +4,7 @@ import { Router, RouterOutlet } from '@angular/router';
 
 
 import { SocialAuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from "angularx-social-login";
+import { slideInAnimationModals } from 'src/app/animations/animations';
 import { DarkmodeService } from 'src/app/services/darkmode.service';
 import { LoginService } from 'src/app/services/login.service';
 import { getDataFromToken } from 'src/app/utils/jwtparser';
@@ -24,6 +25,7 @@ import { getDataFromToken } from 'src/app/utils/jwtparser';
       })),
       transition("inactive <=> active", animate('0.3s')),
     ]),
+    slideInAnimationModals
   ]
 })
 
@@ -66,9 +68,6 @@ export class MenuComponent implements OnInit {
   ];
   constructor(private router: Router, private authService: SocialAuthService,
     private loginService: LoginService, private darkmodeService: DarkmodeService) {
-
-
-
   }
 
 
@@ -122,10 +121,8 @@ export class MenuComponent implements OnInit {
 
   }
   signOut(): void {
-
     localStorage.removeItem("ocioToken");
     this.router.navigateByUrl("/login");
-
   }
 
   prepareRoute(outlet: RouterOutlet) {

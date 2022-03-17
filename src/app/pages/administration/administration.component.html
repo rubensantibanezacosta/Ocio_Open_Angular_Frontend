@@ -1,115 +1,76 @@
+<main class="main-administration" [@modalAnimation]>
+    <mat-tab-group mat-stretch-tabs class="mat-tab-group-admin">
+        <span class="tabs">
+            <mat-tab>
+                <ng-template mat-tab-label class="mat-tab-label">
+                    <mat-icon matBadge={{users.length}} matBadgePosition="before">people</mat-icon>
+                    <span> Usuarios</span>
+                </ng-template>
+                <span>
+                    <mat-toolbar class="reports-toolbar">
+                        <span>Informes</span>
+                        <button mat-flat-button>
+                            <mat-icon>print</mat-icon>
+                        </button>
+                        <button mat-flat-button>
+                            <mat-icon>email</mat-icon>
+                        </button>
 
+                    </mat-toolbar>
+                    <div class="header">
+                        <div class="header__logo">
+                            <img src="{{openCanariasLogo}}" alt="Open Canarias">
+                            <h4 class="logo-tittle">Ocio Open ®</h4>
+                        </div>
+                        <div class="header__data" *ngIf="eventsState!='active'">
+                            <div class="header__data--tittle">
+                                <p><b>{{userData.name}} </b> {{userData.surname}}</p>
+                            </div>
+                            <mat-list-item>
+                                <mat-form-field appearance="outline" class="header__data--search-bar">
+                                    <mat-label>Búsqueda</mat-label>
+                                    <input matInput type="text" placeholder="Buscar por apellido..." name="search"
+                                        #searchUsers [(ngModel)]="wordUsers" (keyup)="filterUsersByWord($event)"
+                                        autocomplete="off">
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                            </mat-list-item>
+                        </div>
+                    </div>
+                </span>
+                <app-users-table [refreshUsers]="usersSubject" [users]="users"></app-users-table>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label class="mat-tab-label">
+                    <mat-icon matBadge={{events.length}} matBadgePosition="before">celebration</mat-icon>
+                    <span>Eventos</span>
+                </ng-template>
+                <span>
+                    <div class="header">
+                        <div class="header__logo">
+                            <img src="{{openCanariasLogo}}" alt="Open Canarias">
+                            <h4 class="logo-tittle">Ocio Open ®</h4>
+                        </div>
+                        <div class="header__data" *ngIf="eventsState!='active'">
+                            <div class="header__data--tittle">
+                                <p><b>{{userData.name}} </b> {{userData.surname}}</p>
+                            </div>
+                            <mat-list-item>
+                                <mat-form-field appearance="outline" class="header__data--search-bar">
+                                    <mat-label>Búsqueda</mat-label>
+                                    <input matInput type="text" placeholder="Buscar por titulo..." name="search"
+                                        #searchEvents [(ngModel)]="wordEvent" (keyup)="filterEventsByWord($event)">
+                                    <mat-icon matSuffix autocomplete="off">search</mat-icon>
+                                </mat-form-field>
+                            </mat-list-item>
+                        </div>
+                    </div>
+                </span>
+                <app-events-table [refreshEvents]="eventsSubject" [events]="events"></app-events-table>
+            </mat-tab>
+        </span>
+    </mat-tab-group>
 
-<div class="header">
-    <div class="header__logo">
-        <img src="{{openCanariasLogo}}" alt="Open Canarias">
-        <h4 class="logo-tittle">Ocio Open ®</h4>
-    </div>
-    <div class="header__data" *ngIf="eventsState!='active'">
-        <div class="header__data--tittle">
-            <p><b>{{userData.name}} </b> {{userData.surname}}</p>
-        </div>
-        <div class="header__data--search-bar-container">
-            <div class="header__data--search-bar">
-                <input type="text" placeholder="Buscar por apellido..." name="search" #searchUsers [(ngModel)]="wordUsers" (keyup)="filterUsersByWord($event)">
-                <div class="search-icon">
-                    <img src="{{searchIcon}}" alt="Search">
-                </div>
-            </div>
-        </div>
-    </div>
+</main>
 
-    <div class="header__data" *ngIf="eventsState==='active'">
-        <div class="header__data--tittle">
-            <p><b>{{userData.name}} </b> {{userData.surname}}</p>
-        </div>
-        <div class="header__data--search-bar-container">
-            <div class="header__data--search-bar">
-                <input type="text" placeholder="Buscar por titulo..." name="search" #searchEvents [(ngModel)]="wordEvent" (keyup)="filterEventsByWord($event)">
-                <div class="search-icon">
-                    <img src="{{searchIcon}}" alt="Search">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="main">
-    <div class="main__header">
-        <div class="clips">
-            <div class="users" [@userTittle]="usersState" (click)="showUsers()">
-                <p class="clip-tittle-users">Usuarios <span>{{users.length}}</span></p>
-                <div class="clip__image-users">
-                </div>
-            </div>
-            <div class="events" [@eventTittle]="eventsState" (click)="showEvents()">
-                <p class="clip-tittle-events">Eventos </p>
-                <div class="clip__image-events">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="users-table-container" *ngIf="eventsState=='inactive'">
-        <div class="reportButton">
-            
-            <form #mailForm="ngForm" (ngSubmit)="sendUsersReport()">
-                <label for="sendEmail">Enviar informe por email</label>
-                <input class="email-input" type="email" placeholder="email..."  [(ngModel)]="sendEmail" name="sendEmail"  required>
-                <button type="submit" [disabled]="!mailForm.form.valid">Enviar</button>
-                <button (click)="getUsersPDF($event)">Descargar PDF</button>
-            </form>
-            
-        </div>
-        <table>
-
-            <tr>
-                <th>Nombre <img src="{{orderByIcon}}" alt=""></th>
-                <th>Apellidos <img src="{{orderByIcon}}" alt=""></th>
-                <th>Alta <img src="{{orderByIcon}}" alt=""></th>
-                <th>Ult. conex. <img src="{{orderByIcon}}" alt=""></th>
-            </tr>
-            <tr *ngFor="let user of users" routerLink="/profileAdministration/{{user.email}}">
-
-                <td>{{user.name}}</td>
-                <td>{{user.surname}}</td>
-                <td>{{user.createdAt}}</td>
-                <td>{{formatDateTime(user.lastconnection)}}</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="users-table-container" *ngIf="usersState=='inactive'">
-        <table>
-
-            <tr>
-                <th>Nombre <img src="{{orderByIcon}}" alt=""></th>
-                <th>Fecha <img src="{{orderByIcon}}" alt=""></th>
-                <th>Zona <img src="{{orderByIcon}}" alt=""></th>
-                <th>Ubicación<img src="{{orderByIcon}}" alt=""></th>
-                <th>Organizador<img src="{{orderByIcon}}" alt=""></th>
-            </tr>
-
-
-            <tr *ngFor="let event of events" routerLink="/eventsAdministration/{{event.event_id}}">
-                <td>{{event.tittle}}</td>
-                <td>{{formatDate(event.date)}}</td>
-                <td>{{event.zone}}</td>
-                <td>{{event.place}}</td>
-                <td>{{event.organizerdata.name}} {{event.organizerdata.surname}}</td>
-            </tr>  
-        </table>
-    </div>
-</div>
-
-
-
-
-
-<app-footer></app-footer>
-
-
-
-<div #modal></div> 
+<router-outlet></router-outlet>

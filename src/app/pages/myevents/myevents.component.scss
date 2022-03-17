@@ -1,5 +1,5 @@
 @import "./../../../assets/variablesSass/variables.scss";
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
 
 .star-icon{
     color: yellow;
@@ -21,6 +21,15 @@ app-image-viewer img{
     object-fit: cover;
 }
 
+::ng-deep.mat-dialog-container {
+    z-index: 10 !important;
+    background-image: $image-background;
+    border-radius: 10px;
+    border: solid $color-text-menu 2px;
+    color: white;
+  }
+  
+
 mat-card-header{
     padding: 10px;
     margin: -2;
@@ -41,6 +50,13 @@ mat-card-header{
       );
 }
 
+.actions{
+    position: relative;
+    color: white;
+    z-index: 5;
+   justify-content: flex-end;
+   width: 100%;
+}
 mat-card-subtitle{
     color: white;
     display: flex;

@@ -1,37 +1,14 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { Component } from '@angular/core';
+import { slideInAnimationModals } from 'src/app/animations/animations';
+
 
 @Component({
   selector: 'app-finalizedevents',
   templateUrl: './finalizedevents.component.html',
-  styleUrls: ['./finalizedevents.component.scss']
+  styleUrls: ['./finalizedevents.component.scss'],
+  animations:[
+    slideInAnimationModals
+  ]
 })
-export class FinalizedeventsComponent implements AfterViewInit {
-tittle:string="Eventos Terminados";
-image="../../../assets/icons/calendar-ok-icon.png";
-modalShown=true;
-
-ErrorMessage:string;
-  constructor( private errorHandlerService:ErrorHandlerService) { }
-
-
-  ngAfterViewInit(): void {
-
-  }
-
-
-    //Error handler modals
-    @ViewChild('modal', { read: ViewContainerRef })
-    entry!: ViewContainerRef;
-    sub!: Subscription;
-  
-  
-    createModal(){
-        this.sub = this.errorHandlerService
-          .openModal(this.entry, 'ERROR', this.ErrorMessage)
-          .subscribe((v) => {
-            //your logic
-          });
-    }
+export class FinalizedeventsComponent {
 }

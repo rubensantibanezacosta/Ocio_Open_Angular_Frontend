@@ -5,13 +5,19 @@ import { getDataFromToken } from 'src/app/utils/jwtparser';
 import * as moment from 'moment';
 import { ImagesService } from 'src/app/services/images.service';
 import { EventsService } from 'src/app/services/events.service';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { GalleryComponent } from 'src/app/components/gallery/gallery.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { slideInAnimationModals } from 'src/app/animations/animations';
 
 @Component({
   selector: 'app-events-administration',
   templateUrl: './events-administration.component.html',
-  styleUrls: ['./events-administration.component.scss']
+  styleUrls: ['./events-administration.component.scss'],
+  animations:[
+    slideInAnimationModals
+  ]
 })
 export class EventsAdministrationComponent implements OnInit {
   image = "../../../assets/icons/data-icon.png";
@@ -32,10 +38,10 @@ export class EventsAdministrationComponent implements OnInit {
   imageFormVisible: boolean = false;
   galleryVisible: boolean = false;
   dateinputVisible: boolean = false;
+  subjectImage = new Subject<number>();
+  ErrorMessage: string;
 
-  ErrorMessage:string;
-
-  constructor(private activatedRoute: ActivatedRoute, private imagesService: ImagesService, private eventsService: EventsService, private router: Router,  private errorHandlerService:ErrorHandlerService) { }
+  constructor(private activatedRoute: ActivatedRoute, private imagesService: ImagesService, private eventsService: EventsService, private router: Router, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getEventToEdit();
@@ -47,43 +53,30 @@ export class EventsAdministrationComponent implements OnInit {
 
   submit() {
     this.eventsService.updateEventAdmin(this.myEvent).subscribe(res => {
-      console.log(res);
+      this._snackBar.open(`Has creado el evento ${this.myEvent.tittle}`, `Cerrar`, {
+        duration: 5000,
+        
+      })
       window.history.back()
     },
-    (error) => {
-      
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
-    })
+    )
   }
 
   deleteEventAdmin(event_id: number) {
     this.eventsService.deleteEventByIdAdmin(this.event_id).subscribe(res => {
-      window.history.back()
-    },
-    (error) => {
-      
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
+      window.history.back();
     })
   }
 
   async getEventToEdit() {
     this.eventsService.getEventById(this.event_id).subscribe((res) => {
-      return this.myEvent = res}
-      ,
-      (error) => {
-        
-        this.ErrorMessage=error.error.message;
-        this.createModal();
-  
-      })
+      this.myEvent = res;
+      this.subjectImage.next(this.myEvent.event_id);
+    }
+    )
   }
 
   onPhotoSelected(event: any): void {
-
     if (event.target.files && event.target.files[0]) {
       this.file = <File>event.target.files[0];
       const reader = new FileReader();
@@ -91,18 +84,18 @@ export class EventsAdministrationComponent implements OnInit {
       reader.readAsDataURL(this.file);
     }
   }
+
   uploadImage(): boolean {
     this.imagesService.createImage(this.file).subscribe((res) => {
+      this._snackBar.open(`Imagen cargada con éxito ${this.myEvent.tittle}`, `Cerrar`,{
+        duration: 5000,
+         
+      })
       this.hideImageForm();
-      this.myEvent.image_id = res[0].id;
-    },
-    (error) => {
-      
-      this.ErrorMessage=error.error.message;
-      this.createModal();
-
-    })
-
+      this.myEvent.image_id = res.id;
+      this.subjectImage.next(this.myEvent.event_id);
+    }
+    )
     return false;
   }
 
@@ -117,17 +110,15 @@ export class EventsAdministrationComponent implements OnInit {
   }
 
   showGallery() {
-    this.galleryVisible = true;
-  }
-
-  hideGallery() {
-    this.myEvent.image_id;
-    this.galleryVisible = false;
-  }
-
-  getId(e) {
-    this.myEvent.image_id = e;
-    this.hideGallery();
+    const dialogRef = this.dialog.open(GalleryComponent, {
+      height: '80vh',
+      width: '100vw'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.myEvent.image_id = result;
+      }
+    });
   }
 
   zoneSelected() {
@@ -155,17 +146,7 @@ export class EventsAdministrationComponent implements OnInit {
     return moment(date).format("DD-MM-YYYY hh:mm")
   }
 
-    //Error handler modals
-    @ViewChild('modal', { read: ViewContainerRef })
-    entry!: ViewContainerRef;
-    sub!: Subscription;
-  
-  
-    createModal(){
-        this.sub = this.errorHandlerService
-          .openModal(this.entry, 'ERROR', this.ErrorMessage)
-          .subscribe((v) => {
-            //your logic
-          });
-    }
+  back() {
+    window.history.back();
+  }
 }

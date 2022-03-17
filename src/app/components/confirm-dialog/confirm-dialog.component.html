@@ -1,0 +1,18 @@
+<div class="modal-title-container">
+    <p mat-dialog-title>{{title}}</p>
+    <button mat-icon-button (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div class="content" mat-dialog-content>
+    <div class="icon">
+        <mat-icon color="warn">error_outline</mat-icon>
+    </div>
+    
+  <p>{{message}}</p>
+ 
+</div>
+<div class="actions" mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Confirmar</button>
+</div>

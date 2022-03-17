@@ -1,7 +1,59 @@
-<main class="main-container">
-<app-profile></app-profile>
+<main class="main-container" [@modalAnimation]>
+    <app-profile></app-profile>
 
-<div class="main">
+    <mat-tab-group mat-stretch-tabs class="mat-tab-group-custom">
+        <span class="tabs">
+            <mat-tab>
+                <ng-template mat-tab-label class="mat-tab-label">Organizadores</ng-template>
+                <span *ngFor="let organizer of organizers, let i=index;">
+                    <mat-card class="card">
+                        <mat-card-header>
+                            <div mat-card-avatar class="header-img">
+
+                                <img src="{{organizer.image_url}}" alt="" />
+                            </div>
+                            <mat-card-title><b>{{i+1}}</b>º {{organizer.name}} {{organizer.surname}}</mat-card-title>
+                            <mat-card-subtitle>
+                                <mat-icon class="star-icon" *ngIf="organizer.punctuation_avg>=1">star</mat-icon>
+                                <mat-icon class="star-icon" *ngIf="organizer.punctuation_avg>=2">star</mat-icon>
+                                <mat-icon class="star-icon" *ngIf="organizer.punctuation_avg>=3">star</mat-icon>
+                                <mat-icon class="star-icon" *ngIf="organizer.punctuation_avg>=4">star</mat-icon>
+                                <mat-icon class="star-icon" *ngIf="organizer.punctuation_avg>=5">star</mat-icon>
+                                <span>{{organizer.punctuation_avg*2}} / 10</span>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                    </mat-card>
+                </span>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label class="mat-tab-label">Zonas</ng-template>
+                <span *ngFor="let zone of zones, let i=index;">
+                    <mat-card class="card">
+                        <mat-card-header>
+                            <div mat-card-avatar class="header-img">
+
+                                <mat-icon>location_city</mat-icon>
+                            </div>
+                            <mat-card-title><b>{{i+1}}</b>º {{zone.name}}</mat-card-title>
+                            <mat-card-subtitle>
+                                <mat-icon class="star-icon" *ngIf="zone.punctuationavg">star</mat-icon>
+                                <mat-icon class="star-icon" *ngIf="zone.punctuationavg>=2">star</mat-icon>
+                                <mat-icon class="star-icon" *ngIf="zone.punctuationavg>=3">star</mat-icon>
+                                <mat-icon class="star-icon" *ngIf="zone.punctuationavg>=4">star</mat-icon>
+                                <mat-icon class="star-icon" *ngIf="zone.punctuationavg>=5">star</mat-icon>
+                                <span>{{zone.punctuationavg*2}} / 10</span>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                    </mat-card>
+                </span>
+            </mat-tab>
+        </span>
+    </mat-tab-group>
+
+
+
+
+    <!-- <div class="main">
     <div class="main__header">
         <p class="ranking__tittle">Ranking <img src="{{rankingIconBlack}}" alt=""></p>
         <div class="clips">
@@ -49,7 +101,7 @@
         </div>
     </div>
 </div>
-
+ -->
 
 
 

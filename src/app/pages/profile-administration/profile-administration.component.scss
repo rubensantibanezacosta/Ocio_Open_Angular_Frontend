@@ -1,67 +1,34 @@
 @import "./../../../assets/variablesSass/variables.scss";
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
 
 .main-container{
-  overflow-y: scroll;
-  max-height: calc(100vh);
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  max-height: 100%;
+  background-image: $image-background;
+  z-index: 2;
+  top:0;
+  left:0;
+  padding-bottom: 300px;
 }
-.profile {
-    color: $color-text-darkmode;
-    margin-top: 60px;
-    display: flex;
-    min-height: 25vh;
-    align-items: center;
-  }
-  .profile__image--container{
-      display: flex;
-      width: 45%;
-      justify-content: center;
-      align-items: center;
-      
-  }
-  .profile__image {
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    border: solid 2px $color-text-darkmode;
-    border-radius: 100%;
-    
-  }
-  .profile__image img {
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    height: 100%;
-    object-position: center;
-  }
+.date-toolbar{
+  background-color: $header-footer;
+  color: $color-text-darkmode;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  gap: 5px;
+}
+
+.back-button{
+  position: absolute;
+  right: 10px;
+}
+
   
-  .profile__data {
-      display:flex;
-      flex-direction: column;
-      align-items: center;
-    padding: 10px 0px;
-    width: 50%;
-  }
-  
-  .rank-number{
-    font-size: 1.6rem;
-    text-shadow: 1px 1px 5px black;
-    margin-left: 10px;
-  }
-  
-  .profile__name {
-    font-size: 1.1rem;
-    margin-bottom: 0;
-  }
-  
-  .profile__valoration {
-    font-size: 0.9rem;
-    font-weight: lighter;
-  }
-  
-  .star-container img{
-    margin: 0 7px;
-  }
+
   
 
 .events-table-container {
@@ -71,14 +38,17 @@
 }
 
 .timestamp{
-  color: $color-text-darkmode;
+  color: white !important;
   padding: 0 15%;
+}
+.timestamp mat-list-item{
+  color: white !important;
+  
 }
 
 .timestamp span{
   font-weight: lighter;
   margin-left: 25px;
-  font-style: italic;
 }
 
 .main-events {
@@ -113,9 +83,5 @@ transform: translateY(4px);
 
 tr:nth-child(even) {
 background-color: rgba(255, 255, 255, 0.2);
-}
-button{
-  @include white-button;
-  cursor: pointer;
 }
 

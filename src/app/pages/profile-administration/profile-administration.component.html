@@ -1,65 +1,35 @@
+<div class="main-container" [@modalAnimation]>
+    <mat-toolbar class="date-toolbar">
+        <mat-icon>person</mat-icon>
+        <span> Perfil del Usuario</span>
+        <button class="back-button" mat-icon-button (click)="back()" align="end">
+            <mat-icon class="empty-icons">arrow_back</mat-icon>
+        </button>
+    </mat-toolbar>
+    <app-profile [userEmail]="userEmail"></app-profile>
+
+    <mat-list class="timestamp">
+        <mat-list-item><button mat-raised-button color="warn" routerLink="permissions/{{userEmail}}">Modificar Permisos</button></mat-list-item>
+        <mat-list-item>
+            <p>Alta <span>{{formatDateString(user.createdAt)}}</span></p>
+        </mat-list-item>
+        <mat-list-item>
+            <p>Ultima conexión <span>{{formatDateTime(user.lastconnection)}}</span></p>
+        </mat-list-item>
+        <mat-list-item>
+            <p>Eventos Asistidos <span>{{attendanceCounter}}</span></p>
+        </mat-list-item>
+        <mat-list-item>
+            <p>Eventos Organizados <span>{{events.length}}</span></p>
+        </mat-list-item>
+    </mat-list>
+    <app-user-events-table [refreshEvents]="eventsSubject" [events]="events"></app-user-events-table>
 
 
-<div class="main-container">
-    <div class="profile">
-        <div class="profile__image--container">
-            <div class="profile__image">
-                <img *ngIf="user.image_url===undefined" src="{{profileAvatar}}" alt="" />
-                <img *ngIf="user.image_url" src="{{user.image_url}}" alt="" />
-            </div>
-
-        </div>
-        <div class="profile__data">
-            <p class="profile__name"><b>{{user.name}} </b>{{user.surname}}</p>
-            <p class="profile__valoration">Su valoración <b class="rank-number">{{userPosition}}º</b></p>
-            <div class="star-container">
-                <img *ngIf="user.punctuation_avg>=1" src="{{star}}" alt="star">
-                <img *ngIf="user.punctuation_avg>=2" src="{{star}}" alt="star">
-                <img *ngIf="user.punctuation_avg>=3" src="{{star}}" alt="star">
-                <img *ngIf="user.punctuation_avg>=4" src="{{star}}" alt="star">
-                <img *ngIf="user.punctuation_avg>=5" src="{{star}}" alt="star">
-            </div>
-        </div>
-    </div>
-    <div class="timestamp">
-        <button (click)="permissionsModal=true">Modificar Permisos</button>
-        <p>Alta <span>{{formatDateString(user.createdAt)}}</span></p>
-        <p>Ultima conexión <span>{{formatDateTime(user.lastconnection)}}</span></p>
-        <p>Eventos Asistidos <span>{{attendanceCounter}}</span></p>
-        <p>Eventos Organizados <span>{{events.length}}</span></p>
-    </div>
-
-
-    <div class="main-events">
-        <div class="users-table-container">
-            <table>
-
-                <tr>
-                    <th>Nombre </th>
-                    <th>Fecha </th>
-                    <th>Zona </th>
-                    <th>Ubicación</th>
-                </tr>
-
-                <tr *ngFor="let event of events" routerLink="/eventsAdministration/{{event.event_id}}">
-                    <td>{{event.tittle}}</td>
-                    <td>{{formatDate(event.date)}}</td>
-                    <td>{{event.zone}}</td>
-                    <td>{{event.place}}</td>
-                    
-                </tr>
-            </table>
-        </div>
-    </div>
+    
 </div>
 
+<router-outlet></router-outlet>
 
-<app-back-icon></app-back-icon>
-<app-permissions *ngIf="permissionsModal==true" 
-[userPosition]="userPosition"
-[user]="user"
-[attendanceCounter]="attendanceCounter"
-(closePermissions)="closePermissionsModal($event)"></app-permissions>
-
-<!-- <div #modal></div> -->
-
+<!-- <app-permissions *ngIf="permissionsModal==true" [userPosition]="userPosition" [user]="user"
+    [attendanceCounter]="attendanceCounter" (closePermissions)="closePermissionsModal($event)"></app-permissions> -->
