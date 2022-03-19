@@ -30,7 +30,7 @@
   "dataGroups": [
     {
       "name": "api",
-      "urls":["https://boiling-inlet-01582.herokuapp.com/**"],
+      "urls":["https://boiling-inlet-01582.herokuapp.com/api/images/**"],
       "cacheConfig": {
         "maxSize": 1,
         "maxAge": "7d",
