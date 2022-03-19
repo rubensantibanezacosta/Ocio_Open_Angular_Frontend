@@ -122,23 +122,12 @@
 }
 
 
-.search-icon {
-  width: 20px;
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.search-icon img {
-  width: 15px;
-  height: 15px;
-}
-
 .main {
   color: $color-text-darkmode;
   padding: 0 20px;
   overflow-y: hidden;
-  max-height: calc(100% - 220px);
+  min-height: calc(100% - 220px);
+  padding-bottom: 200px;
   padding-bottom: 50px;
   box-sizing: border-box;
 }

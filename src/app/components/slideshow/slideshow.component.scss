@@ -20,8 +20,7 @@
   display: block;
   position: relative;
   min-height: calc(100%);
-  /*  min-height: 100vh; */
-  overflow: hidden;
+  min-height: 100vh;
   scroll-snap-align: start;
   text-align: left;
 }
