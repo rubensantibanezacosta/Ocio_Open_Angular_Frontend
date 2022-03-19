@@ -109,7 +109,9 @@ export class LoadingInterceptor implements HttpInterceptor {
       })
     }
     return this._snackBar.open(messages[0].message,"Cerrar",{
-      duration:5000
+      duration:3000,
+      horizontalPosition: "center",
+        verticalPosition: "top",
     })
   }
 }

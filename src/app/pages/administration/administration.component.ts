@@ -113,12 +113,11 @@ export class AdministrationComponent implements OnInit {
 
 
   filterUsersByWord(event) {
-    if (event.code == 'NumpadEnter' || event.code == 'Enter') {
       if (this.wordUsers != "") {
         this.usersSubject.next(this.users.filter((user) => {
           return user.surname.toLowerCase().includes(this.wordUsers.toLowerCase())
         }));
-      }
+
     }
     if (event.code == 'Backspace' || this.wordUsers == "") {
       this.ngOnInit();
@@ -127,12 +126,11 @@ export class AdministrationComponent implements OnInit {
 
 
   filterEventsByWord(event) {
-    if (event.code == 'NumpadEnter' || event.code == 'Enter') {
       if (this.wordEvent != "") {
         this.eventsSubject.next(this.events.filter((event) => {
           return event.tittle.toLowerCase().includes(this.wordEvent.toLowerCase())
         }))
-      }
+  
     }
     if (event.code == 'Backspace' || this.wordEvent == "") {
       this.ngOnInit();
