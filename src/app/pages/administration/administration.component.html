@@ -9,10 +9,10 @@
                 <span>
                     <mat-toolbar class="reports-toolbar">
                         <span>Informes</span>
-                        <button mat-flat-button>
+                        <button mat-flat-button (click)="getUsersPDF($event)">
                             <mat-icon>print</mat-icon>
                         </button>
-                        <button mat-flat-button>
+                        <button mat-flat-button [disabled]="true">
                             <mat-icon>email</mat-icon>
                         </button>
 
