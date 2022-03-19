@@ -4,25 +4,25 @@
         <!-- tittle Column -->
         <ng-container matColumnDef="tittle">
             <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-            <td matRipple mat-cell *matCellDef="let row"> {{row.tittle}} </td>
+            <td matRipple mat-cell *matCellDef="let row" routerLink="eventsAdministration/{{row.event_id}}"> {{row.tittle}} </td>
         </ng-container>
 
         <!-- date Column -->
         <ng-container matColumnDef="date">
             <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-            <td matRipple mat-cell *matCellDef="let row"> {{formatDate(row.date)}} </td>
+            <td matRipple mat-cell *matCellDef="let row" routerLink="eventsAdministration/{{row.event_id}}"> {{formatDate(row.date)}} </td>
         </ng-container>
 
         <!-- zone Column -->
         <ng-container matColumnDef="zone">
             <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Zona </th>
-            <td matRipple mat-cell *matCellDef="let row"> {{row.zone}} </td>
+            <td matRipple mat-cell *matCellDef="let row" routerLink="eventsAdministration/{{row.event_id}}"> {{row.zone}} </td>
         </ng-container>
 
         <!-- organizer column -->
         <ng-container matColumnDef="surname">
             <th matRipple mat-header-cell *matHeaderCellDef mat-sort-header> Organizador </th>
-            <td matRipple mat-cell *matCellDef="let row"> {{row.organizerdata.surname}} </td>
+            <td matRipple mat-cell *matCellDef="let row" routerLink="eventsAdministration/{{row.event_id}}"> {{row.organizerdata.surname}} </td>
         </ng-container>
 
 

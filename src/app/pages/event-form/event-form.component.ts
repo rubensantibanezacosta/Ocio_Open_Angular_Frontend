@@ -18,7 +18,7 @@ import { slideInAnimationModals } from 'src/app/animations/animations';
   selector: 'app-event-form',
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.scss'],
-  animations:[
+  animations: [
     slideInAnimationModals
   ]
 })
@@ -68,7 +68,7 @@ export class EventFormComponent implements OnInit {
         (res) => {
           this._snackBar.open(`Has creado el evento ${this.myEvent.tittle}`, `Cerrar`, {
             duration: 5000,
-            
+
           })
           window.history.back()
         },
@@ -77,8 +77,9 @@ export class EventFormComponent implements OnInit {
       this.eventsService.updateEvent(this.myEvent).subscribe(
         res => {
           this._snackBar.open(`Has modificado el evento ${this.myEvent.tittle}`, `Cerrar`, {
-            duration: 5000,
-            
+            duration: 3000,
+            horizontalPosition: "center",
+            verticalPosition: "top",
           })
           window.history.back()
         },

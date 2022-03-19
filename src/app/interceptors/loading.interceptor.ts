@@ -34,6 +34,10 @@ export class LoadingInterceptor implements HttpInterceptor {
       message: "No tiene autorización"
     },
     {
+      code: 504,
+      message: "Tiempo de espera excedido"
+    },
+    {
       code: 403,
       message: "No tiene acceso"
     },
@@ -99,7 +103,9 @@ export class LoadingInterceptor implements HttpInterceptor {
     })
     if(messages.length==0){
       return this._snackBar.open("Error desconocido","Cerrar",{
-        duration:5000
+        duration:3000,
+        horizontalPosition: "center",
+        verticalPosition: "top",
       })
     }
     return this._snackBar.open(messages[0].message,"Cerrar",{

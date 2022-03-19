@@ -30,13 +30,11 @@ import { ValorationComponent } from './components/slideshow/valoration/valoratio
 import { AttendanceComponent } from './components/slideshow/attendance/attendance.component';
 import { CommentsComponent } from './pages/comments/comments.component';
 import { AssistantsComponent } from './pages/assistants/assistants.component';
-import { BackIconComponent } from './components/back-icon/back-icon.component';
 import { EventFormComponent } from './pages/event-form/event-form.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ImageViewerComponent } from './components/gallery/image-viewer/image-viewer.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EventsAdministrationComponent } from './pages/events-administration/events-administration.component';
-import { ErrorHandlerComponent } from './components/error-handler/error-handler.component';
 import { DayEventsComponent } from './pages/calendar/day-events/day-events.component';
 import { EventsByDateComponent } from './pages/events-by-date/events-by-date.component';
 import { DayEventComponent } from './pages/calendar/day-events/day-event/day-event.component';
@@ -72,13 +70,11 @@ import { ExcuseDialogComponent } from './components/excuse-dialog/excuse-dialog.
     AttendanceComponent,
     CommentsComponent,
     AssistantsComponent,
-    BackIconComponent,
     EventFormComponent,
     GalleryComponent,
     ImageViewerComponent,
     ProfileComponent,
     EventsAdministrationComponent,
-    ErrorHandlerComponent,
     DayEventsComponent,
     EventsByDateComponent,
     DayEventComponent,
