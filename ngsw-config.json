@@ -32,10 +32,10 @@
       "name": "api",
       "urls":["https://boiling-inlet-01582.herokuapp.com/api/images/**"],
       "cacheConfig": {
-        "maxSize": 15,
+        "maxSize": 3,
         "maxAge": "2d",
-        "strategy": "performance",
-        "timeout": "20s"
+        "strategy": "freshness",
+        "timeout": "10s"
       }
     }
   ]
