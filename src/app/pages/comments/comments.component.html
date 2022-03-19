@@ -82,8 +82,8 @@ div
         <mat-chip class="writing-chip">
             <input (keydown)="keyDownFunction($event, textComment)" (keydown)="$event.stopImmediatePropagation()"
                 #message maxlength="256" placeholder="Escribe tu comentario..." [(ngModel)]="textComment">
-            <button *ngIf="textComment" matSuffix mat-icon-button aria-label="Clear" a (click)="textComment=''">
-                <mat-icon class="reset">close</mat-icon>
+            <button  class="reset" *ngIf="textComment" matSuffix mat-icon-button aria-label="Clear" a (click)="textComment=''">
+                <mat-icon>close</mat-icon>
             </button>
         </mat-chip>
     </mat-chip-list>
