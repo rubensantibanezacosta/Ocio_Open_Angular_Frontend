@@ -107,7 +107,6 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   keyDownFunction(event, text: string) {
-    console.log(event.code)
     if (event.code === 'Enter' || event.code === 'NumpadEnter') {
       this.createComment(text);
     }
