@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   tokenExists() {
-    if (localStorage.getItem("ocioToken")) {
+    if (localStorage.getItem("ocioToken").length>0) {
       const expireDate = getDataFromToken().tokenExpireDate;
       if (moment().isBefore(moment(expireDate))) {
         this.router.navigateByUrl("/menu/home");
