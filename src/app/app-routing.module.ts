@@ -39,7 +39,7 @@ import { RankingComponent } from './pages/ranking/ranking.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "menu/home",
+    redirectTo: "login",
     pathMatch: 'full'
   },
   {
