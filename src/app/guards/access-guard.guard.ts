@@ -16,7 +16,7 @@ export class AccessGuardGuard implements CanActivate {
 
     if(moment().isAfter(moment(expireDate))){
       console.error('Token Expired');
-      localStorage.removeItem("OcioToken");
+      localStorage.removeItem("ocioToken");
       this.router.navigate(['/login']);
       return false;
     }
@@ -27,7 +27,7 @@ export class AccessGuardGuard implements CanActivate {
     } else {
       
       console.error('Unauthorized');
-      localStorage.removeItem("OcioToken");
+      localStorage.removeItem("ocioToken");
       this.router.navigate(['/login']);
       return false;
     }
