@@ -10,11 +10,9 @@ import { Zones } from '../models/zone';
 })
 export class ZonesService {
   endpoint =environment.host+ '/api/zones';
-  bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({ 
-      'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.bearerToken}` }
+      'Content-Type': 'application/json' }
     )
   };
   constructor(private httpClient:HttpClient) { }

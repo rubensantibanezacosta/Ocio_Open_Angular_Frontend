@@ -11,7 +11,7 @@ import { slideInAnimationModals } from 'src/app/animations/animations';
   selector: 'app-permissions',
   templateUrl: './permissions.component.html',
   styleUrls: ['./permissions.component.scss'],
-  animations:[
+  animations: [
     slideInAnimationModals,
   ]
 })
@@ -52,7 +52,11 @@ export class PermissionsComponent implements OnInit {
   }
 
   updateUser(event) {
-    this.usersService.updateUsersPermissions(event, this.userEmail);
+    this.usersService.updateUsersPermissions(event, this.userEmail).subscribe(
+      (res) => {
+        this.user.permissions=event;
+      }
+    );
   }
 
   getListPermissions() {

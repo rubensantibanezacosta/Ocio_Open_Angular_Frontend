@@ -11,19 +11,14 @@ import * as SockJS from 'sockjs-client';
 })
 export class WebSocketService {
   endpoint = environment.host;
-  bearerToken = localStorage.getItem("ocioToken");
 
-
-  
-  
   sockJS = new SockJS( this.endpoint + "/chat-websocket");
   client = Stomp.over(this.sockJS);
 
-  
 
   constructor() {
     
-    this.client.connect({headers:{"Authorization":"Bearer "+this.bearerToken}},(info)=>{
+    this.client.connect({},(info)=>{
       console.log("Connected to broker: " + this.client.connected + " :: " + info)
     })
   }

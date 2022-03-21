@@ -6,7 +6,7 @@
         </button>
         <h1 class="app-name">{{title}}</h1>
     </mat-toolbar>
-    <mat-drawer-container class="container" autosize>
+    <mat-drawer-container class="container" [autosize]=false>
         <mat-drawer #drawer class="sidenav" mode="side">
           <div class="nav-header">
             <img src="{{openLogo}}" alt="Open Canarias Logo">
@@ -48,7 +48,7 @@
         </mat-drawer>
       
         <div class="sidenav-content" (click)="drawer.close()">
-            <router-outlet ></router-outlet>
+            <router-outlet></router-outlet>
         </div>
       
       </mat-drawer-container>

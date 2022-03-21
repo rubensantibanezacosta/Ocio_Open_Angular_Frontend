@@ -14,8 +14,7 @@ export class UsersService {
   bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.bearerToken}`
+      'Content-Type': 'application/json'
     }
     )
   };

@@ -10,12 +10,10 @@ import { Permissions } from '../models/permissions';
 export class PermissionsService {
 
   endpoint = environment.host + '/api/roles/admin';
-  bearerToken = localStorage.getItem("ocioToken");
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.bearerToken}`,
     }
     )
   };

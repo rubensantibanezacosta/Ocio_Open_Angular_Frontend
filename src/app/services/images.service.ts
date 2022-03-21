@@ -12,12 +12,11 @@ import { Image } from '../models/image';
 export class ImagesService {
   
   endpoint = environment.host + '/api/images';
-  bearerToken = localStorage.getItem("ocioToken");
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.bearerToken}`,
+
     }
     )
   };
@@ -25,7 +24,6 @@ export class ImagesService {
   httpOptionsImage = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.bearerToken}`
     }
     ),
   };
@@ -33,7 +31,6 @@ export class ImagesService {
   httpOptionsPostImage = {
     headers: new HttpHeaders({
       'enctype': 'multipart/form-data',
-      'Authorization': `Bearer ${this.bearerToken}`,
     }
     ),
   };

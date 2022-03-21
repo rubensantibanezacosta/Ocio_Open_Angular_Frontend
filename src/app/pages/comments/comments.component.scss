@@ -7,6 +7,8 @@
   height: 35px;
   padding: auto;
   box-shadow: 3px 3px 15px black;
+  height: 40px;
+  border-radius: 100px;
 }
 .writing-chip input {
   width: 100%;
@@ -15,6 +17,7 @@
   outline: none;
   background-color: transparent;
   z-index: 3;
+  font-size: 1rem;
 }
 
 mat-chip-list {
@@ -44,7 +47,7 @@ mat-chip-list {
 }
 
 ::ng-deep mat-form-field {
-  font-size: 0.8rem !important;
+  font-size: 0.9rem !important;
   width: 100% !important;
   border-radius: 6px !important;
   border: none !important;

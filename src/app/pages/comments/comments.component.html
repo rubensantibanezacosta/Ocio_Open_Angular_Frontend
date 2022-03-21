@@ -97,28 +97,3 @@ div
 
 </mat-toolbar>
 
-<!--  <div class="comment" *ngFor="let comment of comments, let i=index" id="commentcontainer">
-        <div class="comment-data-container" *ngIf="comments">
-            <div class="comment-data" id="id_{{comment.comment_id}}">
-                <p class="comment-author" title="{{comment.assistant}}">{{comment.user.name}}{{comment.user.surname}}</p>
-                <p class="comment-date">{{formatTime(comment.date)}}</p>
-            </div>
-            <div class="delete-icon-container" (click)="deleteComment(comment.comment_id, i)" *ngIf="userEmail==comment.assistant">
-                <img src="{{xIcon}}" alt="delete-icon">
-            </div>
-        </div>
-        <div class="message-container">{{comment.comment}}
-    </div>
-</div>
-
-<form (ngSubmit)="createComment(text.value)" #commentForm="ngForm" (keydown)="keyDownFunction($event, text.value)">
-<div class="comment-editor-container">
-    <div class="text-area-container">
-        <textarea #text name="text" class="comment-editor-textarea" type="text" required [(ngModel)]="textComment"> </textarea>
-    </div>
-    
-    <button type="submit" class="check-container" [disabled]="!commentForm.form.valid" >
-        <img src="{{checkIcon}}" alt="check">
-    </button>
-</div>
-</form> -->

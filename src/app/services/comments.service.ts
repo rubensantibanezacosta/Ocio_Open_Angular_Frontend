@@ -11,11 +11,9 @@ import { Comment } from '../models/comment';
 export class CommentsService {
 
   endpoint = environment.host + '/api/comments';
-  bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.bearerToken}`
     }
     )
   };

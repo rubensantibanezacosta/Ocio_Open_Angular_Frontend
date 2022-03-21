@@ -12,11 +12,9 @@ import { environment } from '../../environments/environment';
 export class AssistantsService {
   
   endpoint = environment.host + '/api/assistant';
-  bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({ 
-      'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.bearerToken}` }
+      'Content-Type': 'application/json'}
     )
   };
   constructor(private httpClient:HttpClient) { }

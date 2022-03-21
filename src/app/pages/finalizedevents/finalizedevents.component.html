@@ -1,6 +1,5 @@
 <main class="main-container" [@modalAnimation]>
-    <div class="main">
-        <mat-tab-group class="mat-tab-group-events" mat-stretch-tabs>
+        <mat-tab-group class="mat-tab-group-events" mat-stretch-tabs dynamicHeight="true">
             <span class="tabs">
                 <mat-tab>
                     <ng-template mat-tab-label class="mat-tab-label">Disponibles</ng-template>
@@ -18,13 +17,16 @@
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label class="mat-tab-label">Mis Eventos</ng-template>
+                    <span>
+
+                        
+                    </span>
                     <div class="tab-content">
-                        <app-myevents></app-myevents>
+                        <app-myevents class="myevents"></app-myevents>
                     </div>
                 </mat-tab>
             </span>
         </mat-tab-group>
-    </div>
 </main>
 
 <router-outlet></router-outlet>

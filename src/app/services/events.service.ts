@@ -9,11 +9,9 @@ import { environment } from '../../environments/environment';
 })
 export class EventsService {
   endpoint = environment.host + '/api/events';
-  bearerToken = localStorage.getItem("ocioToken");
   httpOptions = {
     headers: new HttpHeaders({ 
-      'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.bearerToken}` }
+      'Content-Type': 'application/json'}
     )
   };
   constructor(private httpClient:HttpClient) { }

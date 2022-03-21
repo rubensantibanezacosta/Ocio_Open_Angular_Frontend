@@ -61,12 +61,23 @@ export class LoadingInterceptor implements HttpInterceptor {
   constructor(private loadingService: LoadingService, private _snackBar: MatSnackBar) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const token = localStorage.getItem("ocioToken");
+    
     if (this.countRequestadd == 0 || (this.countRequestadd > this.countRequestdiscount)) {
       this.loadingService.show();
       this.loadingService.updateProgress(0);
     }
     this.countRequestadd++;
-    return next.handle(request).pipe(
+    let headers;
+    if (token) {
+       headers = request.clone({
+            headers: request.headers.set('Authorization', `Bearer ${token}`)
+          })
+    }else{
+      headers=request.clone();
+    }
+    
+    return next.handle(headers).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {

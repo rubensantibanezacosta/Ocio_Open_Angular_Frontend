@@ -74,17 +74,17 @@ mat-card{
 
 .main-container{
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     min-width: 100vw;
-    position: absolute;
-    max-height: calc(100vh - 105px);
-    overflow: auto;
+    position: relative;
+    overflow: scroll;
     top: 0;
     left: 0;
     padding: 0;
     padding: 0 20px;
-    padding-bottom: 100px;
+    padding-bottom: 200px;
     box-sizing: border-box;
+    
   }
 
 

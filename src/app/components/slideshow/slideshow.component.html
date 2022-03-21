@@ -9,11 +9,11 @@
 
     <main appendOnly itemSize="30" class="main-container" *ngIf="dateToFilter"
         (scroll)="scrollPositionlistener($event.target)">
-        <span *ngFor="let event of lazyEvents">
+        <span class="scroll-card" *ngFor="let event of lazyEvents">
 
             <div class="card-container">
                 <div class="background-img">
-                    <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
+                    <app-image-viewer class="image-viewer" [imageId]="event.image_id"></app-image-viewer>
                 </div>
                 <mat-card class="card">
                     <mat-card-header>
@@ -84,10 +84,11 @@
         <span *ngFor="let event of lazyEvents">
 
             <div class="card-container">
-                <div class="background-img">
-                    <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
-                </div>
+                 <div class="background-img">
+                    <app-image-viewer class="image-viewer" [imageId]="event.image_id"></app-image-viewer>
+                </div> 
                 <mat-card class="card">
+
                     <mat-card-header>
                         <div mat-card-avatar class="header-image">
                             <img src="{{event.organizerdata.image_url}}" alt="profile">
@@ -157,7 +158,7 @@
 
             <div class="card-container">
                 <div class="background-img">
-                    <app-image-viewer [imageId]="event.image_id"></app-image-viewer>
+                    <app-image-viewer class="image-viewer" [imageId]="event.image_id"></app-image-viewer>
                 </div>
                 <mat-card class="card">
                     <mat-card-header>

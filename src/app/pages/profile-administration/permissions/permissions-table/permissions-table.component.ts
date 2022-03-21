@@ -24,14 +24,14 @@ export class PermissionsTableComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.refreshPermissions.subscribe((permissions) => {
-      this.permissions = permissions.split(",");
+      this.permissions = permissions.split(',');
       this.dataSource = new MatTableDataSource(this.permissions);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
 
     this.refreshUserPermissions.subscribe((userPermissions) => {
-      this.userPermissions = userPermissions.split(",");
+      this.userPermissions = userPermissions.split(',');
       this.dataSource = new MatTableDataSource(this.permissions);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -47,26 +47,30 @@ export class PermissionsTableComponent implements AfterViewInit {
   }
 
   checkPermission = (permissionName) => {
-    return this.permissions.includes(permissionName);
+    if(this.userPermissions){
+    return this.userPermissions.includes(permissionName);
+    }
+    return false;
   }
 
   permissionToggle(permissionsName) {
-
     if (this.userPermissions.includes(permissionsName)) {
       this.userPermissions = this.userPermissions.filter((userPermission) => {
         return userPermission != permissionsName;
       })
+      
       this.emitPermissions();
     }
     else {
       this.userPermissions.push(permissionsName);
+      
       this.emitPermissions();
     }
   }
 
   emitPermissions() {
     this.editedUserPermissions.emit(this.userPermissions.toString()
-      .replace("{", "").replace("}", ""))
+      .replace('{', '').replace('}', ''))
   }
 
 }
