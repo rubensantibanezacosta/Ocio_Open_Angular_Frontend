@@ -53,12 +53,16 @@
                         </p>
                         <p class="pointer" routerLink="assistants/{{event.event_id}}">
                             <mat-icon class="content-icons">groups</mat-icon>
-                            {{filterByAttendance(event.assistants)}}
-                            Asistentes
+                            <u>
+                            </u>lterByAttendance(event.assistants)}}
+                            Asistentes <u>
+                            </u>
                         </p>
                         <p class="pointer" routerLink="comments/{{event.event_id}}">
                             <mat-icon class="content-icons">forum</mat-icon>
-                            {{event.comments.length}} Comentarios
+                            <u>
+                            </u>ent.comments.length}} Comentarios <u>
+                            </u>
                         </p>
                         <p>{{event.description}}</p>
                     </mat-card-content>
@@ -84,9 +88,9 @@
         <span *ngFor="let event of lazyEvents">
 
             <div class="card-container">
-                 <div class="background-img">
+                <div class="background-img">
                     <app-image-viewer class="image-viewer" [imageId]="event.image_id"></app-image-viewer>
-                </div> 
+                </div>
                 <mat-card class="card">
 
                     <mat-card-header>
@@ -126,12 +130,12 @@
                         </p>
                         <p class="pointer" routerLink="assistants/{{event.event_id}}">
                             <mat-icon class="content-icons">groups</mat-icon>
-                            {{filterByAttendance(event.assistants)}}
-                            Asistentes
+                            <u>{{filterByAttendance(event.assistants)}}
+                                Asistentes</u>
                         </p>
                         <p class="pointer" routerLink="comments/{{event.event_id}}">
                             <mat-icon class="content-icons">forum</mat-icon>
-                            {{event.comments.length}} Comentarios
+                            <u>{{event.comments.length}} Comentarios</u>
                         </p>
                         <p>{{event.description}}</p>
                     </mat-card-content>

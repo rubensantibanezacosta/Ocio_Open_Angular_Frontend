@@ -43,38 +43,6 @@
         </div>
     </div>
 
-
-    <!--
-    <div class="message-container-mine">
-div
-    <mat-chip-list *ngFor="let comment of comments, let i=index" id="commentcontainer">
-
-        <div class="message-container-mine">
-            <mat-chip class="yourComments" *ngIf="userEmail==comment.assistant">
-                <mat-chip-avatar>
-                    <img class="avatar" src="{{comment.user.image_url}}" alt="Photo of a Shiba Inu" />
-                </mat-chip-avatar>
-
-                <p>{{comment.comment}}</p>
-                
-                <button matChipRemove (click)="deleteComment(comment.comment_id, i)">
-                    <mat-icon>cancel</mat-icon>
-                </button>
-            </mat-chip>
-        </div>
-
-        <div class="message-container-others">
-            <mat-chip class="otherComments" *ngIf="userEmail!=comment.assistant">
-                <mat-chip-avatar>
-                    <img class="avatar" src="{{comment.user.image_url}}" alt="Photo of a Shiba Inu" />
-                </mat-chip-avatar>
-                {{comment.comment}}
-            </mat-chip>
-        </div>
-
-       <p>{{formatTime(comment.date)}}</p> 
-    </mat-chip-list>-->
-
 </main>
 
 <mat-toolbar class="comment-editor-container">
