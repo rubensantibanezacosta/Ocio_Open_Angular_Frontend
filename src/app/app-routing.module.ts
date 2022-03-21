@@ -44,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent, data: { animation: 'loginPage' }, canActivate: [AccessGuardGuard] 
+    component: LoginComponent, data: { animation: 'loginPage' }
   },
 
   {

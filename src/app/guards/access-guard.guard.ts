@@ -11,13 +11,13 @@ export class AccessGuardGuard implements CanActivate {
 
   constructor(private router: Router) { }
   canActivate(activatedRoute: ActivatedRouteSnapshot) {
-
     const scopes = getDataFromToken().scopes;
     const expireDate =  getDataFromToken().tokenExpiresIn;
 
     if(moment().isAfter(moment(expireDate))){
       console.error('Token Expired');
-      this.router.navigate(['/']);
+      localStorage.removeItem("OcioToken");
+      this.router.navigate(['/login']);
       return false;
     }
 
@@ -27,7 +27,8 @@ export class AccessGuardGuard implements CanActivate {
     } else {
       
       console.error('Unauthorized');
-      this.router.navigate(['/']);
+      localStorage.removeItem("OcioToken");
+      this.router.navigate(['/login']);
       return false;
     }
   }

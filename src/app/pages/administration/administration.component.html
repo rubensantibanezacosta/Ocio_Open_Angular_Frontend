@@ -3,7 +3,7 @@
         <span class="tabs">
             <mat-tab>
                 <ng-template mat-tab-label class="mat-tab-label">
-                    <mat-icon matBadge={{users.length}} matBadgePosition="before">people</mat-icon>
+                    <mat-icon *ngIf="users.length>0" matBadge={{users.length}} matBadgePosition="before">people</mat-icon>
                     <span> Usuarios</span>
                 </ng-template>
                 <span>
@@ -42,7 +42,7 @@
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label class="mat-tab-label">
-                    <mat-icon matBadge={{events.length}} matBadgePosition="before">celebration</mat-icon>
+                    <mat-icon *ngIf="events.length>0" matBadge={{events.length}} matBadgePosition="before">celebration</mat-icon>
                     <span>Eventos</span>
                 </ng-template>
                 <span>
