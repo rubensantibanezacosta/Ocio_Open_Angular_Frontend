@@ -39,54 +39,58 @@ import { RankingComponent } from './pages/ranking/ranking.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "login",
+    redirectTo: "menu/home",
     pathMatch: 'full'
   },
   {
     path: 'login',
-    component: LoginComponent, data: { animation: 'loginPage' }
+    component: LoginComponent, data: { animation: 'loginPage' }, canActivate: [AccessGuardGuard] 
   },
 
   {
     path: 'menu',
-    component: MenuComponent, data: [{ animation: 'menuPage' },],
+    component: MenuComponent, data: [{ animation: 'menuPage' }],canActivate: [AccessGuardGuard] ,
     children: [
       {
-        path: 'home', component: FinalizedeventsComponent, data: { animation: 'homePage'},
+        path: 'home', component: FinalizedeventsComponent, data: { animation: 'homePage'},canActivate: [AccessGuardGuard] ,
 
         children: [
-          { path: 'eventform/:event_id/:type', component: EventFormComponent, data: { animation: 'eventFormPage'} },
-          { path: 'comments/:event_id', component: CommentsComponent, data: { animation: 'CommentsPage'} },
-          { path: 'assistants/:event_id', component: AssistantsComponent, data: { animation: 'assistantsPage'} },
+          { path: 'eventform/:event_id/:type', component: EventFormComponent, data: { animation: 'eventFormPage'} , canActivate: [AccessGuardGuard] },
+          { path: 'comments/:event_id', component: CommentsComponent, data: { animation: 'CommentsPage'} , canActivate: [AccessGuardGuard] },
+          { path: 'assistants/:event_id', component: AssistantsComponent, data: { animation: 'assistantsPage'}, canActivate: [AccessGuardGuard]  },
         ]
       },
       {
         path: 'administration', component: AdministrationComponent,
         data: { animation: 'administrationPage'},
+        canActivate: [AccessGuardGuard] ,
         children: [
           {
             path: 'profileAdministration/:email', component: ProfileAdministrationComponent,
             data: { animation: 'profileAdministrationPage'},
+            canActivate: [AccessGuardGuard] ,
             children: [
-              { path: 'eventsAdministration/:event_id', component: EventsAdministrationComponent, data: { animation: 'eventAdministrationPage'} },
+              { path: 'eventsAdministration/:event_id', component: EventsAdministrationComponent, data: { animation: 'eventAdministrationPage'},
+              canActivate: [AccessGuardGuard]  },
               {
                 path: 'permissions/:email', component: PermissionsComponent,
-                data: { animation: 'permissionsPage'}
+                data: { animation: 'permissionsPage'},
+                canActivate: [AccessGuardGuard] 
               },
             ]
           },
           {
-            path: 'eventsAdministration/:event_id', component: EventsAdministrationComponent, data: { animation: 'eventAdministrationPage'}
+            path: 'eventsAdministration/:event_id', component: EventsAdministrationComponent, data: { animation: 'eventAdministrationPage'}, canActivate: [AccessGuardGuard] 
           },
         ]
       },
-      { path: 'ranking', component: RankingComponent },
+      { path: 'ranking', component: RankingComponent, canActivate: [AccessGuardGuard]  },
       {
         path: 'calendar',
         component: CalendarComponent,
-        data: { animation: 'calendarPage'},
+        data: { animation: 'calendarPage', canActivate: [AccessGuardGuard] },
         children: [
-          { path: 'eventsbydate/:date', component: EventsByDateComponent, data: { animation: 'eventsByDatePage'} },
+          { path: 'eventsbydate/:date', component: EventsByDateComponent, data: { animation: 'eventsByDatePage'} ,canActivate: [AccessGuardGuard] },
         ]
       },
       { path: '**', component: NofoundComponent }
