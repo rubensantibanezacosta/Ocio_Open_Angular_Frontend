@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -9,13 +10,17 @@ import * as moment from 'moment';
 })
 export class AccessGuardGuard implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public _matSnackBar:MatSnackBar) { }
   canActivate(activatedRoute: ActivatedRouteSnapshot) {
     const scopes = getDataFromToken().scopes;
     const expireDate =  getDataFromToken().tokenExpiresIn;
 
     if(moment().isAfter(moment(expireDate))){
-      console.error('Token Expired');
+      this._matSnackBar.open("La sesión ha expirado","Aceptar",{
+        duration:3000,
+        verticalPosition:"top",
+        horizontalPosition:"center"
+      })
       localStorage.removeItem("ocioToken");
       this.router.navigate(['/login']);
       return false;
@@ -25,10 +30,12 @@ export class AccessGuardGuard implements CanActivate {
       
       return true;
     } else {
-      
-      console.error('Unauthorized');
-      localStorage.removeItem("ocioToken");
-      this.router.navigate(['/login']);
+      this._matSnackBar.open("No tiene autorización para el recurso","Cerrar",{
+        duration:3000,
+        verticalPosition:"top",
+        horizontalPosition:"center"
+      })
+      window.history.back();
       return false;
     }
   }
